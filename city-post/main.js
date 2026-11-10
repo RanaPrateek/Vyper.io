@@ -118,15 +118,15 @@ grass.rotation.x = -Math.PI / 2; grass.position.y = -0.06; grass.receiveShadow =
 scene.add(grass);
 
 // entrance highway (x = 0, from the grid edge out to the horizon on +z)
-const hwTex = canvasTex(128, 512, (g, W, H) => {
+const hwTex = canvasTex(256, 512, (g, W, H) => {
   g.fillStyle = '#3a4558'; g.fillRect(0, 0, W, H);
-  for (let i = 0; i < 600; i++) { g.fillStyle = `rgba(255,255,255,${Math.random() * 0.05})`; g.fillRect(Math.random() * W, Math.random() * H, 2, 2); }
   g.fillStyle = '#f4f4f4';
-  g.fillRect(5, 0, 6, H); g.fillRect(W - 11, 0, 6, H);
-  g.fillRect(W / 2 - 3, 0, 6, H * 0.45);
+  g.fillRect(6, 0, 4, H); g.fillRect(W - 10, 0, 4, H);
+  g.fillRect(W / 2 - 2, 0, 4, H * 0.45);
+  g.fillRect(W / 4 - 1, 0, 3, H * 0.3); g.fillRect(3 * W / 4 - 2, 0, 3, H * 0.3);
 }, { repeat: true });
 hwTex.repeat.set(1, 120); hwTex.anisotropy = ANISO;
-const hw = new THREE.Mesh(new THREE.PlaneGeometry(14, 1800), new THREE.MeshStandardMaterial({ map: hwTex, roughness: 0.9 }));
+const hw = new THREE.Mesh(new THREE.PlaneGeometry(24, 1800), new THREE.MeshStandardMaterial({ map: hwTex, roughness: 0.9 }));
 hw.rotation.x = -Math.PI / 2; hw.position.set(0, 0.01, HALF + 900); hw.receiveShadow = true;
 scene.add(hw);
 
@@ -166,7 +166,7 @@ scene.add(hw);
 // ---------------------------------------------------------------- street lights (instanced)
 {
   const pts = [];
-  for (let z = HALF + 20; z < HALF + 900; z += 34) { pts.push([-9.5, z, 1]); if (z + 17 < HALF + 40 || z + 17 > HALF + 100) pts.push([9.5, z + 17, -1]); }
+  for (let z = HALF + 20; z < HALF + 900; z += 34) { pts.push([-14, z, 1]); if (z + 17 < HALF + 40 || z + 17 > HALF + 100) pts.push([14, z + 17, -1]); }
   for (let i = -GRID / 2; i <= GRID / 2; i++) for (let j = -GRID / 2; j <= GRID / 2; j++) {
     if ((i + j) % 2) continue;
     pts.push([i * BLOCK + 6.2, j * BLOCK + 6.2, -1]);
@@ -188,7 +188,7 @@ scene.add(hw);
 }
 
 // ---------------------------------------------------------------- population sign
-const SIGN_POS = v3(13, 0, HALF + 62);
+const SIGN_POS = v3(19, 0, HALF + 62);
 const signTex = canvasTex(1024, 620, () => {});
 function drawSign(n) {
   const g = signTex.userData.ctx, W = 1024, H = 620;
@@ -210,7 +210,7 @@ const sign = new THREE.Group();
     p.position.set(x, (B + H) / 2, -0.25); p.castShadow = true; sign.add(p);
   }
   const board = new THREE.Mesh(new THREE.BoxGeometry(W, H, 0.25), [postMat, postMat, postMat, postMat,
-    new THREE.MeshStandardMaterial({ map: signTex, roughness: 0.6 }), new THREE.MeshStandardMaterial({ color: 0x2b6e48 })]);
+    new THREE.MeshStandardMaterial({ map: signTex, roughness: 0.6, emissive: 0xffffff, emissiveMap: signTex, emissiveIntensity: 0.35 }), new THREE.MeshStandardMaterial({ color: 0x2b6e48 })]);
   board.position.y = B + H / 2; board.castShadow = true; sign.add(board);
   sign.position.copy(SIGN_POS); sign.rotation.y = -0.38;
   scene.add(sign);
@@ -407,13 +407,13 @@ function applyLook(L, focus, span) {
 // Each shot: [t0, t1], camera from/to + look from/to, look, city mode, overlays.
 const SHOTS = [
   { t0: 0, t1: 2.7, pill: 'DAY 0', title: 'POPULATION: 1', look: 'day', city: 'hidden', pop: () => 1,
-    cam: [v3(-3.5, 1.9, HALF + 112), v3(-3.5, 1.9, HALF + 103)], at: [v3(22, 6.0, HALF + 10), v3(22, 6.0, HALF)] },
+    cam: [v3(-4.5, 2.1, HALF + 112), v3(-4.5, 2.1, HALF + 103)], at: [v3(27, 6.0, HALF + 10), v3(34, 6.0, HALF)] },
   { t0: 2.7, t1: 5.8, pill: 'DAY 0', title: 'TOTALLY EMPTY', look: 'day', city: 'hidden',
     cam: [v3(0, 30, 190), v3(0, 30, 130)], at: [v3(30, 0, 100), v3(30, 0, 40)] },
   { t0: 5.8, t1: 11.6, pill: 'THE PLAN', title: 'BUILT BY YOU', look: 'day', city: 'grow', orbit: true },
   { t0: 11.6, t1: 15.3, pill: 'RULE 1', title: 'FOLLOW = CITIZEN', look: 'day', city: 'full',
     pop: (t) => Math.round(1 + (CFG.follower - 1) * easeOut((t - 12.5) / 2.0)),
-    cam: [v3(1.0, 6.6, HALF + 84), v3(2.5, 6.7, HALF + 79)], at: [SIGN_CENTER.clone().add(v3(-1, 0, 0)), SIGN_CENTER.clone().add(v3(0.4, 0, 0))] },
+    cam: [v3(7.0, 6.6, HALF + 84), v3(8.5, 6.7, HALF + 79)], at: [SIGN_CENTER.clone().add(v3(-1, 0, 0)), SIGN_CENTER.clone().add(v3(0.4, 0, 0))] },
   { t0: 15.3, t1: 18.0, pill: 'RULE 2', title: '1 COMMENT = 1 HOUSE', look: 'day', city: 'hidden', house: true,
     cam: [HOUSE_POS.clone().add(v3(17, 3.4, 46)), HOUSE_POS.clone().add(v3(12, 3.2, 40))], at: [HOUSE_POS.clone().add(v3(0, 3.2, 0)), HOUSE_POS.clone().add(v3(0, 3.0, 0))] },
   { t0: 18.0, t1: 19.6, pill: 'RULE 2', title: '1 COMMENT = 1 HOUSE', look: 'day', city: 'hidden', house: true,
@@ -423,7 +423,7 @@ const SHOTS = [
   { t0: 26.6, t1: 33.3, pill: 'VOTE NOW', title: 'BUILD WHAT FIRST?', look: 'day', city: 'hidden', vote: true, topdown: true,
     cam: [v3(-6, 300, -12), v3(-9, 255, -22)], at: [v3(-6, 0, -14), v3(-9, 0, -24)] },
   { t0: 33.3, t1: 37.0, pill: 'DAY 1', title: 'RESULTS NEXT EPISODE', look: 'day', city: 'hidden', results: true, pop: () => 1,
-    cam: [v3(-3.5, 1.9, HALF + 128), v3(-3.5, 1.9, HALF + 120)], at: [v3(11, 6.0, HALF + 20), v3(11, 6.0, HALF + 10)] },
+    cam: [v3(-4.5, 2.1, HALF + 128), v3(-4.5, 2.1, HALF + 120)], at: [v3(18, 6.0, HALF + 20), v3(25, 6.0, HALF + 10)] },
   { t0: 37.0, t1: DURATION, end: true },
 ];
 
@@ -544,7 +544,7 @@ export function setTime(t) {
     span = shot.house || shot.pop ? 60 : shot.topdown ? 200 : 170;
   }
   // punch-in on each cut
-  camera.fov = 52 - 3 * (1 - easeOut(sinceCut / 0.35));
+  camera.fov = shot.t0 === 0 ? 52 : 52 - 3 * (1 - easeOut(sinceCut / 0.35));
   camera.updateProjectionMatrix();
   applyLook(L, focus, span);
   updateCity(t, shot.city);
@@ -554,7 +554,7 @@ export function setTime(t) {
   // ---- overlays
   ui.pill.textContent = shot.pill;
   if (shot.title !== lastTitle) { fitTitle(shot.title); lastTitle = shot.title; }
-  const pop = easeOutBack(sinceCut / 0.3);
+  const pop = shot.t0 === 0 ? 1 : easeOutBack(sinceCut / 0.3);
   ui.title.style.transform = `scale(${0.85 + 0.15 * pop})`;
   ui.pill.style.transform = `translateX(-50%) scale(${0.85 + 0.15 * pop})`;
 
