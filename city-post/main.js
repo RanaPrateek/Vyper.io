@@ -460,6 +460,7 @@ const $ = (id) => document.getElementById(id);
 const ui = { pill: $('pill'), title: $('title'), caption: $('caption'), card: $('card'), likeN: $('likeN'), end: $('end'),
   vtags: [$('vA'), $('vB'), $('vC')], opts: [$('oA'), $('oB'), $('oC')], results: $('results'), endPop: $('endPop') };
 $('handle').textContent = CFG.handle;
+if (params.has('clean')) document.getElementById('ui').style.display = 'none'; // scene only, for thumbnails
 let lastCaption = '';
 
 function fitTitle(text) {
