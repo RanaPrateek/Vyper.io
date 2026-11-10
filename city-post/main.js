@@ -43,7 +43,7 @@ renderer.shadowMap.type = THREE.PCFSoftShadowMap;
 const ANISO = renderer.capabilities.getMaxAnisotropy();
 
 const scene = new THREE.Scene();
-const camera = new THREE.PerspectiveCamera(52, 1080 / 1920, 0.5, 5000);
+const camera = new THREE.PerspectiveCamera(52, 1080 / 1920, 1.0, 5000);
 scene.fog = new THREE.Fog(0xc9d9e6, 350, 1700);
 
 // ---------------------------------------------------------------- sky
@@ -101,7 +101,7 @@ const roadTex = canvasTex(512, 512, (g, W) => {
   for (const x0 of [r + 0.6, BLOCK - r - 3.6]) for (const y0 of [0, BLOCK - r]) { zebra(x0, y0, true); zebra(x0, y0, false); }
 }, { repeat: true });
 roadTex.repeat.set(GRID, GRID); roadTex.anisotropy = ANISO;
-const grid = new THREE.Mesh(new THREE.PlaneGeometry(BLOCK * GRID, BLOCK * GRID), new THREE.MeshStandardMaterial({ map: roadTex, roughness: 0.92 }));
+const grid = new THREE.Mesh(new THREE.PlaneGeometry(BLOCK * GRID, BLOCK * GRID), new THREE.MeshStandardMaterial({ map: roadTex, roughness: 0.92, polygonOffset: true, polygonOffsetFactor: -1, polygonOffsetUnits: -1 }));
 grid.rotation.x = -Math.PI / 2; grid.receiveShadow = true;
 scene.add(grid);
 
@@ -114,7 +114,7 @@ const grassTex = canvasTex(512, 512, (g, W) => {
 }, { repeat: true });
 grassTex.repeat.set(300, 300); grassTex.anisotropy = ANISO;
 const grass = new THREE.Mesh(new THREE.PlaneGeometry(9000, 9000), new THREE.MeshStandardMaterial({ map: grassTex, roughness: 1 }));
-grass.rotation.x = -Math.PI / 2; grass.position.y = -0.06; grass.receiveShadow = true;
+grass.rotation.x = -Math.PI / 2; grass.position.y = -0.2; grass.receiveShadow = true;
 scene.add(grass);
 
 // entrance highway (x = 0, from the grid edge out to the horizon on +z)
@@ -126,8 +126,8 @@ const hwTex = canvasTex(256, 512, (g, W, H) => {
   g.fillRect(W / 4 - 1, 0, 3, H * 0.3); g.fillRect(3 * W / 4 - 2, 0, 3, H * 0.3);
 }, { repeat: true });
 hwTex.repeat.set(1, 120); hwTex.anisotropy = ANISO;
-const hw = new THREE.Mesh(new THREE.PlaneGeometry(24, 1800), new THREE.MeshStandardMaterial({ map: hwTex, roughness: 0.9 }));
-hw.rotation.x = -Math.PI / 2; hw.position.set(0, 0.01, HALF + 900); hw.receiveShadow = true;
+const hw = new THREE.Mesh(new THREE.PlaneGeometry(24, 1800), new THREE.MeshStandardMaterial({ map: hwTex, roughness: 0.9, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2 }));
+hw.rotation.x = -Math.PI / 2; hw.position.set(0, 0.04, HALF + 900); hw.receiveShadow = true;
 scene.add(hw);
 
 // ---------------------------------------------------------------- trees (instanced)
