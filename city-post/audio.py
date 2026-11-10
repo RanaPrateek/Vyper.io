@@ -315,8 +315,31 @@ duck -= np.clip(kick_env * 0.6, 0, 0.35)
 music_l *= duck
 music_r *= duck
 
-L = music_l * 0.8 + sfx * 0.9
-R = music_r * 0.8 + sfx * 0.9
+# ---------------------------------------------------------------- voiceover (from voice.mjs)
+VOICE = os.path.join(os.path.dirname(OUT), "voice.wav")
+voice = buf()
+if os.path.exists(VOICE):
+    with wave.open(VOICE) as w:
+        vsr = w.getframerate()
+        v = np.frombuffer(w.readframes(w.getnframes()), "<i2").astype(float) / 32768
+        if w.getnchannels() == 2:
+            v = v.reshape(-1, 2).mean(axis=1)
+    v = np.interp(np.arange(int(len(v) * SR / vsr)) / SR, np.arange(len(v)) / vsr, v)  # resample
+    v = fft_filter(v, lo=80)                     # clear rumble under the voice
+    voice[: min(N, len(v))] = v[:N]
+    voice /= np.max(np.abs(voice)) + 1e-9
+    print("mixed voiceover from", VOICE)
+
+# duck music and effects under speech: smoothed voice envelope -> up to ~10 dB reduction
+venv = np.abs(voice)
+w = int(0.12 * SR)
+venv = np.convolve(venv, np.ones(w) / w, mode="same")
+venv = np.clip(venv / (venv.max() + 1e-9) * 4, 0, 1)
+bed_gain = 1 - 0.68 * venv                       # 0.32 ~= -10 dB
+sfx_gain = 1 - 0.35 * venv
+
+L = music_l * 0.8 * bed_gain + sfx * 0.9 * sfx_gain + voice * 0.95
+R = music_r * 0.8 * bed_gain + sfx * 0.9 * sfx_gain + voice * 0.95
 
 # fades
 fade_in = int(0.03 * SR)

@@ -53,7 +53,24 @@ python3 audio.py                                  # -> out/soundtrack.wav
 ffmpeg -i out/post.mp4 -i out/soundtrack.wav -map 0:v -map 1:a -c:v copy -c:a aac -b:a 192k -shortest out/post_with_sound.mp4
 ```
 
-There is no voiceover yet. If you record one, mix it over `soundtrack.wav`, keeping the music about 10 dB lower under speech.
+### Voiceover
+
+`voice.mjs` narrates the script with **Kokoro-82M**, an open-source (Apache-2.0) voice model that runs locally on CPU. It writes:
+
+- `out/voice.wav`: each line placed at its caption time and sped up only if it would overrun its slot.
+- `captions.js`: word start times, which `main.js` turns into the 2–4-word karaoke captions. The vote tags, house pop-in and comment card are timed to the spoken words.
+
+`audio.py` mixes the voice centre and ducks the music about 10 dB under speech.
+
+```bash
+npm run voice -- --voice af_heart --speed 1.1    # other voices: am_michael, am_fenrir, bf_emma, bm_george, ...
+npm run audio
+node render.mjs --audio out/soundtrack.wav       # captions changed, so re-render the frames
+```
+
+The first run downloads the model (~90 MB) from Hugging Face. If you're behind an HTTPS proxy, run Node with `NODE_USE_ENV_PROXY=1`.
+
+To use your own recording instead, save it as `out/voice.wav`, adjust the times in `captions.js` to match, and run `npm run audio` and the render again.
 
 ## Render
 

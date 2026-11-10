@@ -1,3 +1,4 @@
 node_modules/
 out/still_*.png
 out/soundtrack.wav
+out/voice.wav
