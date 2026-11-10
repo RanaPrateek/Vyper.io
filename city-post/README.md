@@ -39,6 +39,22 @@ Burned-in karaoke captions (white with a black outline, active word in orange) f
 34.7 Results next episode.
 ```
 
+## Sound
+
+`audio.py` synthesises an original soundtrack with numpy, so there are no samples or licensed music:
+
+- **Music:** a 120 BPM I–V–vi–IV groove. It starts as a sparse pad and plucks, drops in at "here's the plan", goes half-time for the sunset, builds into the vote, and ends on a held chord.
+- **Sound effects:** whooshes on every cut, risers and impacts into the big moments, a rumble and thunks as the buildings rise, ticks for the population counter and likes, pops for the house, card, vote plots, tags and results, and a chime on the end card.
+
+It's mixed to about -14 LUFS with a -1 dBFS peak, which suits TikTok, Reels and Shorts.
+
+```bash
+python3 audio.py                                  # -> out/soundtrack.wav
+ffmpeg -i out/post.mp4 -i out/soundtrack.wav -map 0:v -map 1:a -c:v copy -c:a aac -b:a 192k -shortest out/post_with_sound.mp4
+```
+
+There is no voiceover yet. If you record one, mix it over `soundtrack.wav`, keeping the music about 10 dB lower under speech.
+
 ## Render
 
 Needs Node 18+, ffmpeg and Playwright with Chromium.
