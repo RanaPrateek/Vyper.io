@@ -5,12 +5,12 @@ import { CAPTIONS as VOICE_LINES } from './captions.js';
 
 const params = new URLSearchParams(location.search);
 const CFG = {
-  handle: params.get('handle') || '@your_handle',
+  handle: params.get('handle') || '@population.you',
   resident: params.get('name') || '@YOUR_NAME',
   city: (params.get('city') || 'YOUR CITY').toUpperCase(),
   follower: params.get('pop') ? parseInt(params.get('pop'), 10) : 582,
 };
-export const DURATION = 40;
+export const DURATION = 41;  // 37 s of story + end card with the sonic logo
 
 // ---------------------------------------------------------------- helpers
 const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
@@ -490,6 +490,10 @@ export function setTime(t) {
     const p = clamp((t - shot.t0) / 0.5);
     ui.end.style.opacity = p;
     ui.endPop.textContent = '1';
+    // logo lands on the narrator's "you" in the sonic logo (1.04 s into it)
+    const lp = easeOutBack((t - (shot.t0 + 1.04)) / 0.4);
+    $('endLogo').style.transform = `scale(${Math.max(0, 0.3 + 0.7 * lp)})`;
+    $('endLogo').style.opacity = clamp((t - (shot.t0 + 0.95)) / 0.1);
     return;
   }
 

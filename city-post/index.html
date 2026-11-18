@@ -58,7 +58,8 @@
   #end { position: absolute; inset: 0; background: radial-gradient(circle at 50% 42%, #1c2740 0%, #0d121d 70%);
     display: none; flex-direction: column; align-items: center; justify-content: center; color: #fff; }
   #end .k { font-weight: 800; font-size: 34px; color: #ff8a1c; letter-spacing: 6px; }
-  #end .big { font-family: 'Inter Display','Inter',sans-serif; font-weight: 900; font-size: 92px; text-align: center; line-height: 1.05; margin: 26px 0 50px; }
+  #end .big { font-family: 'Inter Display','Inter',sans-serif; font-weight: 900; font-size: 74px; text-align: center; line-height: 1.05; margin: 44px 0 44px; white-space: nowrap; }
+  #end #endLogo { margin-top: 40px; display: block; }
   #end .search { display: flex; align-items: center; background: #fff; color: #222; border-radius: 22px;
     padding: 22px 34px; font-size: 40px; font-weight: 700; border: 5px solid #ff8a1c; min-width: 560px; box-sizing: border-box; }
   #end .search svg { margin-right: 22px; }
@@ -90,10 +91,11 @@
     <div id="caption"></div>
     <div id="end">
       <div class="k">EPISODE 1 &middot; DAY 0</div>
-      <div class="big">FOLLOW TO<br>MOVE IN</div>
+      <img id="endLogo" src="./assets/logo-board.svg" width="600" alt="">
+      <div class="big">FOLLOW TO MOVE IN</div>
       <div class="search">
         <svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="2.6" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="7"/><path d="M16 16l5 5"/></svg>
-        <span id="handle">@your_handle</span>
+        <span id="handle">@population.you</span>
       </div>
       <div class="pop">Population: <span id="endPop">1</span></div>
     </div>

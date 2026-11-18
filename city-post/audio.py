@@ -10,7 +10,7 @@ import numpy as np
 
 from sfxlib import *  # noqa: F401,F403  (SR, rng, instruments)
 from sfxlib import SR, rng
-DUR = 40.0
+DUR = 41.0
 N = int(SR * DUR)
 OUT = os.path.join(os.path.dirname(os.path.abspath(__file__)), "out", "soundtrack.wav")
 
@@ -103,8 +103,8 @@ for (s0, s1, cut, arp, has_bass, kick_mode, has_clap, hats) in SECTIONS:
 # outro: held C chord under the end card
 outro = pad_chord([48, 55, 60, 64, 67], 3.4)
 outro *= np.linspace(1, 0, len(outro)) ** 0.6
-place(pad_l, fft_filter(outro, hi=2600), 36.6, 1.1)
-place(pad_r, fft_filter(np.roll(outro, int(0.011 * SR)), hi=2600), 36.6, 1.1)
+place(pad_l, fft_filter(outro, hi=2600), 36.6, 0.6)
+place(pad_r, fft_filter(np.roll(outro, int(0.011 * SR)), hi=2600), 36.6, 0.6)
 
 # ---------------------------------------------------------------- sound effects
 for c in CUTS:
@@ -113,7 +113,6 @@ place(sfx, riser(1.2), 4.6, 0.55)          # build into "here's the plan"
 place(sfx, impact(), 5.8, 0.75)
 place(sfx, riser(1.0), 25.6, 0.45)         # build into the vote
 place(sfx, impact(), 26.6, 0.55)
-place(sfx, impact(), 37.0, 0.45)
 
 # buildings rising: a rumble bed plus staggered thunks
 rumble_t = t_axis(4.0)
@@ -142,8 +141,14 @@ for tt in (29.15, 30.67, 32.33):             # vote tags
     place(sfx, pop(1200, 500), tt, 0.7)
 for i, tt in enumerate((33.45, 33.85, 34.25)):  # results options
     place(sfx, pop(900 + i * 200, 350), tt, 0.7)
-place(sfx, chime(76), 37.05, 0.35)
-place(sfx, chime(83), 37.25, 0.25)
+# end card: the brand's voiced sonic logo ("Population: you"), from brand/sonic.py
+SONIC = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "brand", "assets", "audio", "sonic-logo-voice.wav")
+if os.path.exists(SONIC):
+    with wave.open(SONIC) as w:
+        sl = np.frombuffer(w.readframes(w.getnframes()), "<i2").astype(float).reshape(-1, 2).mean(axis=1) / 32768
+    place(sfx, sl, 37.0, 1.1)
+else:
+    place(sfx, chime(76), 37.05, 0.35)
 
 # likes climbing on the comment card: soft ticks
 for tt in np.arange(23.2, 26.4, 0.16):
