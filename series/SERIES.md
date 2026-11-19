@@ -19,15 +19,16 @@
 - Only public usernames go on houses: no real names, faces or other personal details.
 
 ## Schedule (UK time, Europe/London)
-| Day | What |
+**From Episode 2: every other day at 19:00** (Sat 21, Mon 23, Wed 25 Nov…). We move to **daily** once growth picks up. The most successful show in this genre posts daily; see `RESEARCH.md`.
+TikTok polls close after 24 h, which fits this rhythm: the poll closes, results go to Claude that evening or the next morning, and the episode is ready by 17:00 for a 19:00 post.
+
+| When | What |
 |---|---|
-| **Monday 19:00** | New episode goes live |
-| **Thursday 19:00** | New episode goes live |
-| Sunday evening / Wednesday evening | Account holder sends results → Claude builds the next episode |
+| Day of posting, 19:00 | Episode goes live, with the poll in the pinned comment |
+| About 24 h later | Poll closes. Account holder sends screenshots (profile, comments, poll, analytics) |
+| Next day by 17:00 | Claude delivers the next episode and its upload sheet |
 
-These times are a starting guess (evening scroll time). After 2–3 weeks, check TikTok Analytics (Followers → Follower activity) and adjust.
-
-**Voting format:** use TikTok's poll in the pinned comment (one tap, so more votes). Polls close after 24 h, so screenshot the result. Votes written in comments also count.
+Check TikTok Analytics (Follower activity) after 2–3 weeks and adjust the time.
 
 ## What to send Claude after each episode (about 48 h after posting)
 ```
@@ -55,7 +56,7 @@ Views / likes / shares (optional)
 | # | Planned post time (UK) | Title | Vote asked | Result | Built | Notes |
 |---|---|---|---|---|---|---|
 | 1 | Posted Thu 19 Nov 2026 (~20:15) | Population: 1 | Hospital / Stadium / Giant mall | (pending) | — | Pilot: rules introduced. End card shows the old handle `@population.you`; left as is |
-| 2 | Mon 23 Nov 2026, 19:00 | (depends on vote) | | | | |
+| 2 | Sat 21 Nov 2026, 19:00 | (depends on vote) | | | | First episode using the research upgrades |
 
 ## Feedback to apply from Episode 2 (account holder, 19 Nov 2026)
 Episode 1 stays as posted. Don't re-render it. Apply all of these to new episodes:
@@ -69,6 +70,16 @@ Episode 1 stays as posted. Don't re-render it. Apply all of these to new episode
 3. **Profile banner.** TikTok profiles can show a background image behind the profile header (like the example the account holder shared). Make one for Population: You. Check TikTok's current size and safe-area guidance first.
 4. **End card handle:** Episode 1 shows `@population.you`. From Episode 2 it must say **@populationyou** (already fixed in `city-post/`).
 5. **Upload label:** Episode 1 went out with a "Promotional content" tag. That's for paid or brand promotions and can limit reach. Next time, leave the promotional/branded-content disclosure off and use the **AI-generated** label instead.
+
+## Format upgrades from research (apply from Ep 2; details in `RESEARCH.md`)
+- **Hook:** the sign counts from yesterday's population to today's in the first 4 s ("Yesterday: 1. Today: N.").
+- **Sidekick:** a **pigeon who lives on the population sign** and judges every build. Viewers get to name it.
+- **Shout-outs:** 4–6 named commenters per episode, each granted literally with a punchline, with their comment card on screen.
+- **Results** revealed lowest to highest, with a crown on the winner.
+- **Milestone:** at **100 citizens the city gets electricity**, which unlocks the first night episode. Show a progress bar.
+- **Founders' Wall** at the city entrance with every early citizen's name, and **end on a citizen list** ("pause to find your name").
+- **Look:** more colour (varied roof colours) and tiny citizens in the streets. Smaller titles, inside the safe area.
+- **Narration:** conversational and funny, generated as continuous takes. Episodes about 50–60 s.
 
 ## Ideas backlog (Claude's plan, in roughly this order)
 - **Ep 2:** build the vote winner on camera (construction timelapse). Add the first citizens' houses with nameplates. The sign counts up to the real follower count. New vote.
