@@ -1,5 +1,5 @@
 // Raster exports + layout templates for the brand kit (headless Chromium via Playwright).
-//   node brand/render.mjs [--handle @population.you] [--ep 1] [--day 0] [--title "POPULATION: 1"]
+//   node brand/render.mjs [--handle @populationyou] [--ep 1] [--day 0] [--title "POPULATION: 1"]
 // Run `python3 brand/build.py` first (vector logos) and grab scene frames with
 // `node city-post/render.mjs --stills 9.4,14.2 --clean 1`.
 import fs from 'node:fs';
@@ -11,7 +11,7 @@ const { chromium } = createRequire(import.meta.url)('playwright');
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const A = (p) => path.join(HERE, 'assets', p);
 const args = Object.fromEntries(process.argv.slice(2).reduce((a, x, i, arr) => (x.startsWith('--') && a.push([x.slice(2), arr[i + 1]]), a), []));
-const HANDLE = args.handle || '@population.you';
+const HANDLE = args.handle || '@populationyou';
 const EP = args.ep || '1', DAY = args.day || '0', TITLE = args.title || 'POPULATION: 1';
 
 const dataUri = (file, mime) => `data:${mime};base64,${fs.readFileSync(file).toString('base64')}`;

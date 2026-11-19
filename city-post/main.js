@@ -5,7 +5,7 @@ import { CAPTIONS as VOICE_LINES } from './captions.js';
 
 const params = new URLSearchParams(location.search);
 const CFG = {
-  handle: params.get('handle') || '@population.you',
+  handle: params.get('handle') || '@populationyou',
   resident: params.get('name') || '@YOUR_NAME',
   city: (params.get('city') || 'YOUR CITY').toUpperCase(),
   follower: params.get('pop') ? parseInt(params.get('pop'), 10) : 582,

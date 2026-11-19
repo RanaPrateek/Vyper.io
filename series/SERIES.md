@@ -2,7 +2,7 @@
 
 > The show's memory. Every new session starts by reading this file, and every episode ends by updating it.
 
-**Account:** TikTok `@population.you` (backups: `@populationyou`, `@population.you.city`)
+**Account:** TikTok [`@populationyou`](https://www.tiktok.com/@populationyou), created Thu 19 Nov 2026
 **Roles:** Claude makes the show: story, 3D city, script, voice, sound, edit, captions. The account holder uploads with the *AI-generated* label on, reads the comments, and sends the results back.
 **Tagline:** A city built by its followers.
 **Narrator:** Kokoro-82M `af_heart`, speed 1.1. Brand guide: `brand/index.html`.
