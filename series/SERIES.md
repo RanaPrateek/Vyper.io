@@ -52,6 +52,28 @@ Views / likes / shares (optional)
 | Open vote | **A** Hospital · **B** Stadium · **C** Giant mall. A TikTok poll in the pinned comment (closes Fri 20 Nov evening), plus votes written in comments |
 | Early citizens (Ep 1) | Kasparita (votes giant mall), Hollie M. Display names only so far: need their @usernames for nameplates |
 
+## Episode 1 results (screenshots, Fri 20 Nov morning; the poll still had 12 h left)
+- **Poll (22 votes):** Giant mall **73%** · Hospital 18% · Stadium 9%. Mall wins by a clear margin.
+- **Top comment:** Kasparita, "I need a houseeee!!! giant mall is the way to go" (3 likes, first comment).
+- **Citizens (15), with display names as shown:**
+  - Kasparita
+  - Hollie M
+  - Tamara: wants a neon pink house
+  - Emilia🦖: wants a car as a house; voted Hospital
+  - Priya Somers: wants a house, "and defo a mall"
+  - Sophiaw_close ("my name is Sophia_w")
+  - Sophia🦢🧁
+  - Jess🦢
+  - Rose: said "Hi"
+  - 🎀🧸
+  - 🐻leya
+  - erinn🤍: said "Mee"
+  - christinas_privvvv: wants a mansion
+  - r0sie670
+  - emma🖤
+- **Naming rule used on air:** first name or handle only, never a full name (so "Priya", not "Priya Somers"; "Hollie", not "Hollie M"). Emoji-only names appear on the wall and their house as the emoji.
+- **Still needed before the final render:** today's follower count (profile screenshot) and the final poll percentages.
+
 ## Episode log
 | # | Planned post time (UK) | Title | Vote asked | Result | Built | Notes |
 |---|---|---|---|---|---|---|
