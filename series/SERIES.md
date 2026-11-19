@@ -27,6 +27,8 @@
 
 These times are a starting guess (evening scroll time). After 2–3 weeks, check TikTok Analytics (Followers → Follower activity) and adjust.
 
+**Voting format:** use TikTok's poll in the pinned comment (one tap, so more votes). Polls close after 24 h, so screenshot the result. Votes written in comments also count.
+
 ## What to send Claude after each episode (about 48 h after posting)
 ```
 Episode: N
@@ -46,7 +48,8 @@ Views / likes / shares (optional)
 | Built | nothing: empty road grid, entrance highway, population sign |
 | Houses (citizens) | none yet |
 | City name on the sign | "YOUR CITY" (a future episode lets viewers vote on the name) |
-| Open vote | **A** Hospital · **B** Stadium · **C** Giant mall |
+| Open vote | **A** Hospital · **B** Stadium · **C** Giant mall. A TikTok poll in the pinned comment (closes Fri 20 Nov evening), plus votes written in comments |
+| Early citizens (Ep 1) | Kasparita (votes giant mall), Hollie M. Display names only so far: need their @usernames for nameplates |
 
 ## Episode log
 | # | Planned post time (UK) | Title | Vote asked | Result | Built | Notes |
