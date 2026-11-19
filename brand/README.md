@@ -10,6 +10,7 @@ A city built by its followers. Open **`index.html`** for the full brand guide: n
 | `assets/avatar.svg`, `png/avatar.png` | Profile picture, safe for circle crops |
 | `assets/wordmark.svg`, `wordmark-white.svg` | One-line wordmark for light and dark backgrounds |
 | `assets/png/banner-youtube.png`, `banner-x.png` | Channel banner (2560×1440) and X/LinkedIn header (1500×500) |
+| `assets/png/profile-background.png` | TikTok profile background, 2:1 (2400×1200): sunset skyline with the YOU sign, edges darkened for the profile UI |
 | `assets/png/cover-ep1.png` | Episode cover / thumbnail (1080×1920) |
 | `assets/audio/sonic-logo(.wav/.mp3)` | 3 s sonic logo: counter ticks up, then pop and chime |
 | `assets/audio/sonic-logo-voice(.wav/.mp3)` | The same logo with the narrator saying "Population: you" |
@@ -26,6 +27,8 @@ python3 brand/sonic.py                 # sonic logo, theme loop, SFX pack
 node city-post/render.mjs --stills 9.4,14.2 --clean 1   # clean scene frames for covers
 node brand/render.mjs --ep 2 --day 1 --title "POPULATION: 214"   # PNG exports + new episode cover
 python3 brand/guide.py                 # brand guide (index.html)
+# profile background (2:1): sunset skyline, sign reads YOU (top/bottom darkening added afterwards)
+node city-post/render.mjs --stills 0 --clean 1 --w 2400 --h 1200 --cam 42,12,520 --at -15,55,0 --look sunset --sign YOU --fov 42
 ```
 
 Everything is generated: no stock, samples or licensed music. The fonts are Inter (SIL Open Font License) and the voice is Kokoro-82M (Apache-2.0). Before you launch, check that the name, handles and domain are available and run a trademark search.

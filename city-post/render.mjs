@@ -6,6 +6,7 @@
 //   node render.mjs --fps 30 --handle @me --name @JANE --city "NEW TOWN" --pop 582
 //   node render.mjs --audio voice.mp3       -> mux a voiceover / music track
 //   node render.mjs --stills 11 --clean 1   -> scene only, no titles/captions (for thumbnails)
+//   node render.mjs --stills 0 --clean 1 --w 2400 --h 1200 --cam 60,40,560 --at 0,60,0 --sign YOU   -> any size/viewpoint
 import http from 'node:http';
 import fs from 'node:fs';
 import path from 'node:path';
@@ -34,10 +35,10 @@ await new Promise((r) => server.listen(0, r));
 const port = server.address().port;
 
 const q = new URLSearchParams({ render: '1' });
-for (const k of ['handle', 'name', 'city', 'pop', 'clean']) if (args[k]) q.set(k, args[k]);
+for (const k of ['handle', 'name', 'city', 'pop', 'clean', 'w', 'h', 'cam', 'at', 'look', 'sign', 'fov']) if (args[k]) q.set(k, args[k]);
 
 const browser = await chromium.launch({ args: ['--use-gl=angle', '--use-angle=swiftshader', '--enable-unsafe-swiftshader', '--ignore-gpu-blocklist'] });
-const page = await browser.newPage({ viewport: { width: 1080, height: 1920 }, deviceScaleFactor: 1 });
+const page = await browser.newPage({ viewport: { width: Number(args.w) || 1080, height: Number(args.h) || 1920 }, deviceScaleFactor: 1 });
 page.on('pageerror', (e) => console.error('page error:', e.message));
 page.on('console', (m) => { if (m.type() === 'error') console.error('console:', m.text()); });
 await page.goto(`http://localhost:${port}/index.html?${q}`);
