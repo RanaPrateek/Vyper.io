@@ -71,12 +71,29 @@ Episode 1 stays as posted. Don't re-render it. Apply all of these to new episode
 4. **End card handle:** Episode 1 shows `@population.you`. From Episode 2 it must say **@populationyou** (already fixed in `city-post/`).
 5. **Upload label:** Episode 1 went out with a "Promotional content" tag. That's for paid or brand promotions and can limit reach. Next time, leave the promotional/branded-content disclosure off and use the **AI-generated** label instead.
 
+## Milestone ladder
+| Citizens | Unlock |
+|---|---|
+| 100 | **Electricity:** the first night episode, with the city lit up |
+| 1,000 | **The city opens to the public:** a website where viewers walk around the city and visit their own house (account holder's idea, 19 Nov 2026). TikTok generally needs around 1,000 followers for a clickable bio link, so launch the site and the link together |
+
+Tease the next milestone with a progress bar in every episode.
+
+### Website plan ("Visit the city")
+- **Same Three.js city as the episodes,** with a separate page that reuses the world code (`city-web/`).
+- **Find my house:** search a username and fly to your house and nameplate.
+- **Free roam:** a virtual joystick on mobile and WASD/arrow keys on desktop; the pigeon sidekick follows you.
+- **Updated every episode:** new buildings, citizens' houses and the Founders' Wall, from a citizens data file.
+- **Mobile first:** smooth on mid-range phones, using instancing and low-poly models, with no logins or personal data (usernames only, same house rules as the show).
+- **Hosting:** GitHub Pages from this repo, or a custom domain later (check `populationyou.com` availability).
+- **Build timing:** start after Episode 2 ships, in the gaps between episodes. Ready and tested well before 1,000.
+
 ## Format upgrades from research (apply from Ep 2; details in `RESEARCH.md`)
 - **Hook:** the sign counts from yesterday's population to today's in the first 4 s ("Yesterday: 1. Today: N.").
 - **Sidekick:** a **pigeon who lives on the population sign** and judges every build. Viewers get to name it.
 - **Shout-outs:** 4–6 named commenters per episode, each granted literally with a punchline, with their comment card on screen.
 - **Results** revealed lowest to highest, with a crown on the winner.
-- **Milestone:** at **100 citizens the city gets electricity**, which unlocks the first night episode. Show a progress bar.
+- **Milestones:** 100 citizens = electricity (night episode); 1,000 = the city opens as a website. Show a progress bar.
 - **Founders' Wall** at the city entrance with every early citizen's name, and **end on a citizen list** ("pause to find your name").
 - **Look:** more colour (varied roof colours) and tiny citizens in the streets. Smaller titles, inside the safe area.
 - **Narration:** conversational and funny, generated as continuous takes. Episodes about 50–60 s.
