@@ -51,8 +51,21 @@ Views / likes / shares (optional)
 ## Episode log
 | # | Planned post time (UK) | Title | Vote asked | Result | Built | Notes |
 |---|---|---|---|---|---|---|
-| 1 | Thu 19 Nov 2026, 19:00 | Population: 1 | Hospital / Stadium / Giant mall | (pending) | — | Pilot: rules introduced |
+| 1 | Posted Thu 19 Nov 2026 (~20:15) | Population: 1 | Hospital / Stadium / Giant mall | (pending) | — | Pilot: rules introduced. End card shows the old handle `@population.you`; left as is |
 | 2 | Mon 23 Nov 2026, 19:00 | (depends on vote) | | | | |
+
+## Feedback to apply from Episode 2 (account holder, 19 Nov 2026)
+Episode 1 stays as posted. Don't re-render it. Apply all of these to new episodes:
+
+1. **Text is too big and gets clipped.** Long titles like "1 COMMENT = 1 HOUSE" run to the screen edges and lose characters, and TikTok's own UI covers the edges too.
+   - Make titles and captions smaller and keep them inside TikTok's safe area: roughly 60 px clear at each side, about 140 px clear on the right for the like/comment buttons, and the top ~200 px and bottom ~420 px kept clear of key text.
+   - Shrink long titles to fit that width rather than letting them touch the edges. Check every title on a phone-sized preview with the TikTok UI drawn over it.
+2. **The narration sounds like someone reading captions.** The rhythm is uneven and it doesn't sound like a real person talking.
+   - Cause: each line is generated separately and dropped onto the caption times, so the voice restarts its rhythm every line.
+   - Fix: write the script as natural spoken paragraphs, generate each beat as one continuous take, and let the pauses fall naturally. Then fit the visuals and captions to the voice, not the voice to the captions. Try other voices and settings, and compare takes.
+3. **Profile banner.** TikTok profiles can show a background image behind the profile header (like the example the account holder shared). Make one for Population: You. Check TikTok's current size and safe-area guidance first.
+4. **End card handle:** Episode 1 shows `@population.you`. From Episode 2 it must say **@populationyou** (already fixed in `city-post/`).
+5. **Upload label:** Episode 1 went out with a "Promotional content" tag. That's for paid or brand promotions and can limit reach. Next time, leave the promotional/branded-content disclosure off and use the **AI-generated** label instead.
 
 ## Ideas backlog (Claude's plan, in roughly this order)
 - **Ep 2:** build the vote winner on camera (construction timelapse). Add the first citizens' houses with nameplates. The sign counts up to the real follower count. New vote.
