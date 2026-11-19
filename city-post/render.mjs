@@ -5,6 +5,7 @@
 //   node render.mjs --stills 1,4,9          -> out/still_<t>.png for quick checks
 //   node render.mjs --fps 30 --handle @me --name @JANE --city "NEW TOWN" --pop 582
 //   node render.mjs --audio voice.mp3       -> mux a voiceover / music track
+//   node render.mjs --page ep02/index.html --audio ep02/out/soundtrack.wav --out ep02/out/episode.mp4
 //   node render.mjs --stills 11 --clean 1   -> scene only, no titles/captions (for thumbnails)
 //   node render.mjs --stills 0 --clean 1 --w 2400 --h 1200 --cam 60,40,560 --at 0,60,0 --sign YOU   -> any size/viewpoint
 import http from 'node:http';
@@ -41,7 +42,7 @@ const browser = await chromium.launch({ args: ['--use-gl=angle', '--use-angle=sw
 const page = await browser.newPage({ viewport: { width: Number(args.w) || 1080, height: Number(args.h) || 1920 }, deviceScaleFactor: 1 });
 page.on('pageerror', (e) => console.error('page error:', e.message));
 page.on('console', (m) => { if (m.type() === 'error') console.error('console:', m.text()); });
-await page.goto(`http://localhost:${port}/index.html?${q}`);
+await page.goto(`http://localhost:${port}/${args.page || 'index.html'}?${q}`);
 await page.waitForFunction(() => window.sceneReady && window.setTime);
 await page.evaluate(() => window.sceneReady);
 const stage = await page.$('#stage');
@@ -55,7 +56,7 @@ if (args.stills) {
 } else {
   const duration = await page.evaluate(() => window.DURATION);
   const frames = Math.round(duration * FPS);
-  const outFile = path.join(OUT, 'post.mp4');
+  const outFile = args.out ? path.resolve(ROOT, args.out) : path.join(OUT, 'post.mp4');
   const ff = ['-y', '-f', 'image2pipe', '-framerate', String(FPS), '-c:v', 'mjpeg', '-i', '-'];
   if (args.audio) ff.push('-i', args.audio, '-c:a', 'aac', '-b:a', '192k', '-shortest');
   ff.push('-c:v', 'libx264', '-preset', 'medium', '-crf', '18', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', outFile);

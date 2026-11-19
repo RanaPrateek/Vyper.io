@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Population: You — Episode 2</title>
+<style>
+  html, body { margin: 0; padding: 0; background: #000; overflow: hidden; }
+  #stage { position: relative; width: 1080px; height: 1920px; overflow: hidden; font-family: 'Inter', 'Inter Display', 'Noto Color Emoji', sans-serif; }
+  canvas#gl { position: absolute; inset: 0; width: 1080px; height: 1920px; display: block; }
+  .layer { position: absolute; inset: 0; pointer-events: none; }
+  /* Safe area (TikTok UI): keep key text within x 70..930, y 220..1480. */
+
+  #pill { position: absolute; top: 250px; left: 50%; transform: translateX(-50%); background: #fff; color: #111;
+    font-weight: 800; font-size: 26px; letter-spacing: 1px; padding: 7px 20px; border-radius: 40px;
+    box-shadow: 0 4px 14px rgba(0,0,0,.25); white-space: nowrap; }
+  #title { position: absolute; top: 312px; left: 110px; right: 110px; text-align: center; font-family: 'Inter Display','Inter','Noto Color Emoji',sans-serif;
+    font-weight: 900; color: #fff; font-size: 76px; letter-spacing: 0.5px; white-space: nowrap; line-height: 1;
+    text-shadow: 0 5px 0 rgba(0,0,0,.55), 0 0 20px rgba(0,0,0,.45); }
+  #title span { display: inline-block; }
+
+  #caption { position: absolute; top: 1190px; left: 120px; right: 120px; text-align: center; font-weight: 800; font-size: 60px;
+    color: #fff; line-height: 1.12; white-space: nowrap; paint-order: stroke fill; -webkit-text-stroke: 10px #000;
+    text-shadow: 0 6px 10px rgba(0,0,0,.45); }
+  #caption .hl { color: #ff8a1c; }
+
+  #bigNum { position: absolute; top: 640px; left: 0; right: 0; text-align: center; display: none; }
+  #bigNum .n { font-family: 'Inter Display','Inter',sans-serif; font-weight: 900; font-size: 220px; line-height: 1; color: #ffb21c;
+    paint-order: stroke fill; -webkit-text-stroke: 14px #2a1600; text-shadow: 0 10px 0 rgba(0,0,0,.35); }
+  #bigNum .l { font-weight: 900; font-size: 46px; letter-spacing: 6px; color: #fff; text-shadow: 0 4px 0 rgba(0,0,0,.5), 0 0 14px rgba(0,0,0,.5); }
+
+  .card { position: absolute; left: 50%; width: 780px; transform: translateX(-50%); background: #fff; border-radius: 26px; padding: 20px 26px 22px;
+    box-sizing: border-box; box-shadow: 0 16px 36px rgba(0,0,0,.35); display: none; }
+  .card .tag { display: inline-block; background: #ff6a13; color: #fff; font-weight: 800; font-size: 18px; padding: 3px 12px; border-radius: 20px; letter-spacing: .5px; }
+  .card .row { display: flex; align-items: center; margin-top: 12px; }
+  .card .av { width: 58px; height: 58px; border-radius: 50%; color: #fff; font-weight: 900; font-size: 28px; display: flex; align-items: center; justify-content: center; flex: none; }
+  .card .txt { margin-left: 18px; flex: 1; min-width: 0; }
+  .card .user { color: #8a8f98; font-size: 22px; font-weight: 600; }
+  .card .body { color: #111; font-size: 31px; font-weight: 800; margin-top: 2px; line-height: 1.2; }
+  .card .likes { text-align: center; color: #fe2c55; font-weight: 800; font-size: 20px; width: 80px; }
+  .card .likes .heart { font-size: 40px; line-height: 1; display: block; }
+
+  .rpill { position: absolute; transform: translate(0, -50%); background: rgba(255,255,255,.96); color: #111; font-weight: 900; font-size: 36px;
+    padding: 10px 22px; border-radius: 40px; box-shadow: 0 6px 16px rgba(0,0,0,.3); white-space: nowrap; display: none; transform-origin: 0 50%; }
+  .rpill small { font-size: 22px; font-weight: 800; color: #555; letter-spacing: 1px; margin-left: 8px; }
+  .rpill.win { background: #ff6a13; color: #fff; } .rpill.win small { color: #ffe3cf; }
+  .crown { position: absolute; font-size: 84px; transform: translate(-50%, -100%); display: none; font-family: 'Noto Color Emoji'; }
+
+  .vtag { position: absolute; transform: translate(0, -50%); background: #ff6a13; color: #fff; font-weight: 900; font-size: 36px; padding: 9px 22px;
+    border-radius: 40px; letter-spacing: 1px; box-shadow: 0 6px 16px rgba(0,0,0,.3); display: none; white-space: nowrap; transform-origin: 0 50%; }
+
+  #progress { position: absolute; top: 760px; left: 140px; right: 140px; display: none; text-align: center; }
+  #progress .label { color: #fff; font-weight: 900; font-size: 40px; letter-spacing: 2px; text-shadow: 0 4px 0 rgba(0,0,0,.5); }
+  #progress .bar { margin: 22px auto 14px; height: 46px; border-radius: 30px; background: rgba(13,18,29,.75); border: 4px solid #fff; overflow: hidden; }
+  #progress .fill { height: 100%; width: 0; background: linear-gradient(90deg, #ffd23a, #ff8a1c); border-radius: 30px; box-shadow: 0 0 22px #ffd23a; }
+  #progress .count { color: #ffd23a; font-weight: 900; font-size: 44px; text-shadow: 0 4px 0 rgba(0,0,0,.6); }
+
+  #wall { position: absolute; top: 470px; left: 90px; right: 90px; display: none; background: rgba(13,18,29,.82); border: 3px solid rgba(255,255,255,.25);
+    border-radius: 28px; padding: 26px 26px 20px; box-sizing: border-box; }
+  #wall .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px 12px; }
+  #wall .nm { color: #fff; font-weight: 800; font-size: 28px; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    background: rgba(255,255,255,.08); border-radius: 12px; padding: 10px 6px; }
+  #wall .hd { color: #ff8a1c; font-weight: 900; font-size: 22px; letter-spacing: 4px; text-align: center; margin-bottom: 16px; }
+
+  #end { position: absolute; inset: 0; background: radial-gradient(circle at 50% 42%, #1c2740 0%, #0d121d 70%);
+    display: none; flex-direction: column; align-items: center; justify-content: center; color: #fff; }
+  #end .k { font-weight: 800; font-size: 32px; color: #ff8a1c; letter-spacing: 6px; }
+  #end #endLogo { margin-top: 40px; display: block; }
+  #end .big { font-family: 'Inter Display','Inter',sans-serif; font-weight: 900; font-size: 70px; margin: 44px 0 40px; white-space: nowrap; }
+  #end .search { display: flex; align-items: center; background: #fff; color: #222; border-radius: 22px; padding: 20px 32px; font-size: 38px; font-weight: 700;
+    border: 5px solid #ff8a1c; min-width: 520px; box-sizing: border-box; }
+  #end .search svg { margin-right: 20px; }
+  #end .pop { margin-top: 50px; font-size: 32px; font-weight: 700; color: #b7c1d6; }
+</style>
+</head>
+<body>
+<div id="stage">
+  <canvas id="gl" width="1080" height="1920"></canvas>
+  <div class="layer" id="ui">
+    <div id="pill"></div>
+    <div id="title"></div>
+    <div id="bigNum"><div class="n" id="bigN">1</div><div class="l">CITIZENS</div></div>
+    <div class="card" id="card0" style="top:560px"></div>
+    <div class="card" id="card1" style="top:760px"></div>
+    <div id="results"></div>
+    <div id="tags"></div>
+    <div id="progress"><div class="label">⚡ AT 100: ELECTRICITY</div><div class="bar"><div class="fill" id="pfill"></div></div><div class="count" id="pcount">0 / 100</div></div>
+    <div id="wall"><div class="hd">FOUNDING CITIZENS</div><div class="grid" id="wallGrid"></div></div>
+    <div id="caption"></div>
+    <div id="end">
+      <div class="k" id="endK">EPISODE 2 · DAY 2</div>
+      <img id="endLogo" src="../assets/logo-board.svg" width="580" alt="">
+      <div class="big">FOLLOW TO MOVE IN</div>
+      <div class="search">
+        <svg width="42" height="42" viewBox="0 0 24 24" fill="none" stroke="#222" stroke-width="2.6" stroke-linecap="round"><circle cx="10.5" cy="10.5" r="7"/><path d="M16 16l5 5"/></svg>
+        <span>@populationyou</span>
+      </div>
+      <div class="pop" id="endPop">Population: 1</div>
+    </div>
+  </div>
+</div>
+<script type="module" src="./main.js"></script>
+</body>
+</html>

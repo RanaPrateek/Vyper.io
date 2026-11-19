@@ -1,0 +1,155 @@
+{
+ "_about": "The permanent city. Every episode and the future website build the world from this file. Positions are world units: plots are centred on 25 + 50k, the entrance highway is x = 0 on +z.",
+ "city_name": "YOUR CITY",
+ "buildings": [
+  {
+   "id": "mall",
+   "type": "mall",
+   "label": "GIANT MALL",
+   "x": -25,
+   "z": 25,
+   "since_episode": 2,
+   "won_vote": "Ep 1: Giant mall 73%"
+  }
+ ],
+ "citizens": [
+  {
+   "name": "Kasparita",
+   "house": "house",
+   "x": 14,
+   "z": 386,
+   "roof": 15114811,
+   "since_episode": 2,
+   "comment": "I need a houseeee!!! giant mall is the way to go",
+   "likes": 3,
+   "note": "first comment: house number one, by the sign"
+  },
+  {
+   "name": "Hollie",
+   "house": "house",
+   "x": 36,
+   "z": 386,
+   "roof": 3832789,
+   "since_episode": 2,
+   "comment": "can I have a house",
+   "likes": 1
+  },
+  {
+   "name": "Jess🦢",
+   "house": "house",
+   "x": 14,
+   "z": 366,
+   "roof": 12865658,
+   "since_episode": 2,
+   "comment": "Hiii please build me a house?!! 💗💗"
+  },
+  {
+   "name": "Rose",
+   "house": "house",
+   "x": 36,
+   "z": 366,
+   "roof": 5219178,
+   "since_episode": 2,
+   "comment": "Hi"
+  },
+  {
+   "name": "Tamara",
+   "house": "neon",
+   "x": -14,
+   "z": 386,
+   "since_episode": 2,
+   "comment": "Can I live in a neon pink house"
+  },
+  {
+   "name": "Emilia🦖",
+   "house": "car",
+   "x": -36,
+   "z": 386,
+   "since_episode": 2,
+   "comment": "Can I have a car as a house"
+  },
+  {
+   "name": "Sophia_w💕",
+   "house": "house",
+   "x": -20,
+   "z": 366,
+   "roof": 14725690,
+   "since_episode": 2,
+   "comment": "My name is Sophia_w can I have a house!",
+   "likes": 1
+  },
+  {
+   "name": "Sophia🦢🧁",
+   "house": "house",
+   "x": -30,
+   "z": 366,
+   "roof": 14725690,
+   "since_episode": 2,
+   "comment": "Can I have a house please",
+   "likes": 1
+  },
+  {
+   "name": "erinn🤍",
+   "house": "house",
+   "x": 14,
+   "z": 336,
+   "roof": 3125432,
+   "since_episode": 2,
+   "comment": "Mee",
+   "likes": 1
+  },
+  {
+   "name": "🐻leya",
+   "house": "house",
+   "x": 36,
+   "z": 336,
+   "roof": 8018628,
+   "since_episode": 2,
+   "comment": "can i have a house"
+  },
+  {
+   "name": "emma🖤",
+   "house": "house",
+   "x": 14,
+   "z": 316,
+   "roof": 14840634,
+   "since_episode": 2,
+   "comment": "Can I have a house!!! ☺️"
+  },
+  {
+   "name": "r0sie670",
+   "house": "house",
+   "x": 36,
+   "z": 316,
+   "roof": 3832789,
+   "since_episode": 2,
+   "comment": "Can I have a house"
+  },
+  {
+   "name": "christinas_privvvv",
+   "house": "mansion",
+   "x": -25,
+   "z": 322,
+   "since_episode": 2,
+   "comment": "Can you build me a mansion"
+  },
+  {
+   "name": "Priya",
+   "house": "house",
+   "x": 14,
+   "z": 286,
+   "roof": 15114811,
+   "since_episode": 2,
+   "comment": "Can I have a houseee please!! And defo a mall"
+  },
+  {
+   "name": "🎀🧸",
+   "house": "house",
+   "x": 36,
+   "z": 286,
+   "roof": 12865658,
+   "since_episode": 2,
+   "comment": "May I please have a house"
+  }
+ ]
+}

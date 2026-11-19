@@ -1,0 +1,10 @@
+{
+  "episode": 2,
+  "day": 2,
+  "followers": 25,
+  "previous_followers": 1,
+  "poll": { "Hospital": 18, "Stadium": 9, "Giant mall": 73 },
+  "next_vote": ["SKATE PARK", "FIRE STATION", "CINEMA"],
+  "milestone": { "target": 100, "label": "ELECTRICITY" },
+  "_note": "followers and poll are placeholders until the final screenshots; re-run tools/build_episode.sh after updating"
+}

@@ -44,12 +44,12 @@ Views / likes / shares (optional)
 ## City state
 | | |
 |---|---|
-| Day | 0 |
+| Day | 2 |
 | Population (followers) | 1 |
-| Built | nothing: empty road grid, entrance highway, population sign |
-| Houses (citizens) | none yet |
+| Built | **Giant mall** (Ep 2), 15 citizens' houses (Ep 2): see `city-post/city/state.json`, the source of truth for the world |
+| Houses (citizens) | 15 (Ep 2) |
 | City name on the sign | "YOUR CITY" (a future episode lets viewers vote on the name) |
-| Open vote | **A** Hospital · **B** Stadium · **C** Giant mall. A TikTok poll in the pinned comment (closes Fri 20 Nov evening), plus votes written in comments |
+| Previous vote (Ep 1) | **A** Hospital · **B** Stadium · **C** Giant mall: mall won. A TikTok poll in the pinned comment (closes Fri 20 Nov evening), plus votes written in comments |
 | Early citizens (Ep 1) | Kasparita (votes giant mall), Hollie M. Display names only so far: need their @usernames for nameplates |
 
 ## Episode 1 results (screenshots, Fri 20 Nov morning; the poll still had 12 h left)
@@ -78,7 +78,8 @@ Views / likes / shares (optional)
 | # | Planned post time (UK) | Title | Vote asked | Result | Built | Notes |
 |---|---|---|---|---|---|---|
 | 1 | Posted Thu 19 Nov 2026 (~20:15) | Population: 1 | Hospital / Stadium / Giant mall | (pending) | — | Pilot: rules introduced. End card shows the old handle `@population.you`; left as is |
-| 2 | Sat 21 Nov 2026, 19:00 | (depends on vote) | | | | First episode using the research upgrades |
+| 2 | Sat 21 Nov 2026, 19:00 | We built it | Skate park / Fire station / Cinema, plus name the pigeon | (pending) | Giant mall, 15 citizens' houses, the pigeon | Draft rendered Fri 20 Nov with placeholder followers (25); final render needs the real follower count and final poll |
+| 3 | Mon 23 Nov 2026, 19:00 | (depends on vote) | | | | |
 
 ## Feedback to apply from Episode 2 (account holder, 19 Nov 2026)
 Episode 1 stays as posted. Don't re-render it. Apply all of these to new episodes:
@@ -128,10 +129,9 @@ Tease the next milestone with a progress bar in every episode.
 - **Milestone specials** at 100 / 1,000 / 10,000 followers: a fireworks show and a new district.
 - **"Your house" replies:** reply to commenters with a 5-second clip of their own house.
 
-## Production checklist (per episode)
-1. Update **City state** and the **Episode log** above with the results.
-2. Write the script: the narration lines and caption timings in `city-post/voice.mjs` (`LINES`), and the shots in `city-post/main.js` (`SHOTS`).
-3. `node city-post/voice.mjs` → `python3 city-post/audio.py` → `node city-post/render.mjs --audio out/soundtrack.wav`
-4. Check: scan for flickering frames, view stills, measure loudness.
-5. Write `series/epNN/UPLOAD.md` (caption, hashtags, pinned comment, cover).
-6. Commit and push.
+## Production checklist (per episode, Episode 2 onward)
+1. Update `city-post/city/state.json` (new citizens and buildings) and **City state** / **Episode log** above.
+2. Copy the previous episode folder (`city-post/epNN/`): write `script.json` (story beats, natural spoken sentences) and `config.json` (followers, poll), and adjust the `SHOTS` in `main.js`.
+3. `city-post/tools/build_episode.sh epNN`: narration (one Kokoro take per beat), then Whisper caption timing, then soundtrack, then render.
+4. Check: stills of every shot, a scan for flickering frames, loudness of about -14 LUFS, and text inside the safe area.
+5. Write `series/epNN/UPLOAD.md` (caption, pinned poll, cover time, reply plan). Commit and push.

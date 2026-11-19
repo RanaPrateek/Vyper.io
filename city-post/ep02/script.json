@@ -1,0 +1,79 @@
+{
+ "voice": "af_heart",
+ "speed": 1.05,
+ "beats": [
+  {
+   "id": "hook",
+   "pause": 0.35,
+   "say": "Two days ago, this city had one resident. Me. Today? {followers}."
+  },
+  {
+   "id": "houses",
+   "pause": 0.35,
+   "say": "And nearly every single one of you asked for a house. So I built them. All {houses} of them."
+  },
+  {
+   "id": "kasparita",
+   "pause": 0.3,
+   "say": "Kasparita commented first, so she gets house number one. Right by the sign."
+  },
+  {
+   "id": "tamara",
+   "pause": 0.3,
+   "say": "Tamara wanted a neon pink house. It's very pink. You can probably see it from space."
+  },
+  {
+   "id": "emilia",
+   "pause": 0.3,
+   "say": "Emilia asked for a car as a house. So now, she lives in a car. Great parking, though."
+  },
+  {
+   "id": "christina",
+   "pause": 0.3,
+   "say": "Christina asked for a mansion. Here's the mansion. Biggest house in town. For now."
+  },
+  {
+   "id": "sophias",
+   "pause": 0.3,
+   "say": "We also got two Sophias. So, they're neighbours. That won't be confusing at all."
+  },
+  {
+   "id": "erinn",
+   "pause": 0.4,
+   "say": "And Erinn just commented, Mee. Fair enough, Erinn. This one's yours."
+  },
+  {
+   "id": "vote",
+   "pause": 0.3,
+   "say": "Now, the vote. Stadium, {Stadium} percent. Hospital, {Hospital}. And the giant mall... {Giant mall} percent.",
+   "show": "Now, the vote. Stadium, {Stadium}%. Hospital, {Hospital}%. And the giant mall... {Giant mall}%."
+  },
+  {
+   "id": "priya",
+   "pause": 0.4,
+   "say": "Priya said, defo a mall. Priya was right.",
+   "show": "Priya said: defo a mall. Priya was right."
+  },
+  {
+   "id": "pigeon",
+   "pause": 0.35,
+   "say": "Oh, and somebody moved in without asking. He lives on the sign now, and he judges everything. Name him in the comments."
+  },
+  {
+   "id": "milestone",
+   "pause": 0.35,
+   "say": "At one hundred citizens, this city gets electricity.",
+   "show": "At 100 citizens, this city gets electricity."
+  },
+  {
+   "id": "next",
+   "pause": 0.35,
+   "say": "Next vote. A, a skate park. B, a fire station. Or C, a cinema."
+  },
+  {
+   "id": "end",
+   "pause": 0.2,
+   "say": "Every citizen is on the wall. Pause to find your name. Follow to move in."
+  }
+ ]
+}
