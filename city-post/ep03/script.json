@@ -1,0 +1,101 @@
+{
+ "voice": "af_heart",
+ "speed": 1.05,
+ "beats": [
+  {
+   "id": "hook",
+   "pause": 0.35,
+   "say": "Yesterday, this city had {previous_followers} citizens. Today? {followers}."
+  },
+  {
+   "id": "rosie",
+   "pause": 0.3,
+   "say": "First, an apology. Rosie asked where her house is. It was here the whole time. Sorry, Rosie.",
+   "show": "First, an apology. r0sie670 asked where her house is. It was here the whole time. Sorry, Rosie."
+  },
+  {
+   "id": "tamara",
+   "pause": 0.3,
+   "say": "Tamara loved her pink house, so she asked for a neon purple extension. Done."
+  },
+  {
+   "id": "houses",
+   "pause": 0.3,
+   "say": "Then nearly two hundred of you asked for houses. So, here's a whole new neighbourhood.",
+   "show": "Then nearly 200 of you asked for houses. So, here's a whole new neighbourhood."
+  },
+  {
+   "id": "potato",
+   "pause": 0.25,
+   "say": "Miley asked to live in a potato. Done."
+  },
+  {
+   "id": "duck",
+   "pause": 0.25,
+   "say": "Kai got a giant pink rubber duck."
+  },
+  {
+   "id": "shoe",
+   "pause": 0.25,
+   "say": "Lilyy got a size four hundred shoe.",
+   "show": "Lilyy got a size 400 shoe."
+  },
+  {
+   "id": "ostrich",
+   "pause": 0.25,
+   "say": "Olivia wanted an ostrich. We didn't ask why."
+  },
+  {
+   "id": "nugget",
+   "pause": 0.25,
+   "say": "Evaa lives in a nugget. Don't eat it."
+  },
+  {
+   "id": "kacee",
+   "pause": 0.3,
+   "say": "And Kacee lives inside a giant statue of the pigeon. He's thrilled."
+  },
+  {
+   "id": "hill",
+   "pause": 0.3,
+   "say": "And thirty of you wanted the biggest house in town. So, welcome to Billionaires' Hill. Thirty mansions, all the same size. A thirty-way tie.",
+   "show": "And 30 of you wanted the biggest house in town. So, welcome to Billionaires' Hill. 30 mansions, all the same size. A 30-way tie."
+  },
+  {
+   "id": "vote",
+   "pause": 0.3,
+   "say": "The vote. Fire station, {Fire station}. Skate park, {Skate park}. And the cinema... {Cinema} percent.",
+   "show": "The vote. Fire station, {Fire station}%. Skate park, {Skate park}%. And the cinema... {Cinema}%."
+  },
+  {
+   "id": "pigeon",
+   "pause": 0.3,
+   "say": "Oh, and the pigeon's name? Kevin. Thanks, Jessica."
+  },
+  {
+   "id": "milestone",
+   "pause": 0.35,
+   "variant_by": "milestone_state",
+   "variants": {
+    "reached": {
+     "say": "And we just passed one hundred citizens. So tomorrow, the lights come on.",
+     "show": "And we just passed 100 citizens. So tomorrow, the lights come on."
+    },
+    "progress": {
+     "say": "At one hundred citizens, the lights come on. We're nearly there.",
+     "show": "At 100 citizens, the lights come on. We're nearly there."
+    }
+   }
+  },
+  {
+   "id": "next",
+   "pause": 0.3,
+   "say": "Next vote. A, a water park. B, a castle. Or C, a town centre."
+  },
+  {
+   "id": "end",
+   "pause": 0.3,
+   "say": "Pause to find your name on the wall. Follow to move in. See you tomorrow."
+  }
+ ]
+}

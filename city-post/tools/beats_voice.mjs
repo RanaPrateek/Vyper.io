@@ -14,7 +14,9 @@ const { KokoroTTS } = require('kokoro-js');
 
 const script = JSON.parse(fs.readFileSync(path.join(EP, 'script.json'), 'utf8'));
 const cfg = JSON.parse(fs.readFileSync(path.join(EP, 'config.json'), 'utf8'));
-const vars = { followers: cfg.followers, houses: cfg.houses ?? 15, ...cfg.poll };
+const vars = { followers: cfg.followers, previous_followers: cfg.previous_followers, houses: cfg.houses ?? 15, ...cfg.poll, ...(cfg.vars || {}) };
+// a beat can offer variants, chosen by a config key: { "variant_by": "milestone_state", "variants": { "reached": {...}, "progress": {...} } }
+const pick = (b) => (b.variants ? { ...b, ...b.variants[cfg[b.variant_by]] } : b);
 const fill = (s) => s.replace(/\{([^}]+)\}/g, (_, k) => (k in vars ? String(vars[k]) : `{${k}}`));
 
 const tts = await KokoroTTS.from_pretrained('onnx-community/Kokoro-82M-v1.0-ONNX', { dtype: 'q8', device: 'cpu' });
@@ -29,7 +31,8 @@ const trim = (x, thr = 0.008) => {
 const lead = 0.15; // a breath before the first word
 const clips = [], beats = [];
 let t = lead;
-for (const b of script.beats) {
+for (const b0 of script.beats) {
+  const b = pick(b0);
   const say = fill(b.say), show = fill(b.show || b.say);
   const audio = await tts.generate(say, { voice: script.voice || 'af_heart', speed: script.speed || 1.05 });
   const clip = trim(audio.audio);

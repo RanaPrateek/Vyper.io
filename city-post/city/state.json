@@ -10,6 +10,26 @@
    "z": 25,
    "since_episode": 2,
    "won_vote": "Ep 1: Giant mall 73%"
+  },
+  {
+   "id": "cinema",
+   "type": "cinema",
+   "label": "CINEMA",
+   "x": 25,
+   "z": 25,
+   "since_episode": 3,
+   "won_vote": "Ep 2: Cinema 59%"
+  },
+  {
+   "id": "billionaires_hill",
+   "type": "district",
+   "label": "BILLIONAIRES' HILL",
+   "x": 225,
+   "z": 275,
+   "w": 150,
+   "d": 250,
+   "h": 3,
+   "since_episode": 3
   }
  ],
  "citizens": [
@@ -58,7 +78,12 @@
    "x": -14,
    "z": 386,
    "since_episode": 2,
-   "comment": "Can I live in a neon pink house"
+   "comment": "Can I live in a neon pink house",
+   "extension": {
+    "colour": 10898943,
+    "since_episode": 3,
+    "request": "Might have to make an extension in neon purple"
+   }
   },
   {
    "name": "Emilia🦖",
@@ -150,6 +175,1513 @@
    "roof": 12865658,
    "since_episode": 2,
    "comment": "May I please have a house"
+  },
+  {
+   "name": "Miley",
+   "house": "potato",
+   "x": -85,
+   "z": 375,
+   "since_episode": 3,
+   "comment": "Can I have a potato as my house please and my name is Miley"
+  },
+  {
+   "name": "Kai",
+   "house": "duck",
+   "x": -65,
+   "z": 375,
+   "since_episode": 3,
+   "comment": "Can I have a house shaped like a pink rubber ducky and my name is Kai"
+  },
+  {
+   "name": "Lilyy",
+   "house": "shoe",
+   "x": 66,
+   "z": 375,
+   "since_episode": 3,
+   "comment": "Can I live in a massive shoe please"
+  },
+  {
+   "name": "Evaa🤍",
+   "house": "nugget",
+   "x": 86,
+   "z": 375,
+   "since_episode": 3,
+   "comment": "CAN I HAVE A NUGGET HOUSEE"
+  },
+  {
+   "name": "Olivia🥲",
+   "house": "ostrich",
+   "x": -84,
+   "z": 325,
+   "since_episode": 3,
+   "comment": "can I have a house shaped as a ostrich"
+  },
+  {
+   "name": "Kacee",
+   "house": "statue",
+   "x": -65,
+   "z": 325,
+   "since_episode": 3,
+   "comment": "Can I live inside a statue of the pigeon 🙏"
+  },
+  {
+   "name": "crisp",
+   "house": "house",
+   "x": -37,
+   "z": 286,
+   "since_episode": 3,
+   "wall": 11067584,
+   "roof": 3840618,
+   "comment": "glass green house"
+  },
+  {
+   "name": "p.s",
+   "house": "house",
+   "x": -25,
+   "z": 286,
+   "since_episode": 3,
+   "roof": 12865658
+  },
+  {
+   "name": "swanccouture",
+   "house": "house",
+   "x": -13,
+   "z": 286,
+   "since_episode": 3,
+   "roof": 3125432
+  },
+  {
+   "name": "Isla⚽",
+   "house": "house",
+   "x": -37,
+   "z": 274,
+   "since_episode": 3,
+   "roof": 12865658
+  },
+  {
+   "name": "spam",
+   "house": "house",
+   "x": -25,
+   "z": 274,
+   "since_episode": 3,
+   "roof": 12865658
+  },
+  {
+   "name": "Bella",
+   "house": "house",
+   "x": -13,
+   "z": 274,
+   "since_episode": 3,
+   "roof": 8018628
+  },
+  {
+   "name": "josie",
+   "house": "house",
+   "x": -37,
+   "z": 262,
+   "since_episode": 3,
+   "roof": 13788475
+  },
+  {
+   "name": "savannah",
+   "house": "house",
+   "x": -25,
+   "z": 262,
+   "since_episode": 3,
+   "roof": 3125432
+  },
+  {
+   "name": "Kaion",
+   "house": "house",
+   "x": -13,
+   "z": 262,
+   "since_episode": 3,
+   "roof": 8018628
+  },
+  {
+   "name": "brooke💜",
+   "house": "house",
+   "x": 25,
+   "z": 286,
+   "since_episode": 3,
+   "roof": 13788475
+  },
+  {
+   "name": "izzy",
+   "house": "house",
+   "x": 13,
+   "z": 274,
+   "since_episode": 3,
+   "roof": 3125432
+  },
+  {
+   "name": "Dylan",
+   "house": "house",
+   "x": 25,
+   "z": 274,
+   "since_episode": 3,
+   "roof": 14725690
+  },
+  {
+   "name": "IBA",
+   "house": "house",
+   "x": 37,
+   "z": 274,
+   "since_episode": 3,
+   "roof": 13788475
+  },
+  {
+   "name": "???",
+   "house": "house",
+   "x": 13,
+   "z": 262,
+   "since_episode": 3,
+   "roof": 8018628
+  },
+  {
+   "name": "caitlinella",
+   "house": "house",
+   "x": 25,
+   "z": 262,
+   "since_episode": 3,
+   "roof": 14840634
+  },
+  {
+   "name": "😙",
+   "house": "house",
+   "x": 37,
+   "z": 262,
+   "since_episode": 3,
+   "roof": 8018628
+  },
+  {
+   "name": "bea",
+   "house": "house",
+   "x": 63,
+   "z": 336,
+   "since_episode": 3,
+   "roof": 8018628
+  },
+  {
+   "name": "-Qurckz-",
+   "house": "house",
+   "x": 75,
+   "z": 336,
+   "since_episode": 3,
+   "roof": 12865658
+  },
+  {
+   "name": "Layla",
+   "house": "house",
+   "x": 87,
+   "z": 336,
+   "since_episode": 3,
+   "wall": 8257370,
+   "roof": 4177706,
+   "comment": "Can I have a neon green house"
+  },
+  {
+   "name": "HC",
+   "house": "house",
+   "x": 63,
+   "z": 324,
+   "since_episode": 3,
+   "roof": 14840634
+  },
+  {
+   "name": "will",
+   "house": "house",
+   "x": 75,
+   "z": 324,
+   "since_episode": 3,
+   "wall": 3854591,
+   "roof": 1735376,
+   "comment": "neon blue house next to stadium"
+  },
+  {
+   "name": "Liisu",
+   "house": "house",
+   "x": 87,
+   "z": 324,
+   "since_episode": 3,
+   "roof": 13788475
+  },
+  {
+   "name": "Djada✌",
+   "house": "house",
+   "x": 63,
+   "z": 312,
+   "since_episode": 3,
+   "roof": 13788475
+  },
+  {
+   "name": "eimear",
+   "house": "house",
+   "x": 75,
+   "z": 312,
+   "since_episode": 3,
+   "roof": 13788475
+  },
+  {
+   "name": "Player00",
+   "house": "house",
+   "x": 87,
+   "z": 312,
+   "since_episode": 3,
+   "roof": 8018628
+  },
+  {
+   "name": "Fallen Angel",
+   "house": "house",
+   "x": -137,
+   "z": 386,
+   "since_episode": 3,
+   "roof": 12865658
+  },
+  {
+   "name": "megan",
+   "house": "house",
+   "x": -125,
+   "z": 386,
+   "since_episode": 3,
+   "roof": 14840634
+  },
+  {
+   "name": "~Rubes",
+   "house": "house",
+   "x": -113,
+   "z": 386,
+   "since_episode": 3,
+   "roof": 12865658
+  },
+  {
+   "name": "A (Frozzie)",
+   "house": "house",
+   "x": -137,
+   "z": 374,
+   "since_episode": 3,
+   "roof": 8018628
+  },
+  {
+   "name": "Leah",
+   "house": "house",
+   "x": -125,
+   "z": 374,
+   "since_episode": 3,
+   "roof": 14725690
+  },
+  {
+   "name": "Penelope",
+   "house": "house",
+   "x": -113,
+   "z": 374,
+   "since_episode": 3,
+   "roof": 8018628
+  },
+  {
+   "name": "brittu",
+   "house": "house",
+   "x": -137,
+   "z": 362,
+   "since_episode": 3,
+   "wall": 16053492,
+   "roof": 3125432,
+   "comment": "big house thats white and teal"
+  },
+  {
+   "name": "eva",
+   "house": "house",
+   "x": -125,
+   "z": 362,
+   "since_episode": 3,
+   "roof": 14725690
+  },
+  {
+   "name": "katie🦦",
+   "house": "house",
+   "x": -113,
+   "z": 362,
+   "since_episode": 3,
+   "wall": 11832024,
+   "roof": 6963104,
+   "comment": "wait i want a purple house pls"
+  },
+  {
+   "name": "M🪽",
+   "house": "house",
+   "x": -37,
+   "z": 236,
+   "since_episode": 3,
+   "roof": 8018628
+  },
+  {
+   "name": "Georgia💗",
+   "house": "house",
+   "x": -25,
+   "z": 236,
+   "since_episode": 3,
+   "roof": 8018628
+  },
+  {
+   "name": "Jaylinn",
+   "house": "house",
+   "x": -13,
+   "z": 236,
+   "since_episode": 3,
+   "roof": 12865658
+  },
+  {
+   "name": "Marelle💗",
+   "house": "house",
+   "x": -37,
+   "z": 224,
+   "since_episode": 3,
+   "roof": 12865658
+  },
+  {
+   "name": "Mollsan1320",
+   "house": "house",
+   "x": -25,
+   "z": 224,
+   "since_episode": 3,
+   "roof": 3125432
+  },
+  {
+   "name": "🤍",
+   "house": "house",
+   "x": -13,
+   "z": 224,
+   "since_episode": 3,
+   "roof": 3832789
+  },
+  {
+   "name": "Dagmar",
+   "house": "house",
+   "x": -37,
+   "z": 212,
+   "since_episode": 3,
+   "roof": 13788475
+  },
+  {
+   "name": "Ava❣️",
+   "house": "house",
+   "x": -25,
+   "z": 212,
+   "since_episode": 3,
+   "roof": 14725690
+  },
+  {
+   "name": "Jess (Julia's version)",
+   "house": "house",
+   "x": -13,
+   "z": 212,
+   "since_episode": 3,
+   "roof": 12865658
+  },
+  {
+   "name": "KARLA",
+   "house": "house",
+   "x": 13,
+   "z": 236,
+   "since_episode": 3,
+   "roof": 5219178
+  },
+  {
+   "name": "Natiii",
+   "house": "house",
+   "x": 25,
+   "z": 236,
+   "since_episode": 3,
+   "roof": 12865658
+  },
+  {
+   "name": "ella:)",
+   "house": "house",
+   "x": 37,
+   "z": 236,
+   "since_episode": 3,
+   "roof": 5219178
+  },
+  {
+   "name": "samanta",
+   "house": "house",
+   "x": 13,
+   "z": 224,
+   "since_episode": 3,
+   "wall": 16732072,
+   "roof": 14032762,
+   "comment": "can I have a hot pink house"
+  },
+  {
+   "name": "Ollie",
+   "house": "house",
+   "x": 25,
+   "z": 224,
+   "since_episode": 3,
+   "wall": 7317759,
+   "roof": 3104720,
+   "comment": "Can I have a blue house"
+  },
+  {
+   "name": "⛔",
+   "house": "house",
+   "x": 37,
+   "z": 224,
+   "since_episode": 3,
+   "roof": 8018628
+  },
+  {
+   "name": "jess's spammmm",
+   "house": "house",
+   "x": 13,
+   "z": 212,
+   "since_episode": 3,
+   "roof": 14725690
+  },
+  {
+   "name": "ESSA",
+   "house": "house",
+   "x": 25,
+   "z": 212,
+   "since_episode": 3,
+   "wall": 12852794,
+   "roof": 7999520,
+   "comment": "cherry red house"
+  },
+  {
+   "name": "HARV",
+   "house": "house",
+   "x": 37,
+   "z": 212,
+   "since_episode": 3,
+   "roof": 3125432
+  },
+  {
+   "name": "Ellis",
+   "house": "house",
+   "x": -87,
+   "z": 286,
+   "since_episode": 3,
+   "wall": 5935072,
+   "roof": 2772904,
+   "comment": "please can i have a house thats blue"
+  },
+  {
+   "name": "Olivia",
+   "house": "house",
+   "x": -75,
+   "z": 286,
+   "since_episode": 3,
+   "roof": 3832789
+  },
+  {
+   "name": "JACOB",
+   "house": "house",
+   "x": -63,
+   "z": 286,
+   "since_episode": 3,
+   "roof": 3832789
+  },
+  {
+   "name": "laurettaprivaaaa",
+   "house": "house",
+   "x": -87,
+   "z": 274,
+   "since_episode": 3,
+   "roof": 8018628
+  },
+  {
+   "name": "❄️Sophh",
+   "house": "house",
+   "x": -75,
+   "z": 274,
+   "since_episode": 3,
+   "roof": 8018628
+  },
+  {
+   "name": "Kirki",
+   "house": "house",
+   "x": -63,
+   "z": 274,
+   "since_episode": 3,
+   "roof": 5219178
+  },
+  {
+   "name": "GRR",
+   "house": "house",
+   "x": -87,
+   "z": 262,
+   "since_episode": 3,
+   "roof": 14840634
+  },
+  {
+   "name": "mima",
+   "house": "house",
+   "x": -75,
+   "z": 262,
+   "since_episode": 3,
+   "roof": 14725690
+  },
+  {
+   "name": "💞",
+   "house": "house",
+   "x": -63,
+   "z": 262,
+   "since_episode": 3,
+   "roof": 3832789
+  },
+  {
+   "name": "Mia🤍",
+   "house": "house",
+   "x": 63,
+   "z": 286,
+   "since_episode": 3,
+   "roof": 8018628
+  },
+  {
+   "name": "Nevie",
+   "house": "house",
+   "x": 75,
+   "z": 286,
+   "since_episode": 3,
+   "roof": 5219178
+  },
+  {
+   "name": "saskia",
+   "house": "house",
+   "x": 87,
+   "z": 286,
+   "since_episode": 3,
+   "wall": 13218800,
+   "roof": 9071312,
+   "comment": "Can i have a lavender house"
+  },
+  {
+   "name": "Lilyy xx",
+   "house": "house",
+   "x": 63,
+   "z": 274,
+   "since_episode": 3,
+   "roof": 14840634
+  },
+  {
+   "name": "Vilma",
+   "house": "house",
+   "x": 75,
+   "z": 274,
+   "since_episode": 3,
+   "roof": 12865658
+  },
+  {
+   "name": "Mavis",
+   "house": "house",
+   "x": 87,
+   "z": 274,
+   "since_episode": 3,
+   "roof": 5219178
+  },
+  {
+   "name": "Lewis",
+   "house": "house",
+   "x": 63,
+   "z": 262,
+   "since_episode": 3,
+   "wall": 9425274,
+   "roof": 5216826,
+   "comment": "Can I have a green house?"
+  },
+  {
+   "name": "Joe",
+   "house": "house",
+   "x": 75,
+   "z": 262,
+   "since_episode": 3,
+   "roof": 3832789
+  },
+  {
+   "name": "•Ava•",
+   "house": "house",
+   "x": 87,
+   "z": 262,
+   "since_episode": 3,
+   "roof": 13788475
+  },
+  {
+   "name": "cutie",
+   "house": "house",
+   "x": -137,
+   "z": 336,
+   "since_episode": 3,
+   "roof": 5219178
+  },
+  {
+   "name": "Sienna",
+   "house": "house",
+   "x": -125,
+   "z": 336,
+   "since_episode": 3,
+   "roof": 8018628
+  },
+  {
+   "name": "Sophies_spam",
+   "house": "house",
+   "x": -113,
+   "z": 336,
+   "since_episode": 3,
+   "roof": 14725690
+  },
+  {
+   "name": "ty.rx",
+   "house": "house",
+   "x": -137,
+   "z": 324,
+   "since_episode": 3,
+   "roof": 12865658
+  },
+  {
+   "name": "thora",
+   "house": "house",
+   "x": -125,
+   "z": 324,
+   "since_episode": 3,
+   "roof": 8018628
+  },
+  {
+   "name": "x.pub.priscilla.x",
+   "house": "house",
+   "x": -113,
+   "z": 324,
+   "since_episode": 3,
+   "roof": 3832789
+  },
+  {
+   "name": "evelina",
+   "house": "house",
+   "x": -137,
+   "z": 312,
+   "since_episode": 3,
+   "roof": 8018628
+  },
+  {
+   "name": "Tia <3",
+   "house": "house",
+   "x": -125,
+   "z": 312,
+   "since_episode": 3,
+   "roof": 14725690
+  },
+  {
+   "name": "dais",
+   "house": "house",
+   "x": -113,
+   "z": 312,
+   "since_episode": 3,
+   "roof": 3125432
+  },
+  {
+   "name": "K💗",
+   "house": "house",
+   "x": -37,
+   "z": 186,
+   "since_episode": 3,
+   "roof": 12865658
+  },
+  {
+   "name": "katiemccarron",
+   "house": "house",
+   "x": -25,
+   "z": 186,
+   "since_episode": 3,
+   "roof": 12865658
+  },
+  {
+   "name": "safiya_S",
+   "house": "house",
+   "x": -13,
+   "z": 186,
+   "since_episode": 3,
+   "roof": 14840634
+  },
+  {
+   "name": "iyiesha",
+   "house": "house",
+   "x": -37,
+   "z": 174,
+   "since_episode": 3,
+   "roof": 8018628
+  },
+  {
+   "name": "Alicia",
+   "house": "house",
+   "x": -25,
+   "z": 174,
+   "since_episode": 3,
+   "roof": 3125432
+  },
+  {
+   "name": "Jessica💗",
+   "house": "house",
+   "x": -13,
+   "z": 174,
+   "since_episode": 3,
+   "roof": 12865658
+  },
+  {
+   "name": "Sandeeee",
+   "house": "house",
+   "x": -37,
+   "z": 162,
+   "since_episode": 3,
+   "roof": 3125432
+  },
+  {
+   "name": "D",
+   "house": "house",
+   "x": -25,
+   "z": 162,
+   "since_episode": 3,
+   "roof": 3125432
+  },
+  {
+   "name": "ʚɞ",
+   "house": "house",
+   "x": -13,
+   "z": 162,
+   "since_episode": 3,
+   "roof": 13788475
+  },
+  {
+   "name": "anais♡",
+   "house": "house",
+   "x": 13,
+   "z": 186,
+   "since_episode": 3,
+   "roof": 3125432
+  },
+  {
+   "name": "lillyrose.priv",
+   "house": "house",
+   "x": 25,
+   "z": 186,
+   "since_episode": 3,
+   "roof": 14725690
+  },
+  {
+   "name": "Senna",
+   "house": "house",
+   "x": 37,
+   "z": 186,
+   "since_episode": 3,
+   "roof": 5219178
+  },
+  {
+   "name": "e.privateex",
+   "house": "house",
+   "x": 13,
+   "z": 174,
+   "since_episode": 3,
+   "wall": 4175280,
+   "roof": 2062968,
+   "comment": "can i have a teal house??"
+  },
+  {
+   "name": "Amber",
+   "house": "house",
+   "x": 25,
+   "z": 174,
+   "since_episode": 3,
+   "wall": 3123306,
+   "roof": 1928004,
+   "comment": "emerald green house"
+  },
+  {
+   "name": "Aifleigh",
+   "house": "house",
+   "x": 37,
+   "z": 174,
+   "since_episode": 3,
+   "roof": 13788475
+  },
+  {
+   "name": "Melodyyy💗",
+   "house": "house",
+   "x": 13,
+   "z": 162,
+   "since_episode": 3,
+   "wall": 16726843,
+   "roof": 12066077,
+   "comment": "bright red house"
+  },
+  {
+   "name": "♡☆T♡☆",
+   "house": "house",
+   "x": 25,
+   "z": 162,
+   "since_episode": 3,
+   "roof": 14840634
+  },
+  {
+   "name": "emii",
+   "house": "house",
+   "x": 37,
+   "z": 162,
+   "since_episode": 3,
+   "roof": 3125432
+  },
+  {
+   "name": "Sof",
+   "house": "house",
+   "x": -187,
+   "z": 386,
+   "since_episode": 3,
+   "roof": 5219178
+  },
+  {
+   "name": "Nubiaaaa",
+   "house": "house",
+   "x": -175,
+   "z": 386,
+   "since_episode": 3,
+   "roof": 13788475
+  },
+  {
+   "name": "sadie",
+   "house": "house",
+   "x": -163,
+   "z": 386,
+   "since_episode": 3,
+   "roof": 14840634
+  },
+  {
+   "name": "sumssuperspam26",
+   "house": "house",
+   "x": -187,
+   "z": 374,
+   "since_episode": 3,
+   "roof": 12865658
+  },
+  {
+   "name": "Ivy's_secret",
+   "house": "house",
+   "x": -175,
+   "z": 374,
+   "since_episode": 3,
+   "roof": 8018628
+  },
+  {
+   "name": "Pufc_ethan1",
+   "house": "house",
+   "x": -163,
+   "z": 374,
+   "since_episode": 3,
+   "roof": 5219178
+  },
+  {
+   "name": "Charliee",
+   "house": "house",
+   "x": -187,
+   "z": 362,
+   "since_episode": 3,
+   "roof": 3832789
+  },
+  {
+   "name": "Rosie",
+   "house": "house",
+   "x": -175,
+   "z": 362,
+   "since_episode": 3,
+   "roof": 12865658
+  },
+  {
+   "name": "Rosie Suddery",
+   "house": "house",
+   "x": -163,
+   "z": 362,
+   "since_episode": 3,
+   "roof": 3832789
+  },
+  {
+   "name": "eli",
+   "house": "house",
+   "x": -87,
+   "z": 236,
+   "since_episode": 3,
+   "roof": 5219178
+  },
+  {
+   "name": "Sis👍",
+   "house": "house",
+   "x": -75,
+   "z": 236,
+   "since_episode": 3,
+   "roof": 13788475
+  },
+  {
+   "name": "ebonyyy",
+   "house": "house",
+   "x": -63,
+   "z": 236,
+   "since_episode": 3,
+   "roof": 13788475
+  },
+  {
+   "name": "~francesca~",
+   "house": "house",
+   "x": -87,
+   "z": 224,
+   "since_episode": 3,
+   "roof": 5219178
+  },
+  {
+   "name": "Ye olde",
+   "house": "house",
+   "x": -75,
+   "z": 224,
+   "since_episode": 3,
+   "roof": 3125432
+  },
+  {
+   "name": "ELIZABETH cat",
+   "house": "house",
+   "x": -63,
+   "z": 224,
+   "since_episode": 3,
+   "wall": 6277572,
+   "roof": 2789258,
+   "comment": "small teal house"
+  },
+  {
+   "name": "zac x",
+   "house": "house",
+   "x": -87,
+   "z": 212,
+   "since_episode": 3,
+   "roof": 13788475
+  },
+  {
+   "name": "Emily-mai",
+   "house": "house",
+   "x": -75,
+   "z": 212,
+   "since_episode": 3,
+   "roof": 13788475
+  },
+  {
+   "name": "ems",
+   "house": "house",
+   "x": -63,
+   "z": 212,
+   "since_episode": 3,
+   "wall": 16777215,
+   "roof": 2236962,
+   "comment": "white with a black roof"
+  },
+  {
+   "name": "felicia™",
+   "house": "house",
+   "x": 63,
+   "z": 236,
+   "since_episode": 3,
+   "wall": 9091327,
+   "roof": 3829480,
+   "comment": "can i have a blue house?"
+  },
+  {
+   "name": "Lexi",
+   "house": "house",
+   "x": 75,
+   "z": 236,
+   "since_episode": 3,
+   "roof": 14840634
+  },
+  {
+   "name": "chris_r125yzf",
+   "house": "house",
+   "x": 87,
+   "z": 236,
+   "since_episode": 3,
+   "roof": 3832789
+  },
+  {
+   "name": "Josefine🤍",
+   "house": "house",
+   "x": 63,
+   "z": 224,
+   "since_episode": 3,
+   "wall": 16758485,
+   "roof": 15226762,
+   "comment": "Can i have a pink house?"
+  },
+  {
+   "name": "Duffer🇮🇪",
+   "house": "house",
+   "x": 75,
+   "z": 224,
+   "since_episode": 3,
+   "roof": 14725690
+  },
+  {
+   "name": "Amelia🎄",
+   "house": "house",
+   "x": 87,
+   "z": 224,
+   "since_episode": 3,
+   "roof": 12865658
+  },
+  {
+   "name": "eloise",
+   "house": "house",
+   "x": 63,
+   "z": 212,
+   "since_episode": 3,
+   "roof": 5219178
+  },
+  {
+   "name": "Horizon",
+   "house": "house",
+   "x": 75,
+   "z": 212,
+   "since_episode": 3,
+   "roof": 13788475
+  },
+  {
+   "name": "absprivv",
+   "house": "house",
+   "x": 87,
+   "z": 212,
+   "since_episode": 3,
+   "roof": 3125432
+  },
+  {
+   "name": "meowpoo",
+   "house": "house",
+   "x": -137,
+   "z": 286,
+   "since_episode": 3,
+   "wall": 16053492,
+   "roof": 9091327,
+   "comment": "pink and blue roof"
+  },
+  {
+   "name": "jess_2026",
+   "house": "house",
+   "x": -125,
+   "z": 286,
+   "since_episode": 3,
+   "roof": 13788475
+  },
+  {
+   "name": "ARI⭐",
+   "house": "house",
+   "x": -113,
+   "z": 286,
+   "since_episode": 3,
+   "roof": 3832789
+  },
+  {
+   "name": "*~Rose~*",
+   "house": "house",
+   "x": -137,
+   "z": 274,
+   "since_episode": 3,
+   "roof": 8018628
+  },
+  {
+   "name": "LLR",
+   "house": "house",
+   "x": -125,
+   "z": 274,
+   "since_episode": 3,
+   "roof": 14725690
+  },
+  {
+   "name": "crazy guy",
+   "house": "house",
+   "x": -113,
+   "z": 274,
+   "since_episode": 3,
+   "roof": 12865658
+  },
+  {
+   "name": "priv💘",
+   "house": "house",
+   "x": -137,
+   "z": 262,
+   "since_episode": 3,
+   "roof": 14840634
+  },
+  {
+   "name": "Charlotte",
+   "house": "house",
+   "x": -125,
+   "z": 262,
+   "since_episode": 3,
+   "roof": 13788475
+  },
+  {
+   "name": "Aiyannaxoxo22",
+   "house": "house",
+   "x": -113,
+   "z": 262,
+   "since_episode": 3,
+   "roof": 8018628
+  },
+  {
+   "name": "Maggie",
+   "house": "house",
+   "x": -37,
+   "z": 136,
+   "since_episode": 3,
+   "roof": 5219178
+  },
+  {
+   "name": "trashmouthtozier",
+   "house": "house",
+   "x": -25,
+   "z": 136,
+   "since_episode": 3,
+   "roof": 5219178
+  },
+  {
+   "name": "bellahar🐰",
+   "house": "house",
+   "x": -13,
+   "z": 136,
+   "since_episode": 3,
+   "wall": 16766695,
+   "roof": 15899328,
+   "comment": "light pink house with a cat"
+  },
+  {
+   "name": "Caydence",
+   "house": "house",
+   "x": -37,
+   "z": 124,
+   "since_episode": 3,
+   "wall": 15123290,
+   "roof": 12095530,
+   "comment": "Can i live in a gold house"
+  },
+  {
+   "name": "fisho_185",
+   "house": "house",
+   "x": -25,
+   "z": 124,
+   "since_episode": 3,
+   "roof": 3832789
+  },
+  {
+   "name": "Ketchup",
+   "house": "house",
+   "x": -13,
+   "z": 124,
+   "since_episode": 3,
+   "roof": 3832789
+  },
+  {
+   "name": "Emijinx",
+   "house": "house",
+   "x": -37,
+   "z": 112,
+   "since_episode": 3,
+   "roof": 14725690
+  },
+  {
+   "name": "~amelia~",
+   "house": "house",
+   "x": -25,
+   "z": 112,
+   "since_episode": 3,
+   "roof": 5219178
+  },
+  {
+   "name": "Els",
+   "house": "house",
+   "x": -13,
+   "z": 112,
+   "since_episode": 3,
+   "roof": 12865658
+  },
+  {
+   "name": "megan_m74",
+   "house": "villa",
+   "x": 165.5,
+   "z": 373,
+   "y": 3,
+   "since_episode": 3,
+   "district": "Billionaires' Hill"
+  },
+  {
+   "name": "Lucie",
+   "house": "villa",
+   "x": 184.5,
+   "z": 373,
+   "y": 3,
+   "since_episode": 3,
+   "district": "Billionaires' Hill"
+  },
+  {
+   "name": "BoomBoom",
+   "house": "villa",
+   "x": 165.5,
+   "z": 323,
+   "y": 3,
+   "since_episode": 3,
+   "district": "Billionaires' Hill"
+  },
+  {
+   "name": "Mia",
+   "house": "villa",
+   "x": 184.5,
+   "z": 323,
+   "y": 3,
+   "since_episode": 3,
+   "district": "Billionaires' Hill"
+  },
+  {
+   "name": "Melisa:)",
+   "house": "villa",
+   "x": 165.5,
+   "z": 273,
+   "y": 3,
+   "since_episode": 3,
+   "district": "Billionaires' Hill"
+  },
+  {
+   "name": "ameliaspams🤍",
+   "house": "villa",
+   "x": 184.5,
+   "z": 273,
+   "y": 3,
+   "since_episode": 3,
+   "district": "Billionaires' Hill"
+  },
+  {
+   "name": "unknown_0915",
+   "house": "villa",
+   "x": 165.5,
+   "z": 223,
+   "y": 3,
+   "since_episode": 3,
+   "district": "Billionaires' Hill"
+  },
+  {
+   "name": "ADDISON",
+   "house": "villa",
+   "x": 184.5,
+   "z": 223,
+   "y": 3,
+   "since_episode": 3,
+   "district": "Billionaires' Hill"
+  },
+  {
+   "name": "⚜trampolining⚜",
+   "house": "villa",
+   "x": 165.5,
+   "z": 173,
+   "y": 3,
+   "since_episode": 3,
+   "district": "Billionaires' Hill"
+  },
+  {
+   "name": "EMILY",
+   "house": "villa",
+   "x": 184.5,
+   "z": 173,
+   "y": 3,
+   "since_episode": 3,
+   "district": "Billionaires' Hill"
+  },
+  {
+   "name": "Isla💋",
+   "house": "villa",
+   "x": 215.5,
+   "z": 373,
+   "y": 3,
+   "since_episode": 3,
+   "district": "Billionaires' Hill"
+  },
+  {
+   "name": "DEMIS SPAM",
+   "house": "villa",
+   "x": 234.5,
+   "z": 373,
+   "y": 3,
+   "since_episode": 3,
+   "district": "Billionaires' Hill"
+  },
+  {
+   "name": "Lylabrown🍒",
+   "house": "villa",
+   "x": 215.5,
+   "z": 323,
+   "y": 3,
+   "since_episode": 3,
+   "district": "Billionaires' Hill"
+  },
+  {
+   "name": "leyla☁️",
+   "house": "villa",
+   "x": 234.5,
+   "z": 323,
+   "y": 3,
+   "since_episode": 3,
+   "district": "Billionaires' Hill"
+  },
+  {
+   "name": "Henson",
+   "house": "villa",
+   "x": 215.5,
+   "z": 273,
+   "y": 3,
+   "since_episode": 3,
+   "district": "Billionaires' Hill"
+  },
+  {
+   "name": "itsrubez",
+   "house": "villa",
+   "x": 234.5,
+   "z": 273,
+   "y": 3,
+   "since_episode": 3,
+   "district": "Billionaires' Hill"
+  },
+  {
+   "name": "Yesujin",
+   "house": "villa",
+   "x": 215.5,
+   "z": 223,
+   "y": 3,
+   "since_episode": 3,
+   "district": "Billionaires' Hill"
+  },
+  {
+   "name": "Alaiya",
+   "house": "villa",
+   "x": 234.5,
+   "z": 223,
+   "y": 3,
+   "since_episode": 3,
+   "district": "Billionaires' Hill"
+  },
+  {
+   "name": "Miami",
+   "house": "villa",
+   "x": 215.5,
+   "z": 173,
+   "y": 3,
+   "since_episode": 3,
+   "district": "Billionaires' Hill"
+  },
+  {
+   "name": "Simeon",
+   "house": "villa",
+   "x": 234.5,
+   "z": 173,
+   "y": 3,
+   "since_episode": 3,
+   "district": "Billionaires' Hill"
+  },
+  {
+   "name": "L♡",
+   "house": "villa",
+   "x": 265.5,
+   "z": 373,
+   "y": 3,
+   "since_episode": 3,
+   "district": "Billionaires' Hill"
+  },
+  {
+   "name": "anna_3lizab3th",
+   "house": "villa",
+   "x": 284.5,
+   "z": 373,
+   "y": 3,
+   "since_episode": 3,
+   "district": "Billionaires' Hill"
+  },
+  {
+   "name": "Teruseee",
+   "house": "villa",
+   "x": 265.5,
+   "z": 323,
+   "y": 3,
+   "since_episode": 3,
+   "district": "Billionaires' Hill"
+  },
+  {
+   "name": "iona",
+   "house": "villa",
+   "x": 284.5,
+   "z": 323,
+   "y": 3,
+   "since_episode": 3,
+   "district": "Billionaires' Hill"
+  },
+  {
+   "name": "Lily",
+   "house": "villa",
+   "x": 265.5,
+   "z": 273,
+   "y": 3,
+   "since_episode": 3,
+   "district": "Billionaires' Hill"
+  },
+  {
+   "name": "armonie",
+   "house": "villa",
+   "x": 284.5,
+   "z": 273,
+   "y": 3,
+   "since_episode": 3,
+   "district": "Billionaires' Hill"
+  },
+  {
+   "name": "ivy",
+   "house": "villa",
+   "x": 265.5,
+   "z": 223,
+   "y": 3,
+   "since_episode": 3,
+   "district": "Billionaires' Hill"
+  },
+  {
+   "name": "rose⭐",
+   "house": "villa",
+   "x": 284.5,
+   "z": 223,
+   "y": 3,
+   "since_episode": 3,
+   "district": "Billionaires' Hill"
+  },
+  {
+   "name": "🤍Rosie",
+   "house": "villa",
+   "x": 265.5,
+   "z": 173,
+   "y": 3,
+   "since_episode": 3,
+   "district": "Billionaires' Hill"
+  },
+  {
+   "name": "BonFromVietnam0611",
+   "house": "villa",
+   "x": 284.5,
+   "z": 173,
+   "y": 3,
+   "since_episode": 3,
+   "district": "Billionaires' Hill"
+  },
+  {
+   "name": "T8!",
+   "house": "house",
+   "x": 113,
+   "z": 136,
+   "roof": 14725690,
+   "wall": 16115384,
+   "since_episode": 3,
+   "comment": "Can I be a billionaire in the town",
+   "note": "31st billionaire: the hill was full"
   }
  ]
 }

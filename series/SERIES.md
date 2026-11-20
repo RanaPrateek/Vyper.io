@@ -19,7 +19,7 @@
 - Only public usernames go on houses: no real names, faces or other personal details.
 
 ## Schedule (UK time, Europe/London)
-**From Episode 2: every other day at 19:00** (Sat 21, Mon 23, Wed 25 Nov…). We move to **daily** once growth picks up. The most successful show in this genre posts daily; see `RESEARCH.md`.
+**From Episode 3: daily at 19:00 UK** (decided Fri 20 Nov: "we'll be creating every 24 hrs"). Set polls to 1 day.
 TikTok polls close after 24 h, which fits this rhythm: the poll closes, results go to Claude that evening or the next morning, and the episode is ready by 17:00 for a 19:00 post.
 
 | When | What |
@@ -44,10 +44,10 @@ Views / likes / shares (optional)
 ## City state
 | | |
 |---|---|
-| Day | 2 |
+| Day | 3 |
 | Population (followers) | 1 |
 | Built | **Giant mall** (Ep 2), 15 citizens' houses (Ep 2): see `city-post/city/state.json`, the source of truth for the world |
-| Houses (citizens) | 15 (Ep 2) |
+| Houses (citizens) | 194 (15 from Ep 2, 179 from Ep 3, including 30 villas on Billionaires' Hill) |
 | City name on the sign | "YOUR CITY" (a future episode lets viewers vote on the name) |
 | Previous vote (Ep 1) | **A** Hospital · **B** Stadium · **C** Giant mall: mall won. A TikTok poll in the pinned comment (closes Fri 20 Nov evening), plus votes written in comments |
 | Early citizens (Ep 1) | Kasparita (votes giant mall), Hollie M. Display names only so far: need their @usernames for nameplates |
@@ -79,7 +79,7 @@ Views / likes / shares (optional)
 |---|---|---|---|---|---|---|
 | 1 | Posted Thu 19 Nov 2026 (~20:15) | Population: 1 | Hospital / Stadium / Giant mall | (pending) | — | Pilot: rules introduced. End card shows the old handle `@population.you`; left as is |
 | 2 | **Posted Thu 19 Nov 2026 evening** (the draft, which said 25 citizens) | We built it | Skate park / Fire station / Cinema, plus name the pigeon | After 10 h: **Cinema 59%** (290 votes, 7-day poll) | Giant mall, 15 houses, the pigeon | **5,641 views · 367 likes · 203 comments** in 10 h, roughly 35× Episode 1. All requests are in `series/ep02/COMMENTS.md` |
-| 3 | Mon 23 Nov 2026, 19:00 | (depends on vote) | | | | |
+| 3 | Sat 21 Nov 2026, 19:00 | A whole new neighbourhood | Water park / Castle / Town centre | (pending) | 149 houses (6 specials: potato, rubber duck, shoe, ostrich, nugget, pigeon statue), Billionaires' Hill (30 villas), cinema, Tamara's neon purple extension; the pigeon is named Kevin | Draft rendered with a placeholder of 120 followers; needs the real count |
 
 ## Feedback to apply from Episode 2 (account holder, 19 Nov 2026)
 Episode 1 stays as posted. Don't re-render it. Apply all of these to new episodes:

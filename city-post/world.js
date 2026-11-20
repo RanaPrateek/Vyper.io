@@ -377,3 +377,212 @@ export function project(p) {
   const v = p.clone().project(camera);
   return { x: (v.x * 0.5 + 0.5) * VIEW.w, y: (-v.y * 0.5 + 0.5) * VIEW.h, visible: v.z < 1 };
 }
+
+// ================================================================ Episode 3 additions
+/** Many ordinary citizens' houses as instanced meshes (fast to render), each with its own nameplate.
+ *  entries: [{ name, x, z, y?, rot?, roof?, wall?, scale? }]. Call field.setScale(i, s) then field.commit(). */
+export function makeHouseField(entries) {
+  const n = entries.length;
+  const g = new THREE.Group();
+  const W = 8, H = 4.6, D = 7;
+  const parts = [
+    { geo: new THREE.BoxGeometry(W, H, D).translate(0, H / 2, 0), mat: new THREE.MeshStandardMaterial({ roughness: 0.9 }), colour: 'wall', off: [[0, 0, 0]] },
+    { geo: roofGeo(W + 1.0, D + 1.0, 2.6).translate(0, H, 0), mat: new THREE.MeshStandardMaterial({ roughness: 0.8, flatShading: true }), colour: 'roof', off: [[0, 0, 0]] },
+    { geo: new THREE.BoxGeometry(1.9, 1.5, 0.2), mat: frameMat, off: [[-2.6, 2.9, D / 2 + 0.05], [2.6, 2.9, D / 2 + 0.05]] },
+    { geo: new THREE.BoxGeometry(1.6, 1.2, 0.22), mat: glassMat, off: [[-2.6, 2.9, D / 2 + 0.07], [2.6, 2.9, D / 2 + 0.07]] },
+    { geo: new THREE.BoxGeometry(1.4, 2.4, 0.2), mat: doorMat, off: [[0, 1.2, D / 2 + 0.05]] },
+  ];
+  const meshes = parts.map((p) => {
+    const m = new THREE.InstancedMesh(p.geo, p.mat, n * p.off.length);
+    m.castShadow = true; m.receiveShadow = true; g.add(m); return m;
+  });
+  const col = new THREE.Color();
+  entries.forEach((e, i) => {
+    parts.forEach((p, k) => {
+      if (!p.colour) return;
+      col.set(p.colour === 'wall' ? (e.wall ?? 0xe9e6e1) : (e.roof ?? 0xd2653b));
+      meshes[k].setColorAt(i, col);
+    });
+  });
+  meshes.forEach((m) => { if (m.instanceColor) m.instanceColor.needsUpdate = true; });
+  const plates = entries.map((e) => { const p = nameplate(e.name, 3.6, 0.8); g.add(p); return p; });
+  const scales = new Float32Array(n).fill(1);
+  const M = new THREE.Matrix4(), L = new THREE.Matrix4(), q = new THREE.Quaternion(), up = v3(0, 1, 0);
+  function commit() {
+    entries.forEach((e, i) => {
+      const s = Math.max(scales[i], 0.0001);
+      q.setFromAxisAngle(up, e.rot || 0);
+      M.compose(v3(e.x, e.y || 0, e.z), q, v3(s * (e.scale || 1), s * (e.scale || 1), s * (e.scale || 1)));
+      parts.forEach((p, k) => p.off.forEach((o, j) => { L.makeTranslation(o[0], o[1], o[2]); meshes[k].setMatrixAt(i * p.off.length + j, M.clone().multiply(L)); }));
+      L.makeTranslation(0, 3.85, D / 2 + 0.1); const pm = M.clone().multiply(L);
+      pm.decompose(plates[i].position, plates[i].quaternion, plates[i].scale); plates[i].visible = scales[i] > 0.01;
+    });
+    meshes.forEach((m) => (m.instanceMatrix.needsUpdate = true));
+  }
+  commit();
+  return { group: g, entries, setScale: (i, s) => { scales[i] = s; }, commit, front: (i) => v3(entries[i].x, (entries[i].y || 0) + 3.4, entries[i].z + D / 2) };
+}
+
+/** Simple mansion for Billionaires' Hill: identical on purpose ("it's a tie"). Faces +z. */
+export function makeVilla(name, colour = 0xf3efe8) {
+  const g = new THREE.Group();
+  const wall = std(colour, { roughness: 0.85 }), roof = std(0x2f3e66, { flatShading: true });
+  box(14, 7, 10, wall, 0, 3.5, 0, g);
+  for (const x of [-9, 9]) box(5, 5, 8, wall, x, 2.5, 0, g);
+  const r = new THREE.Mesh(roofGeo(15, 11, 3.2), roof); r.position.y = 7; r.castShadow = true; g.add(r);
+  for (const x of [-2.4, 2.4]) { const c = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.34, 6, 10), wall); c.position.set(x, 3, 6.4); c.castShadow = true; g.add(c); }
+  box(6.4, 0.5, 2.6, wall, 0, 6.2, 6.0, g);
+  box(1.8, 3.2, 0.2, doorMat, 0, 1.6, 5.05, g);
+  box(16, 0.06, 4, std(0x3fb0d8, { roughness: 0.1, metalness: 0.2 }), 0, 0.04, 9, g); // pool
+  const plate = nameplate(name, 4.4, 0.9, { bg: '#2f3e66', fg: '#f5e6b8' }); plate.position.set(0, 6.9, 7.35); g.add(plate);
+  g.userData = { kind: 'villa', name };
+  return g;
+}
+
+/** Raised lawn "hill" for a district, with a big district sign at the front. */
+export function makeDistrict(cx, cz, w, d, h, label) {
+  const g = new THREE.Group();
+  const lawnTex = canvasTex(256, 256, (c, W) => {
+    c.fillStyle = '#79a356'; c.fillRect(0, 0, W, W);
+    for (let i = 0; i < 2500; i++) { c.fillStyle = `rgba(${Math.random() < 0.5 ? '40,70,30' : '160,190,110'},0.25)`; c.fillRect(Math.random() * W, Math.random() * W, 3, 3); }
+  }, { repeat: true });
+  lawnTex.repeat.set(w / 20, d / 20);
+  const lawn = new THREE.MeshStandardMaterial({ map: lawnTex, roughness: 1 }), stone = std(0xc9c1b2, { roughness: 0.95 });
+  const p = new THREE.Mesh(new THREE.BoxGeometry(w, h, d), [stone, stone, lawn, stone, stone, stone]);
+  p.position.set(cx, h / 2, cz); p.receiveShadow = true; p.castShadow = true; g.add(p);
+  const tex = canvasTex(1024, 256, (c, W, H) => {
+    const grd = c.createLinearGradient(0, 0, 0, H); grd.addColorStop(0, '#2f3e66'); grd.addColorStop(1, '#1d2747');
+    c.fillStyle = grd; c.fillRect(0, 0, W, H); c.strokeStyle = '#e8c86a'; c.lineWidth = 12; c.strokeRect(14, 14, W - 28, H - 28);
+    c.fillStyle = '#f5e6b8'; c.textAlign = 'center'; c.textBaseline = 'middle'; c.font = '900 120px "Inter Display", Inter, sans-serif';
+    let fs = 120; while (c.measureText(label).width > W - 90) { fs -= 4; c.font = `900 ${fs}px "Inter Display", Inter, sans-serif`; }
+    c.fillText(label, W / 2, H / 2 + 6);
+  });
+  const sgn = new THREE.Mesh(new THREE.BoxGeometry(36, 9, 0.6), [frameMat, frameMat, frameMat, frameMat, new THREE.MeshStandardMaterial({ map: tex, emissive: 0xffffff, emissiveMap: tex, emissiveIntensity: 0.2 }), frameMat]);
+  sgn.position.set(cx, h + 9, cz + d / 2 - 4); sgn.castShadow = true; g.add(sgn);
+  for (const x of [-12, 12]) box(0.6, 6, 0.6, std(0xb0b6bd, { metalness: 0.5 }), cx + x, h + 3, cz + d / 2 - 4.4, g);
+  g.userData = { top: h, signPos: sgn.position.clone() };
+  return g;
+}
+
+/** Cinema with a marquee and bulbs. Built bottom-up via userData.body.scale.y. Faces +z. */
+export function makeCinema(label = 'CINEMA') {
+  const g = new THREE.Group(), body = new THREE.Group(); g.add(body);
+  const brick = std(0x8a2b3a, { roughness: 0.9 }), trim = std(0xf2e6c8, { roughness: 0.7 });
+  box(30, 15, 24, brick, 0, 7.5, -1, body);
+  box(31, 1, 25, trim, 0, 15.3, -1, body);
+  box(10, 6, 0.3, glassMat, 0, 3, 11.1, body);
+  for (const x of [-10, 10]) { // poster frames
+    box(5, 7, 0.3, trim, x, 5, 11.1, body);
+    box(4.2, 6.2, 0.35, std([0x3a6ee8, 0xe8578a][x > 0 ? 1 : 0], { emissive: [0x1a3070, 0x70203a][x > 0 ? 1 : 0], emissiveIntensity: 0.5 }), x, 5, 11.15, body);
+  }
+  const markTex = canvasTex(1024, 256, (c, W, H) => {
+    c.fillStyle = '#1b1b22'; c.fillRect(0, 0, W, H);
+    for (let x = 30; x < W; x += 60) for (const y of [22, H - 22]) { c.fillStyle = '#ffe9a0'; c.beginPath(); c.arc(x, y, 11, 0, 7); c.fill(); }
+    c.fillStyle = '#ffd23a'; c.textAlign = 'center'; c.textBaseline = 'middle'; c.font = '900 130px "Inter Display", Inter, sans-serif'; c.fillText(label, W / 2, H / 2 + 6);
+  });
+  const mq = new THREE.Mesh(new THREE.BoxGeometry(22, 5.5, 3), [trim, trim, trim, trim, new THREE.MeshStandardMaterial({ map: markTex, emissive: 0xffffff, emissiveMap: markTex, emissiveIntensity: 0.6 }), trim]);
+  mq.position.set(0, 9, 12.4); mq.castShadow = true; g.add(mq);
+  g.userData = { kind: 'cinema', body, sign: mq };
+  return g;
+}
+
+/** Neon extension bolted onto the side of a house (Tamara). */
+export function makeNeonExtension(colour = 0xa64dff) {
+  const g = new THREE.Group();
+  box(6, 4, 6, new THREE.MeshStandardMaterial({ color: colour, emissive: colour, emissiveIntensity: 0.55, roughness: 0.5 }), 0, 2, 0, g);
+  const r = new THREE.Mesh(roofGeo(6.8, 6.8, 2), new THREE.MeshStandardMaterial({ color: 0xc58aff, emissive: colour, emissiveIntensity: 0.7, flatShading: true })); r.position.y = 4; g.add(r);
+  const glow = new THREE.PointLight(colour, 30, 25, 2); glow.position.set(0, 3, 5); g.add(glow);
+  return g;
+}
+
+// ---- special houses (each faces +z, nameplate on the front, footprint about 10 x 10)
+function plateOn(g, name, x, y, z, w = 3.4) { const p = nameplate(name, w, 0.75); p.position.set(x, y, z); g.add(p); return p; }
+function doorOn(g, x, y, z) { box(1.3, 2.2, 0.2, doorMat, x, y + 1.1, z, g); }
+
+export function makePotatoHouse(name) {
+  const g = new THREE.Group();
+  const geo = new THREE.SphereGeometry(5, 24, 16); const pos = geo.attributes.position;
+  for (let i = 0; i < pos.count; i++) { const x = pos.getX(i), y = pos.getY(i), z = pos.getZ(i); const k = 1 + 0.08 * Math.sin(x * 1.3) * Math.cos(z * 1.1) + 0.05 * Math.sin(y * 2.1); pos.setXYZ(i, x * 1.25 * k, y * 0.8 * k, z * k); }
+  geo.computeVertexNormals();
+  const skin = new THREE.Mesh(geo, std(0xb58a55, { roughness: 1 })); skin.position.y = 3.6; skin.castShadow = true; g.add(skin);
+  for (let i = 0; i < 9; i++) { const e = new THREE.Mesh(new THREE.SphereGeometry(0.35, 8, 6), std(0x7a5a33)); const a = i * 1.7, b = (i % 3) * 0.6 - 0.4; e.position.set(Math.cos(a) * 5.6, 3.6 + b * 3, Math.sin(a) * 4.6); g.add(e); }
+  doorOn(g, 0, 0.2, 4.6); for (const x of [-2.6, 2.6]) { box(1.4, 1.1, 0.2, glassMat, x, 4.4, 4.2, g); }
+  plateOn(g, name, 0, 3.2, 4.85);
+  box(0.5, 1.4, 0.5, std(0x5b4a3a), 3, 7.4, -1, g); // chimney
+  g.userData = { kind: 'potato', name, front: v3(0, 3.5, 5) };
+  return g;
+}
+
+export function makeDuckHouse(name) {
+  const g = new THREE.Group();
+  const pink = std(0xff8fc8, { roughness: 0.35 }), beakM = std(0xff9a2e, { roughness: 0.4 });
+  const body = new THREE.Mesh(new THREE.SphereGeometry(5, 24, 16), pink); body.scale.set(1.25, 0.75, 1); body.position.y = 3.6; body.castShadow = true; g.add(body);
+  const tail = new THREE.Mesh(new THREE.ConeGeometry(1.6, 3, 12), pink); tail.rotation.x = -1.0; tail.position.set(0, 5.6, -5.4); g.add(tail);
+  const head = new THREE.Mesh(new THREE.SphereGeometry(2.8, 20, 14), pink); head.position.set(0, 8.6, 2.0); head.castShadow = true; g.add(head);
+  const beak = new THREE.Mesh(new THREE.SphereGeometry(1.4, 14, 10), beakM); beak.scale.set(1.3, 0.45, 1); beak.position.set(0, 8.1, 4.6); g.add(beak);
+  for (const x of [-1.2, 1.2]) { const eye = new THREE.Mesh(new THREE.SphereGeometry(0.42, 10, 8), std(0x1a1a1a)); eye.position.set(x, 9.4, 4.3); g.add(eye); }
+  doorOn(g, 0, 0.3, 4.9); plateOn(g, name, 0, 4.6, 4.75);
+  g.userData = { kind: 'duck', name, front: v3(0, 4.5, 5) };
+  return g;
+}
+
+export function makeShoeHouse(name) {
+  const g = new THREE.Group();
+  const leather = std(0xd8262e, { roughness: 0.45 }), sole = std(0xf7f5f0, { roughness: 0.8 }), lace = std(0xffffff);
+  box(16, 1.2, 8, sole, 0, 0.6, 0, g);
+  const toe = new THREE.Mesh(new THREE.SphereGeometry(4, 20, 14, 0, Math.PI * 2, 0, Math.PI / 2), leather); toe.scale.set(1.2, 0.9, 1); toe.position.set(4, 1.2, 0); toe.castShadow = true; g.add(toe);
+  box(8, 6.5, 7.6, leather, -3.2, 4.4, 0, g);
+  box(8.4, 0.8, 8, sole, -3.2, 7.9, 0, g);
+  box(2.2, 3.2, 7.8, sole, -7.4, 3.4, 0, g); // heel tab
+  for (const z of [-3.9, 3.9]) box(9, 0.9, 0.1, sole, 0.5, 2.6, z, g); // side stripe
+  for (let i = 0; i < 4; i++) box(0.25, 0.25, 6.8, lace, -0.8 + i * 1.4, 4 + i * 1.2, 0, g);
+  box(1.4, 2.4, 0.2, doorMat, -3.2, 2.4, 3.85, g);
+  for (const y of [5.2, 7.4]) box(1.5, 1.1, 0.2, glassMat, -5.5, y, 3.85, g);
+  plateOn(g, name, -1, 6.4, 3.9, 3.2);
+  g.rotation.y = 0; g.userData = { kind: 'shoe', name, front: v3(-2, 4.5, 4) };
+  return g;
+}
+
+export function makeOstrichHouse(name) {
+  const g = new THREE.Group();
+  const feathers = std(0x2b2b2e, { roughness: 0.9 }), skinM = std(0xe8b7a0, { roughness: 0.7 });
+  const body = new THREE.Mesh(new THREE.SphereGeometry(4.5, 20, 14), feathers); body.scale.set(1.2, 0.85, 1); body.position.y = 8; body.castShadow = true; g.add(body);
+  const tail = new THREE.Mesh(new THREE.SphereGeometry(2.6, 14, 10), std(0xf2f2f2, { roughness: 1 })); tail.position.set(0, 9, -4.2); g.add(tail);
+  for (const x of [-1.6, 1.6]) { const leg = new THREE.Mesh(new THREE.CylinderGeometry(0.45, 0.35, 5, 8), skinM); leg.position.set(x, 2.5, 0); leg.castShadow = true; g.add(leg); box(1.4, 0.4, 2.2, skinM, x, 0.2, 0.6, g); }
+  const neck = new THREE.Mesh(new THREE.CylinderGeometry(0.6, 0.9, 7, 10), skinM); neck.position.set(0, 13.5, 3.2); neck.rotation.x = 0.35; g.add(neck);
+  const head = new THREE.Mesh(new THREE.SphereGeometry(1.3, 14, 10), skinM); head.position.set(0, 17, 4.6); g.add(head);
+  const beak = new THREE.Mesh(new THREE.ConeGeometry(0.45, 1.6, 8), std(0xd9a066)); beak.rotation.x = Math.PI / 2; beak.position.set(0, 16.8, 6); g.add(beak);
+  for (const x of [-0.7, 0.7]) { const eye = new THREE.Mesh(new THREE.SphereGeometry(0.28, 8, 6), std(0x111111)); eye.position.set(x, 17.3, 5.5); g.add(eye); }
+  // the house part: a door and a window in the belly, and a little ladder up to it
+  box(1.4, 2.2, 0.2, doorMat, 0, 7.4, 4.7, g); box(1.4, 1.0, 0.2, glassMat, 2.2, 8.4, 4.35, g);
+  for (let i = 0; i < 6; i++) box(1.6, 0.15, 0.4, std(0x9b6b3a), 0, 1 + i * 1.05, 5.6 - i * 0.1, g);
+  plateOn(g, name, 0, 9.8, 4.75, 3.0);
+  g.userData = { kind: 'ostrich', name, front: v3(0, 8, 5) };
+  return g;
+}
+
+export function makeNuggetHouse(name) {
+  const g = new THREE.Group();
+  const geo = new THREE.DodecahedronGeometry(5, 1); const pos = geo.attributes.position;
+  for (let i = 0; i < pos.count; i++) { const x = pos.getX(i), y = pos.getY(i), z = pos.getZ(i); const k = 1 + 0.1 * Math.sin(x * 2.3 + z) * Math.cos(y * 1.7); pos.setXYZ(i, x * 1.3 * k, y * 0.75 * k, z * k); }
+  geo.computeVertexNormals();
+  const n = new THREE.Mesh(geo, std(0xd99a3c, { roughness: 1, flatShading: true })); n.position.y = 3.4; n.castShadow = true; g.add(n);
+  const dip = new THREE.Mesh(new THREE.CylinderGeometry(2.2, 1.8, 2.4, 20), std(0xc0392b, { roughness: 0.4 })); dip.position.set(8.5, 1.2, 2); dip.castShadow = true; g.add(dip);
+  doorOn(g, 0, 0.3, 4.3); plateOn(g, name, 0, 3.4, 4.65);
+  for (const x of [-3, 3]) box(1.3, 1.0, 0.2, glassMat, x, 4.2, 4.0, g);
+  g.userData = { kind: 'nugget', name, front: v3(0, 3.4, 5) };
+  return g;
+}
+
+/** A giant statue of the pigeon on a plinth, with a door in the plinth (Kacee lives inside). */
+export function makePigeonStatue(name) {
+  const g = new THREE.Group();
+  const stone = std(0xd8d4cc, { roughness: 0.95 });
+  box(10, 5, 10, stone, 0, 2.5, 0, g);
+  box(11, 0.6, 11, stone, 0, 5.1, 0, g);
+  const p = makePigeon(); p.scale.setScalar(5.2); p.position.set(0, 5.3, 0); g.add(p);
+  doorOn(g, 0, 0.2, 5.05); box(1.2, 0.9, 0.2, glassMat, 3, 3.2, 5.05, g); box(1.2, 0.9, 0.2, glassMat, -3, 3.2, 5.05, g);
+  plateOn(g, name, 0, 3.9, 5.1, 2.6);
+  g.userData = { kind: 'statue', name, pigeon: p, front: v3(0, 4, 5) };
+  return g;
+}
