@@ -1,13 +1,24 @@
 {
   "episode": 3,
   "day": 3,
-  "followers": 120,
+  "followers": 260,
   "previous_followers": 25,
   "houses": 179,
-  "poll": { "Skate park": 27, "Fire station": 14, "Cinema": 59 },
-  "next_vote": ["WATER PARK", "CASTLE", "TOWN CENTRE"],
-  "milestone": { "target": 100, "label": "ELECTRICITY" },
+  "poll": {
+    "Skate park": 27,
+    "Fire station": 14,
+    "Cinema": 59
+  },
+  "next_vote": [
+    "WATER PARK",
+    "CASTLE",
+    "TOWN CENTRE"
+  ],
+  "milestone": {
+    "target": 100,
+    "label": "ELECTRICITY"
+  },
   "milestone_state": "reached",
   "pigeon_name": "Kevin",
-  "_note": "followers is a placeholder until the real count arrives; milestone_state = reached if followers >= 100, else progress"
+  "_note": "real follower count from the account holder, Sat 21 Nov"
 }
