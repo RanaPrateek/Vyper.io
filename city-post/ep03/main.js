@@ -4,7 +4,7 @@ import {
   THREE, params, clamp, lerp, smooth, easeOut, easeInOut, easeOutBack, v3, renderer, scene, camera,
   LOOKS, applyLook, HALF, SIGN_CENTER, sign, setSign, makeHouse, makeCarHouse, makeMansion, makeMall,
   makePigeon, plotMarker, project, makeHouseField, makeVilla, makeDistrict, makeCinema, makeNeonExtension,
-  makePotatoHouse, makeDuckHouse, makeShoeHouse, makeOstrichHouse, makeNuggetHouse, makePigeonStatue, nameplate,
+  makePotatoHouse, makeDuckHouse, makeShoeHouse, makeOstrichHouse, makeNuggetHouse, makePigeonStatue, nameplate, floatingTag,
 } from '../world.js';
 
 const load = (f) => fetch(f).then((r) => r.json());
@@ -32,14 +32,14 @@ for (const c of STATE.citizens) {
 }
 const field = makeHouseField(fieldEntries); scene.add(field.group);
 const tam = byName.Tamara;
-const ext = makeNeonExtension(tam.extension.colour); ext.position.set(tam.x + 7.2, 0, tam.z + 0.5); scene.add(ext);
+const ext = makeNeonExtension(tam.extension.colour); ext.position.set(tam.x - 7.4, 0, tam.z + 0.5); scene.add(ext);
 const mall = makeMall('GIANT MALL'); mall.position.set(-25, 0, 25); scene.add(mall);
 const cinema = makeCinema('CINEMA'); cinema.position.set(25, 0, 25); scene.add(cinema);
 const hillB = STATE.buildings.find((b) => b.id === 'billionaires_hill');
 const hill = makeDistrict(hillB.x, hillB.z, hillB.w, hillB.d, hillB.h, "BILLIONAIRES' HILL"); scene.add(hill);
 
 const pigeon = makePigeon(); pigeon.position.set(2.2, 10.0, 0.05); pigeon.rotation.y = 0.35; sign.add(pigeon);
-const kevinTag = nameplate(CFG.pigeon_name.toUpperCase(), 2.2, 0.55, { bg: '#ff6a13', fg: '#ffffff' }); kevinTag.position.set(2.2, 9.6, 0.2); sign.add(kevinTag);
+const kevinTag = floatingTag(CFG.pigeon_name.toUpperCase(), { height: 0.75 }); kevinTag.position.set(2.2, 12.3, 0.05); sign.add(kevinTag);
 sign.updateMatrixWorld(true);
 const signFront = v3(Math.sin(-0.38), 0, Math.cos(-0.38)), signRight = v3(Math.cos(-0.38), 0, -Math.sin(-0.38));
 const PIGEON_WORLD = sign.localToWorld(v3(2.2, 11.0, 0.05));
@@ -80,7 +80,7 @@ const villaPop = villas.map((v, i) => T.hillUp + 0.9 + (i / villas.length) * 2.6
 // ---------------------------------------------------------------- shots
 const P = (x, y, z) => v3(x, y, z);
 const near = (o, a, b, ay = 3) => ({ cam: [o.position.clone().add(v3(...a)), o.position.clone().add(v3(...b))], at: [o.position.clone().add(v3(0, ay, 0)), o.position.clone().add(v3(0, ay, 0))] });
-const rosieO = { position: v3(rosie.x, 0, rosie.z) }, tamO = { position: v3(tam.x + 3.6, 0, tam.z) };
+const rosieO = { position: v3(rosie.x, 0, rosie.z) }, tamO = { position: v3(tam.x - 3.6, 0, tam.z) };
 const CARD = {
   r0sie670: ['r0sie670', 'Where is my house :(', 1], Tamara: ['Tamara', 'I love it ! Might have to make an extension in neon purple 🥰', ''],
   Jessica: ['Jessica💗', 'C, the pigeon called kevin', ''],
@@ -95,7 +95,7 @@ const SHOTS = [
     cam: [P(0, 55, 470), P(0, 190, 590)], at: [P(0, 0, 330), P(0, 0, 250)], span: 330 },
   { beat: 'potato', pill: 'MILEY ASKED', title: 'A POTATO', look: 'day', card: ['Miley'], ...near(specials.potato, [5, 4.5, 20], [3, 4, 15], 3.5), span: 40 },
   { beat: 'duck', pill: 'KAI ASKED', title: 'RUBBER DUCK', look: 'day', card: ['Kai'], ...near(specials.duck, [6, 6, 22], [4, 5.5, 17], 5), span: 40 },
-  { beat: 'shoe', pill: 'LILYY ASKED', title: 'SIZE 400', look: 'day', card: ['Lilyy'], ...near(specials.shoe, [16, 9, 30], [12, 8, 23], 3.5), span: 40 },
+  { beat: 'shoe', pill: 'LILYY ASKED', title: 'SIZE 400', look: 'day', card: ['Lilyy'], cam: [specials.shoe.position.clone().add(v3(2, 6, 54)), specials.shoe.position.clone().add(v3(2, 5.5, 47))], at: [specials.shoe.position.clone().add(v3(1.5, 4.5, 0)), specials.shoe.position.clone().add(v3(1.5, 4.5, 0))], span: 40 },
   { beat: 'ostrich', pill: 'OLIVIA ASKED', title: 'AN OSTRICH', look: 'day', card: ['Olivia🥲'], ...near(specials.ostrich, [6, 9, 28], [4, 9, 22], 9), span: 40 },
   { beat: 'nugget', pill: 'EVAA ASKED', title: 'A NUGGET', look: 'day', card: ['Evaa🤍'], ...near(specials.nugget, [6, 4.5, 20], [4, 4, 15], 3.5), span: 40 },
   { beat: 'kacee', pill: 'KACEE ASKED', title: 'PIGEON STATUE', look: 'golden', card: ['Kacee'], ...near(specials.statue, [8, 8, 30], [5, 8, 23], 8), span: 50 },
@@ -103,10 +103,10 @@ const SHOTS = [
     cam: [P(225 + 130, 95, 275 + 250), P(225 + 70, 70, 275 + 200)], at: [P(225, 0, 275), P(225, 3, 270)], span: 230 },
   { beat: 'vote', pill: 'THE VOTE', title: 'RESULTS', look: 'day', vote: true, topdown: true,
     cam: [P(44, 300, -12), P(41, 262, -20)], at: [P(44, 0, -14), P(41, 0, -22)], span: 200 },
-  { beat: 'pigeon', pill: 'HIS NAME IS', title: (t) => (t < T.kevin - 0.05 ? '...' : CFG.pigeon_name.toUpperCase()), look: 'day', card: ['Jessica'],
-    cam: [PIGEON_WORLD.clone().addScaledVector(signFront, 9).add(signRight.clone().multiplyScalar(2.5)).add(v3(0, 0.2, 0)),
-          PIGEON_WORLD.clone().addScaledVector(signFront, 6.5).add(signRight.clone().multiplyScalar(1.6)).add(v3(0, 0.1, 0))],
-    at: [PIGEON_WORLD.clone().add(v3(0, -1.0, 0)), PIGEON_WORLD.clone().add(v3(0, -0.8, 0))], span: 30 },
+  { beat: 'pigeon', cardTop: 1310, pill: 'HIS NAME IS', title: (t) => (t < T.kevin - 0.05 ? '...' : CFG.pigeon_name.toUpperCase()), look: 'day', card: ['Jessica'],
+    cam: [PIGEON_WORLD.clone().addScaledVector(signFront, 13).add(signRight.clone().multiplyScalar(2.5)).add(v3(0, -0.6, 0)),
+          PIGEON_WORLD.clone().addScaledVector(signFront, 10).add(signRight.clone().multiplyScalar(1.6)).add(v3(0, -0.6, 0))],
+    at: [PIGEON_WORLD.clone().add(v3(0, -0.2, 0)), PIGEON_WORLD.clone().add(v3(0, 0, 0))], span: 30 },
   { beat: 'milestone', pill: CFG.milestone_state === 'reached' ? 'WE DID IT' : 'NEXT MILESTONE', title: 'ELECTRICITY', look: 'dusk', progress: CFG.milestone_state !== 'reached', reached: CFG.milestone_state === 'reached',
     cam: [P(130, 95, 500), P(105, 80, 470)], at: [P(0, 0, 290), P(0, 0, 280)], span: 260 },
   { beat: 'next', pill: 'NEXT VOTE', title: 'A, B OR C?', look: 'day', next: true, topdown: true,
@@ -197,7 +197,7 @@ export function setTime(t) {
   cinema.userData.sign.visible = rise > 0.95; cinema.userData.sign.scale.setScalar(Math.max(easeOutBack((t - T.rise - 1.6) / 0.4), 0.001));
   pigeon.userData.animate(t);
   if (specials.statue) specials.statue.userData.pigeon.userData.animate(t * 0.6 + 1);
-  kevinTag.visible = t >= T.kevin; kevinTag.scale.setScalar(Math.max(popScale(t, T.kevin, 0.35), 0.001));
+  kevinTag.visible = t >= T.kevin; { const ks = Math.max(popScale(t, T.kevin, 0.35), 0.001); kevinTag.scale.set(1.6 * ks, 0.5 * ks, 1); kevinTag.position.y = 12.3 + Math.sin(t * 2.2) * 0.08; }
   arrow.visible = !!shot.arrow; arrow.position.y = 8.6 + Math.abs(Math.sin(t * 4)) * 1.0; arrow.rotation.y = t;
   voteMarks.forEach((m, i) => { m.visible = !!shot.vote && !(i === 2 && rise > 0.05); });
   nextMarks.forEach((m) => { m.visible = !!shot.next; });
@@ -235,6 +235,7 @@ export function setTime(t) {
   ui.cards.forEach((el, i) => {
     const on = !!(shot.card && shot.card[i]) && t >= shot.t0 + 0.3 + i * 0.5;
     el.style.display = on ? 'block' : 'none';
+    el.style.top = (shot.cardTop && i === 0 ? shot.cardTop : [560, 760][i]) + 'px';
     if (on) { const p = easeOutBack((t - shot.t0 - 0.3 - i * 0.5) / 0.3); el.style.transform = `translateX(-50%) scale(${0.6 + 0.4 * p})`; el.style.opacity = clamp(p * 1.5); }
   });
 

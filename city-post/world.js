@@ -425,7 +425,7 @@ export function makeHouseField(entries) {
 
 /** Simple mansion for Billionaires' Hill: identical on purpose ("it's a tie"). Faces +z. */
 export function makeVilla(name, colour = 0xf3efe8) {
-  const g = new THREE.Group();
+  const outer = new THREE.Group(), g = new THREE.Group(); g.scale.setScalar(0.8); outer.add(g);
   const wall = std(colour, { roughness: 0.85 }), roof = std(0x2f3e66, { flatShading: true });
   box(14, 7, 10, wall, 0, 3.5, 0, g);
   for (const x of [-9, 9]) box(5, 5, 8, wall, x, 2.5, 0, g);
@@ -435,8 +435,8 @@ export function makeVilla(name, colour = 0xf3efe8) {
   box(1.8, 3.2, 0.2, doorMat, 0, 1.6, 5.05, g);
   box(16, 0.06, 4, std(0x3fb0d8, { roughness: 0.1, metalness: 0.2 }), 0, 0.04, 9, g); // pool
   const plate = nameplate(name, 4.4, 0.9, { bg: '#2f3e66', fg: '#f5e6b8' }); plate.position.set(0, 6.9, 7.35); g.add(plate);
-  g.userData = { kind: 'villa', name };
-  return g;
+  outer.userData = { kind: 'villa', name };
+  return outer;
 }
 
 /** Raised lawn "hill" for a district, with a big district sign at the front. */
@@ -527,19 +527,32 @@ export function makeDuckHouse(name) {
 }
 
 export function makeShoeHouse(name) {
+  // A sneaker seen from the side: extruded profile for the upper and the sole, an ankle opening,
+  // laces across the tongue, a toe cap and a heel tab. Toe points to +x, the side faces +z.
   const g = new THREE.Group();
-  const leather = std(0xd8262e, { roughness: 0.45 }), sole = std(0xf7f5f0, { roughness: 0.8 }), lace = std(0xffffff);
-  box(16, 1.2, 8, sole, 0, 0.6, 0, g);
-  const toe = new THREE.Mesh(new THREE.SphereGeometry(4, 20, 14, 0, Math.PI * 2, 0, Math.PI / 2), leather); toe.scale.set(1.2, 0.9, 1); toe.position.set(4, 1.2, 0); toe.castShadow = true; g.add(toe);
-  box(8, 6.5, 7.6, leather, -3.2, 4.4, 0, g);
-  box(8.4, 0.8, 8, sole, -3.2, 7.9, 0, g);
-  box(2.2, 3.2, 7.8, sole, -7.4, 3.4, 0, g); // heel tab
-  for (const z of [-3.9, 3.9]) box(9, 0.9, 0.1, sole, 0.5, 2.6, z, g); // side stripe
-  for (let i = 0; i < 4; i++) box(0.25, 0.25, 6.8, lace, -0.8 + i * 1.4, 4 + i * 1.2, 0, g);
-  box(1.4, 2.4, 0.2, doorMat, -3.2, 2.4, 3.85, g);
-  for (const y of [5.2, 7.4]) box(1.5, 1.1, 0.2, glassMat, -5.5, y, 3.85, g);
-  plateOn(g, name, -1, 6.4, 3.9, 3.2);
-  g.rotation.y = 0; g.userData = { kind: 'shoe', name, front: v3(-2, 4.5, 4) };
+  const red = std(0xd8262e, { roughness: 0.45 }), white = std(0xf7f5f0, { roughness: 0.75 }), dark = std(0x2a1a1a, { roughness: 0.9 });
+  const ext = (pts, depth, mat, z0, bevel = 0.5) => {
+    const sh = new THREE.Shape(); sh.moveTo(pts[0][0], pts[0][1]); pts.slice(1).forEach(([x, y]) => sh.lineTo(x, y)); sh.closePath();
+    const geo = new THREE.ExtrudeGeometry(sh, { depth, bevelEnabled: true, bevelSize: bevel, bevelThickness: bevel, bevelSegments: 3, curveSegments: 8 });
+    geo.translate(0, 0, z0); const m = new THREE.Mesh(geo, mat); m.castShadow = m.receiveShadow = true; g.add(m); return m;
+  };
+  // sole: long, flat, rounded up at the toe
+  ext([[-9.5, 0], [8.4, 0], [9.6, 0.5], [10.2, 1.4], [10, 2.1], [-9.6, 2.1], [-10, 1.0]], 7.6, white, -3.8, 0.4);
+  // upper: heel counter, collar dip (ankle opening), tongue, sloping vamp down to the toe
+  ext([[-9.4, 2.0], [-9.6, 6.4], [-8.6, 8.6], [-6.6, 9.0], [-5.0, 7.6], [-3.6, 7.8], [-2.4, 9.8], [-1.2, 9.6],
+       [1.5, 6.6], [5.0, 4.6], [8.2, 3.4], [9.6, 2.6], [9.6, 2.0]], 6.6, red, -3.3);
+  // ankle opening (dark), tongue lining, laces, toe cap, heel tab, side stripe
+  const hole = new THREE.Mesh(new THREE.CylinderGeometry(2.0, 2.0, 0.4, 20), dark); hole.scale.set(1, 1, 0.75); hole.position.set(-5.6, 8.9, 0); g.add(hole);
+  for (let k = 0; k < 5; k++) { const lace = box(0.35, 0.3, 6.2, white, -1.4 + k * 1.15, 8.6 - k * 0.85, 0, g); lace.rotation.z = -0.62; }
+  const cap = new THREE.Mesh(new THREE.SphereGeometry(2.4, 16, 10, 0, Math.PI * 2, 0, Math.PI / 2), white); cap.scale.set(1.3, 0.7, 1.5); cap.position.set(7.8, 2.0, 0); g.add(cap);
+  box(1.0, 3.2, 3.0, white, -10.3, 6.4, 0, g);
+  // swoosh-free side stripes: two thin bands
+  for (const z of [3.42, -3.62]) { const b1 = box(9, 0.6, 0.2, white, 0.5, 4.2, z, g); b1.rotation.z = 0.28; }
+  // it's a house: door in the heel, two windows, a nameplate
+  box(1.5, 2.6, 0.2, doorMat, -6.4, 3.4, 4.0, g);
+  box(1.4, 1.0, 0.2, glassMat, -3.0, 5.6, 4.0, g); box(1.4, 1.0, 0.2, glassMat, 0.8, 4.4, 3.95, g);
+  plateOn(g, name, -6.4, 5.6, 4.05, 2.8);
+  g.userData = { kind: 'shoe', name, front: v3(0, 4.5, 4) };
   return g;
 }
 
@@ -585,4 +598,18 @@ export function makePigeonStatue(name) {
   plateOn(g, name, 0, 3.9, 5.1, 2.6);
   g.userData = { kind: 'statue', name, pigeon: p, front: v3(0, 4, 5) };
   return g;
+}
+
+/** Floating name tag (sprite: always faces the camera), e.g. above the pigeon. */
+export function floatingTag(text, { bg = '#ff6a13', fg = '#ffffff', height = 1.0 } = {}) {
+  const tex = canvasTex(512, 160, (c, W, H) => {
+    c.font = '900 92px "Inter Display", Inter, sans-serif';
+    const tw = Math.min(W - 20, c.measureText(text).width + 70), x0 = (W - tw) / 2, r = 50;
+    c.fillStyle = bg; c.beginPath(); c.moveTo(x0 + r, 14); c.arcTo(x0 + tw, 14, x0 + tw, H - 14, r); c.arcTo(x0 + tw, H - 14, x0, H - 14, r);
+    c.arcTo(x0, H - 14, x0, 14, r); c.arcTo(x0, 14, x0 + tw, 14, r); c.fill();
+    c.fillStyle = fg; c.textAlign = 'center'; c.textBaseline = 'middle'; c.fillText(text, W / 2, H / 2 + 4);
+  });
+  const spr = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, depthTest: true, toneMapped: false, fog: false }));
+  spr.scale.set(height * 3.2, height, 1);
+  return spr;
 }

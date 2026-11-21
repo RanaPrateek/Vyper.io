@@ -121,6 +121,12 @@ Tease the next milestone with a progress bar in every episode.
 - **Look:** more colour (varied roof colours) and tiny citizens in the streets. Smaller titles, inside the safe area.
 - **Narration:** conversational and funny, generated as continuous takes. Episodes about 50–60 s.
 
+## Feedback from Episode 3 (account holder, 21 Nov)
+- Tamara's extension stuck out over the road: fixed (moved to the other side). Check every add-on's footprint against roads.
+- The shoe house didn't read as a shoe: rebuilt as a proper sneaker outline, filmed side-on.
+- "Some glitches": the overlap check found 15 pairs of Billionaires' Hill villas overlapping each other and the nugget house on the road. Fixed. Run that check every episode.
+- **Pigeon name: show it as a floating tag above Kevin's head**, not a board fixed to the sign. Done. Keep it this way from now on.
+
 ## Ideas backlog (Claude's plan, in roughly this order)
 - **Ep 2:** build the vote winner on camera (construction timelapse). Add the first citizens' houses with nameplates. The sign counts up to the real follower count. New vote.
 - **Name the city:** viewers suggest names in the comments, then vote on the top three.
@@ -133,5 +139,5 @@ Tease the next milestone with a progress bar in every episode.
 1. Update `city-post/city/state.json` (new citizens and buildings) and **City state** / **Episode log** above.
 2. Copy the previous episode folder (`city-post/epNN/`): write `script.json` (story beats, natural spoken sentences) and `config.json` (followers, poll), and adjust the `SHOTS` in `main.js`.
 3. `city-post/tools/build_episode.sh epNN`: narration (one Kokoro take per beat), then Whisper caption timing, then soundtrack, then render.
-4. Check: stills of every shot, a scan for flickering frames, loudness of about -14 LUFS, and text inside the safe area.
+4. Check: **run an overlap check on `city/state.json`** (no building on a road, none overlapping another). Then stills of every shot, a scan for flickering frames, loudness of about -14 LUFS, and text inside the safe area.
 5. Write `series/epNN/UPLOAD.md` (caption, pinned poll, cover time, reply plan). Commit and push.
