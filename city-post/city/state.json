@@ -61,7 +61,8 @@
    "since_episode": 2,
    "comment": "I need a houseeee!!! giant mall is the way to go",
    "likes": 3,
-   "note": "first comment: house number one, by the sign"
+   "note": "first comment: house number one, by the sign",
+   "shown": true
   },
   {
    "name": "Hollie",
@@ -102,7 +103,8 @@
     "colour": 10898943,
     "since_episode": 3,
     "request": "Might have to make an extension in neon purple"
-   }
+   },
+   "shown": true
   },
   {
    "name": "Emilia🦖",
@@ -110,7 +112,8 @@
    "x": -36,
    "z": 386,
    "since_episode": 2,
-   "comment": "Can I have a car as a house"
+   "comment": "Can I have a car as a house",
+   "shown": true
   },
   {
    "name": "Sophia_w💕",
@@ -120,7 +123,8 @@
    "roof": 14725690,
    "since_episode": 2,
    "comment": "My name is Sophia_w can I have a house!",
-   "likes": 1
+   "likes": 1,
+   "shown": true
   },
   {
    "name": "Sophia🦢🧁",
@@ -130,7 +134,8 @@
    "roof": 14725690,
    "since_episode": 2,
    "comment": "Can I have a house please",
-   "likes": 1
+   "likes": 1,
+   "shown": true
   },
   {
    "name": "erinn🤍",
@@ -140,7 +145,8 @@
    "roof": 3125432,
    "since_episode": 2,
    "comment": "Mee",
-   "likes": 1
+   "likes": 1,
+   "shown": true
   },
   {
    "name": "🐻leya",
@@ -167,7 +173,8 @@
    "z": 316,
    "roof": 3832789,
    "since_episode": 2,
-   "comment": "Can I have a house"
+   "comment": "Can I have a house",
+   "shown": true
   },
   {
    "name": "christinas_privvvv",
@@ -175,7 +182,8 @@
    "x": -25,
    "z": 322,
    "since_episode": 2,
-   "comment": "Can you build me a mansion"
+   "comment": "Can you build me a mansion",
+   "shown": true
   },
   {
    "name": "Priya",
@@ -184,7 +192,8 @@
    "z": 286,
    "roof": 15114811,
    "since_episode": 2,
-   "comment": "Can I have a houseee please!! And defo a mall"
+   "comment": "Can I have a houseee please!! And defo a mall",
+   "shown": true
   },
   {
    "name": "🎀🧸",
@@ -193,7 +202,8 @@
    "z": 286,
    "roof": 12865658,
    "since_episode": 2,
-   "comment": "May I please have a house"
+   "comment": "May I please have a house",
+   "note": "Same person as Miley (potato house): asked to keep the potato."
   },
   {
    "name": "Miley",
@@ -201,7 +211,11 @@
    "x": -85,
    "z": 375,
    "since_episode": 3,
-   "comment": "Can I have a potato as my house please and my name is Miley"
+   "comment": "Can I have a potato as my house please and my name is Miley",
+   "shown": true,
+   "also_known_as": [
+    "🎀🧸"
+   ]
   },
   {
    "name": "Kai",
@@ -209,7 +223,8 @@
    "x": -65,
    "z": 375,
    "since_episode": 3,
-   "comment": "Can I have a house shaped like a pink rubber ducky and my name is Kai"
+   "comment": "Can I have a house shaped like a pink rubber ducky and my name is Kai",
+   "shown": true
   },
   {
    "name": "Lilyy",
@@ -218,7 +233,11 @@
    "z": 375,
    "since_episode": 3,
    "comment": "Can I live in a massive shoe please",
-   "scale": 0.85
+   "scale": 0.85,
+   "shown": true,
+   "also_known_as": [
+    "Lilyy xx"
+   ]
   },
   {
    "name": "Evaa🤍",
@@ -226,7 +245,8 @@
    "x": 84,
    "z": 375,
    "since_episode": 3,
-   "comment": "CAN I HAVE A NUGGET HOUSEE"
+   "comment": "CAN I HAVE A NUGGET HOUSEE",
+   "shown": true
   },
   {
    "name": "Olivia🥲",
@@ -234,7 +254,8 @@
    "x": -84,
    "z": 325,
    "since_episode": 3,
-   "comment": "can I have a house shaped as a ostrich"
+   "comment": "can I have a house shaped as a ostrich",
+   "shown": true
   },
   {
    "name": "Kacee",
@@ -242,7 +263,8 @@
    "x": -65,
    "z": 325,
    "since_episode": 3,
-   "comment": "Can I live inside a statue of the pigeon 🙏"
+   "comment": "Can I live inside a statue of the pigeon 🙏",
+   "shown": true
   },
   {
    "name": "crisp",
@@ -398,7 +420,8 @@
    "since_episode": 3,
    "wall": 8257370,
    "roof": 4177706,
-   "comment": "Can I have a neon green house"
+   "comment": "Can I have a neon green house",
+   "shown": true
   },
   {
    "name": "HC",
@@ -580,7 +603,8 @@
    "x": -37,
    "z": 212,
    "since_episode": 3,
-   "roof": 13788475
+   "roof": 13788475,
+   "shown": true
   },
   {
    "name": "Ava❣️",
@@ -612,7 +636,8 @@
    "x": 25,
    "z": 236,
    "since_episode": 3,
-   "roof": 12865658
+   "roof": 12865658,
+   "shown": true
   },
   {
    "name": "ella:)",
@@ -666,7 +691,8 @@
    "since_episode": 3,
    "wall": 12852794,
    "roof": 7999520,
-   "comment": "cherry red house"
+   "comment": "cherry red house",
+   "shown": true
   },
   {
    "name": "HARV",
@@ -777,14 +803,6 @@
    "comment": "Can i have a lavender house"
   },
   {
-   "name": "Lilyy xx",
-   "house": "house",
-   "x": 63,
-   "z": 274,
-   "since_episode": 3,
-   "roof": 14840634
-  },
-  {
    "name": "Vilma",
    "house": "house",
    "x": 75,
@@ -816,7 +834,8 @@
    "x": 75,
    "z": 262,
    "since_episode": 3,
-   "roof": 3832789
+   "roof": 3832789,
+   "shown": true
   },
   {
    "name": "•Ava•",
@@ -1254,7 +1273,8 @@
    "x": 63,
    "z": 212,
    "since_episode": 3,
-   "roof": 5219178
+   "roof": 5219178,
+   "shown": true
   },
   {
    "name": "Horizon",
@@ -1407,7 +1427,8 @@
    "roof": 14725690,
    "christmas": {
     "since_episode": 4
-   }
+   },
+   "shown": true
   },
   {
    "name": "~amelia~",
@@ -1713,7 +1734,8 @@
    "z": 175,
    "since_episode": 4,
    "comment": "Can i be the queen with a castle",
-   "likes": 17
+   "likes": 17,
+   "shown": true
   },
   {
    "name": "Arran",
@@ -1722,7 +1744,8 @@
    "z": 125,
    "since_episode": 4,
    "comment": "day 2 of asking to be a huge block of cheese",
-   "likes": 1
+   "likes": 1,
+   "shown": true
   },
   {
    "name": "Alex",
@@ -1734,7 +1757,8 @@
    "likes": 0,
    "scale": 0.12,
    "roof": 14725690,
-   "tiny": true
+   "tiny": true,
+   "shown": true
   },
   {
    "name": "~Skyla~",
@@ -1743,7 +1767,8 @@
    "z": 175,
    "since_episode": 4,
    "comment": "Can I pls live in a taco. Been here since 20 followers",
-   "likes": 1
+   "likes": 1,
+   "shown": true
   },
   {
    "name": "Penny",
@@ -1752,7 +1777,8 @@
    "z": 75,
    "since_episode": 4,
    "comment": "Can I have a rainbow neon house pleaseee",
-   "likes": 1
+   "likes": 1,
+   "shown": true
   },
   {
    "name": "chlo",
@@ -1761,7 +1787,8 @@
    "z": 75,
    "since_episode": 4,
    "comment": "can I have a pink crystal tree please I follow liked shared and reposted",
-   "likes": 5
+   "likes": 5,
+   "shown": true
   },
   {
    "name": "Rhea",

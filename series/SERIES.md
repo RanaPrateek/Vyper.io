@@ -137,6 +137,7 @@ Tease the next milestone with a progress bar in every episode.
 - **"Your house" replies:** reply to commenters with a 5-second clip of their own house.
 
 ## Production checklist (per episode, Episode 2 onward)
+0. **Check new commenters against the citizens list:** `python3 city-post/tools/citizens.py check "name" ...`. Only NEW names get a house; resolve MAYBE by profile picture. Afterwards run `python3 city-post/tools/citizens.py list` to refresh `series/CITIZENS.md`.
 1. Update `city-post/city/state.json` (new citizens and buildings) and **City state** / **Episode log** above.
 2. Copy the previous episode folder (`city-post/epNN/`): write `script.json` (story beats, natural spoken sentences) and `config.json` (followers, poll), and adjust the `SHOTS` in `main.js`.
 3. `city-post/tools/build_episode.sh epNN`: narration (one Kokoro take per beat), then Whisper caption timing, then soundtrack, then render.
