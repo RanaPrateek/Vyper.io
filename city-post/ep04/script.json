@@ -1,0 +1,24 @@
+{
+  "voice": "af_heart",
+  "speed": 1.05,
+  "beats": [
+    { "id": "hook",    "pause": 0.3,  "say": "Yesterday, two hundred and sixty citizens. Today? {followers}. And that means... lights on.",
+                                      "show": "Yesterday, 260 citizens. Today? {followers}. And that means... lights on." },
+    { "id": "lights",  "pause": 0.3,  "say": "Every house. Every street. Every name." },
+    { "id": "montage", "pause": 0.3,  "say": "A lot of you asked, where's my house? Dagmar. Joe. Natiii. Layla. Essa. Eloise.",
+                                      "show": "A lot of you asked: where's my house? Dagmar. Joe. Natiii. Layla. ESSA. Eloise." },
+    { "id": "website", "pause": 0.35, "say": "Not on here? At one thousand citizens, you can walk to your house yourself.",
+                                      "show": "Not on here? At 1,000 citizens, you can walk to your house yourself." },
+    { "id": "emijinx", "pause": 0.3,  "say": "Emijinx wanted Christmas vibes. Done." },
+    { "id": "vote",    "pause": 0.3,  "say": "The vote. Castle, {Castle}. Town centre, {Town centre}. And the water park... {Water park} percent.",
+                                      "show": "The vote. Castle, {Castle}%. Town centre, {Town centre}%. And the water park... {Water park}%." },
+    { "id": "ellis",   "pause": 0.3,  "say": "Ellis asked to run it. Ellis runs it now." },
+    { "id": "queen",   "pause": 0.35, "say": "But the top comment, seventeen likes. R wants to be queen, with a castle. Top comment rules. Your castle, your majesty.",
+                                      "show": "But the top comment, 17 likes: R wants to be queen, with a castle. Top comment rules. Your castle, your majesty." },
+    { "id": "asking",  "pause": 0.3,  "say": "Some of you never give up. Arran, day two of asking to be a block of cheese. Fine. Chris, boss of the kebab shop. Finally." },
+    { "id": "quick",   "pause": 0.3,  "say": "Alex wanted the smallest house possible. It's here. Somewhere. Skyla's been here since twenty followers. She gets a taco. Chlo, your crystal tree. And Penny, rainbow neon. As promised.",
+                                      "show": "Alex wanted the smallest house possible. It's here. Somewhere. Skyla's been here since 20 followers. She gets a taco. Chlo, your crystal tree. And Penny, rainbow neon. As promised." },
+    { "id": "next",    "pause": 0.3,  "say": "Next vote. A, a zoo. B, an ice rink. Or C, a train station." },
+    { "id": "end",     "pause": 0.2,  "say": "Pause to find your name. Follow to move in. See you tomorrow." }
+  ]
+}

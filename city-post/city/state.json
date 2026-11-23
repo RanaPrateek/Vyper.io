@@ -30,6 +30,25 @@
    "d": 250,
    "h": 3,
    "since_episode": 3
+  },
+  {
+   "id": "waterpark",
+   "type": "waterpark",
+   "x": -75,
+   "z": -75,
+   "manager": "Ellis",
+   "since_episode": 4,
+   "won_vote": "Ep 3: Water park 80%"
+  },
+  {
+   "id": "kebab",
+   "type": "kebab",
+   "boss": "chris",
+   "boss_citizen": "chris_r125yzf",
+   "x": 38,
+   "z": 125,
+   "since_episode": 4,
+   "request": "Day 2 of asking to be boss man at my kebab shop"
   }
  ],
  "citizens": [
@@ -195,15 +214,16 @@
   {
    "name": "Lilyy",
    "house": "shoe",
-   "x": 66,
+   "x": 65,
    "z": 375,
    "since_episode": 3,
-   "comment": "Can I live in a massive shoe please"
+   "comment": "Can I live in a massive shoe please",
+   "scale": 0.85
   },
   {
    "name": "Evaa🤍",
    "house": "nugget",
-   "x": 80,
+   "x": 84,
    "z": 375,
    "since_episode": 3,
    "comment": "CAN I HAVE A NUGGET HOUSEE"
@@ -1384,7 +1404,10 @@
    "x": -37,
    "z": 112,
    "since_episode": 3,
-   "roof": 14725690
+   "roof": 14725690,
+   "christmas": {
+    "since_episode": 4
+   }
   },
   {
    "name": "~amelia~",
@@ -1682,6 +1705,386 @@
    "since_episode": 3,
    "comment": "Can I be a billionaire in the town",
    "note": "31st billionaire: the hill was full"
+  },
+  {
+   "name": "R♡",
+   "house": "castle",
+   "x": 75,
+   "z": 175,
+   "since_episode": 4,
+   "comment": "Can i be the queen with a castle",
+   "likes": 17
+  },
+  {
+   "name": "Arran",
+   "house": "cheese",
+   "x": 12,
+   "z": 125,
+   "since_episode": 4,
+   "comment": "day 2 of asking to be a huge block of cheese",
+   "likes": 1
+  },
+  {
+   "name": "Alex",
+   "house": "house",
+   "x": -75,
+   "z": 175,
+   "since_episode": 4,
+   "comment": "Can I live in the smallest house possible?",
+   "likes": 0,
+   "scale": 0.12,
+   "roof": 14725690,
+   "tiny": true
+  },
+  {
+   "name": "~Skyla~",
+   "house": "taco",
+   "x": -61,
+   "z": 175,
+   "since_episode": 4,
+   "comment": "Can I pls live in a taco. Been here since 20 followers",
+   "likes": 1
+  },
+  {
+   "name": "Penny",
+   "house": "rainbow",
+   "x": -36,
+   "z": 75,
+   "since_episode": 4,
+   "comment": "Can I have a rainbow neon house pleaseee",
+   "likes": 1
+  },
+  {
+   "name": "chlo",
+   "house": "crystal",
+   "x": -14,
+   "z": 75,
+   "since_episode": 4,
+   "comment": "can I have a pink crystal tree please I follow liked shared and reposted",
+   "likes": 5
+  },
+  {
+   "name": "Rhea",
+   "house": "house",
+   "x": -187,
+   "z": 336,
+   "since_episode": 4,
+   "roof": 5219178
+  },
+  {
+   "name": "imogen.privvv",
+   "house": "house",
+   "x": -175,
+   "z": 336,
+   "since_episode": 4,
+   "roof": 12865658
+  },
+  {
+   "name": "elayna",
+   "house": "house",
+   "x": -163,
+   "z": 336,
+   "since_episode": 4,
+   "roof": 3832789
+  },
+  {
+   "name": "Lolas life",
+   "house": "house",
+   "x": -187,
+   "z": 324,
+   "since_episode": 4,
+   "roof": 3125432
+  },
+  {
+   "name": "Amelie",
+   "house": "house",
+   "x": -175,
+   "z": 324,
+   "since_episode": 4,
+   "roof": 14840634
+  },
+  {
+   "name": "Evill",
+   "house": "house",
+   "x": -163,
+   "z": 324,
+   "since_episode": 4,
+   "roof": 14725690
+  },
+  {
+   "name": "alexisxspam",
+   "house": "house",
+   "x": -187,
+   "z": 312,
+   "since_episode": 4,
+   "roof": 3832789
+  },
+  {
+   "name": "pixie",
+   "house": "house",
+   "x": -175,
+   "z": 312,
+   "since_episode": 4,
+   "roof": 3832789
+  },
+  {
+   "name": "stizz28",
+   "house": "house",
+   "x": -163,
+   "z": 312,
+   "since_episode": 4,
+   "roof": 13788475
+  },
+  {
+   "name": "rose?",
+   "house": "house",
+   "x": -237,
+   "z": 386,
+   "since_episode": 4,
+   "roof": 3125432
+  },
+  {
+   "name": "ava🪷",
+   "house": "house",
+   "x": -225,
+   "z": 386,
+   "since_episode": 4,
+   "roof": 12865658
+  },
+  {
+   "name": "•isabelle",
+   "house": "house",
+   "x": -213,
+   "z": 386,
+   "since_episode": 4,
+   "roof": 13788475
+  },
+  {
+   "name": "georgie",
+   "house": "house",
+   "x": -237,
+   "z": 374,
+   "since_episode": 4,
+   "roof": 5219178
+  },
+  {
+   "name": "Zara",
+   "house": "house",
+   "x": -225,
+   "z": 374,
+   "since_episode": 4,
+   "roof": 8018628
+  },
+  {
+   "name": "Dillon",
+   "house": "house",
+   "x": -213,
+   "z": 374,
+   "since_episode": 4,
+   "roof": 12865658
+  },
+  {
+   "name": "Sadie🦄",
+   "house": "house",
+   "x": -237,
+   "z": 362,
+   "since_episode": 4,
+   "roof": 14725690
+  },
+  {
+   "name": "triggleton",
+   "house": "house",
+   "x": -225,
+   "z": 362,
+   "since_episode": 4,
+   "roof": 3832789
+  },
+  {
+   "name": "Clara Angus",
+   "house": "house",
+   "x": -213,
+   "z": 362,
+   "since_episode": 4,
+   "roof": 12865658
+  },
+  {
+   "name": "erin",
+   "house": "house",
+   "x": -137,
+   "z": 236,
+   "since_episode": 4,
+   "roof": 5219178
+  },
+  {
+   "name": "Rose🌇",
+   "house": "house",
+   "x": -125,
+   "z": 236,
+   "since_episode": 4,
+   "roof": 13788475
+  },
+  {
+   "name": "LYDIA",
+   "house": "house",
+   "x": -113,
+   "z": 236,
+   "since_episode": 4,
+   "roof": 12865658
+  },
+  {
+   "name": "Auriah & Lauren",
+   "house": "house",
+   "x": -137,
+   "z": 224,
+   "since_episode": 4,
+   "roof": 12865658
+  },
+  {
+   "name": "CM_11",
+   "house": "house",
+   "x": -125,
+   "z": 224,
+   "since_episode": 4,
+   "roof": 5219178
+  },
+  {
+   "name": "Paige",
+   "house": "house",
+   "x": -113,
+   "z": 224,
+   "since_episode": 4,
+   "roof": 14725690
+  },
+  {
+   "name": "6.a_klase_svs_crazy",
+   "house": "house",
+   "x": -137,
+   "z": 212,
+   "since_episode": 4,
+   "roof": 12865658
+  },
+  {
+   "name": "Ellie:3",
+   "house": "house",
+   "x": -125,
+   "z": 212,
+   "since_episode": 4,
+   "roof": 12865658
+  },
+  {
+   "name": "LANA",
+   "house": "house",
+   "x": -113,
+   "z": 212,
+   "since_episode": 4,
+   "roof": 3846399,
+   "wall": 16777215
+  },
+  {
+   "name": "Wenny",
+   "house": "house",
+   "x": 13,
+   "z": 86,
+   "since_episode": 4,
+   "roof": 3832789
+  },
+  {
+   "name": "Orla",
+   "house": "house",
+   "x": 25,
+   "z": 86,
+   "since_episode": 4,
+   "roof": 8018628
+  },
+  {
+   "name": "CONNIE",
+   "house": "house",
+   "x": 37,
+   "z": 86,
+   "since_episode": 4,
+   "roof": 3125432
+  },
+  {
+   "name": "Ysabel",
+   "house": "house",
+   "x": 13,
+   "z": 74,
+   "since_episode": 4,
+   "roof": 5219178
+  },
+  {
+   "name": "ELLA",
+   "house": "house",
+   "x": 25,
+   "z": 74,
+   "since_episode": 4,
+   "roof": 14725690
+  },
+  {
+   "name": "Miami 👀",
+   "house": "house",
+   "x": 37,
+   "z": 74,
+   "since_episode": 4,
+   "roof": 5219178
+  },
+  {
+   "name": "Rose ~",
+   "house": "house",
+   "x": 13,
+   "z": 62,
+   "since_episode": 4,
+   "roof": 16758485,
+   "wall": 16732088
+  },
+  {
+   "name": "tilda_at_your_service",
+   "house": "house",
+   "x": 25,
+   "z": 62,
+   "since_episode": 4,
+   "roof": 12865658
+  },
+  {
+   "name": "Emiko",
+   "house": "house",
+   "x": 37,
+   "z": 62,
+   "since_episode": 4,
+   "roof": 3832789
+  },
+  {
+   "name": "Georgia_grace123",
+   "house": "house",
+   "x": -187,
+   "z": 286,
+   "since_episode": 4,
+   "roof": 12865658
+  },
+  {
+   "name": "Claudie",
+   "house": "house",
+   "x": -175,
+   "z": 286,
+   "since_episode": 4,
+   "roof": 13788475
+  },
+  {
+   "name": "Louis",
+   "house": "house",
+   "x": -163,
+   "z": 286,
+   "since_episode": 4,
+   "roof": 12865658
+  },
+  {
+   "name": "ellie",
+   "house": "house",
+   "x": -187,
+   "z": 274,
+   "since_episode": 4,
+   "roof": 2071208,
+   "wall": 4186344
   }
  ]
 }

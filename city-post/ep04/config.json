@@ -1,0 +1,11 @@
+{
+  "episode": 4,
+  "day": 4,
+  "followers": 300,
+  "previous_followers": 260,
+  "poll": { "Water park": 80, "Castle": 8, "Town centre": 12 },
+  "next_vote": ["ZOO", "ICE RINK", "TRAIN STATION"],
+  "milestone": { "target": 1000, "label": "THE CITY OPENS" },
+  "montage": ["Dagmar", "Joe", "Natiii", "Layla", "ESSA", "eloise"],
+  "_note": "followers is a placeholder until the real count arrives"
+}

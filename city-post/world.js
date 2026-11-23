@@ -73,6 +73,7 @@ export const LOOKS = {
   day: { top: 0x4f86d4, horizon: 0xd3e2ee, fog: 0xc8d8e5, fogNear: 350, fogFar: 1700, sun: 0xfff6ea, sunI: 2.7, sunDir: v3(0.45, 0.85, 0.35), hemiSky: 0xbcd6ff, hemiGround: 0x6b7d4a, hemiI: 1.05, exposure: 1.0, sunSize: 0 },
   golden: { top: 0x5a7fc0, horizon: 0xf5c48a, fog: 0xe8c9a0, fogNear: 300, fogFar: 1500, sun: 0xffd29a, sunI: 2.9, sunDir: v3(-0.5, 0.35, -0.6), hemiSky: 0xc8c6e0, hemiGround: 0x6b6040, hemiI: 0.95, exposure: 1.02, sunSize: 0 },
   dusk: { top: 0x1d2547, horizon: 0xc77a5a, fog: 0x7a5a6a, fogNear: 200, fogFar: 1300, sun: 0xffb27a, sunI: 1.3, sunDir: v3(-0.2, 0.12, -1), hemiSky: 0x7a7aaa, hemiGround: 0x3a3a40, hemiI: 0.95, exposure: 1.3, sunSize: 0 },
+  night: { top: 0x0a1030, horizon: 0x2a3768, fog: 0x161e3a, fogNear: 260, fogFar: 1500, sun: 0xaabfff, sunI: 0.9, sunDir: v3(0.35, 0.55, -0.75), lightDir: v3(0.4, 0.8, 0.3), hemiSky: 0x4a5a9a, hemiGround: 0x151820, hemiI: 0.55, exposure: 1.25, sunSize: 0.5 },
   sunset: { top: 0x37476a, horizon: 0xff9440, fog: 0xd58a52, fogNear: 120, fogFar: 1100, sun: 0xffa45a, sunI: 3.2, sunDir: v3(-0.03, 0.028, -1), lightDir: v3(-0.15, 0.3, -1), hemiSky: 0x8a7a90, hemiGround: 0x5a3a20, hemiI: 0.75, exposure: 1.05, sunSize: 1 },
 };
 export function applyLook(L, focus, span) {
@@ -130,6 +131,8 @@ export const plot = (x, z) => v3(x, 0, z);
   hw.rotation.x = -Math.PI / 2; hw.position.set(0, 0.04, HALF + 900); hw.receiveShadow = true; scene.add(hw);
 }
 
+export const LAMP_MAT = new THREE.MeshStandardMaterial({ color: 0xf3f3f0, emissive: 0xfff0c0, emissiveIntensity: 0.12 });
+export const LAMP_POINTS = [];
 // ---------------------------------------------------------------- trees + street lights (instanced)
 {
   const trunkGeo = new THREE.CylinderGeometry(0.35, 0.5, 1, 6); trunkGeo.translate(0, 0.5, 0);
@@ -162,9 +165,9 @@ export const plot = (x, z) => v3(x, 0, z);
   const armGeo = new THREE.BoxGeometry(2.6, 0.18, 0.18).translate(1.3, 8.9, 0);
   const lampGeo = new THREE.BoxGeometry(1.1, 0.25, 0.5).translate(2.5, 8.75, 0);
   const mat = new THREE.MeshStandardMaterial({ color: 0x8f969e, metalness: 0.4, roughness: 0.5 });
-  const lampMat = new THREE.MeshStandardMaterial({ color: 0xf3f3f0, emissive: 0x333330 });
+  const lampMat = LAMP_MAT;
   const poles = new THREE.InstancedMesh(poleGeo, mat, pts.length), arms = new THREE.InstancedMesh(armGeo, mat, pts.length), lamps = new THREE.InstancedMesh(lampGeo, lampMat, pts.length);
-  pts.forEach(([x, z, dir], k) => { m.makeRotationY(dir > 0 ? 0 : Math.PI); m.setPosition(x, 0, z); poles.setMatrixAt(k, m); arms.setMatrixAt(k, m); lamps.setMatrixAt(k, m); });
+  pts.forEach(([x, z, dir], k) => { m.makeRotationY(dir > 0 ? 0 : Math.PI); m.setPosition(x, 0, z); poles.setMatrixAt(k, m); arms.setMatrixAt(k, m); lamps.setMatrixAt(k, m); LAMP_POINTS.push([x + (dir > 0 ? 2.5 : -2.5), z]); });
   poles.castShadow = arms.castShadow = true; scene.add(poles, arms, lamps);
 }
 
@@ -226,6 +229,7 @@ function box(w, h, d, mat, x = 0, y = 0, z = 0, parent) {
 }
 
 /** Nameplate mesh; supports emoji (Noto Color Emoji is installed). */
+export const PLATE_MATS = [], PLATE_GLOW = { k: 0 };
 export function nameplate(text, w = 4.2, h = 0.9, { bg = '#3b4450', fg = '#f2f4f6' } = {}) {
   const tex = canvasTex(512, Math.round(512 * h / w), (g, W, H) => {
     g.fillStyle = bg; g.fillRect(0, 0, W, H);
@@ -235,7 +239,9 @@ export function nameplate(text, w = 4.2, h = 0.9, { bg = '#3b4450', fg = '#f2f4f
     g.font = font(fs); while (g.measureText(text).width > W - 40 && fs > 10) { fs -= 2; g.font = font(fs); }
     g.fillText(text, W / 2, H / 2 + 2);
   });
-  return new THREE.Mesh(new THREE.BoxGeometry(w, h, 0.12), [frameMat, frameMat, frameMat, frameMat, new THREE.MeshStandardMaterial({ map: tex, roughness: 0.5 }), frameMat]);
+  const face = new THREE.MeshStandardMaterial({ map: tex, roughness: 0.5, emissive: 0xffffff, emissiveMap: tex, emissiveIntensity: PLATE_GLOW.k });
+  PLATE_MATS.push(face);
+  return new THREE.Mesh(new THREE.BoxGeometry(w, h, 0.12), [frameMat, frameMat, frameMat, frameMat, face, frameMat]);
 }
 
 /** A citizen's house, facing +z. opts: roof colour, wall colour, neon (emissive pink). Returns group with userData.plate (world pos helper). */
@@ -612,4 +618,156 @@ export function floatingTag(text, { bg = '#ff6a13', fg = '#ffffff', height = 1.0
   const spr = new THREE.Sprite(new THREE.SpriteMaterial({ map: tex, depthTest: true, toneMapped: false, fog: false }));
   spr.scale.set(height * 3.2, height, 1);
   return spr;
+}
+
+// ================================================================ Episode 4 additions
+/** Night lighting: k = 0 (off) .. 1 (on). Windows, street lamps, nameplates and lamp light-pools. */
+let lightPools = null;
+export function setCityLights(k) {
+  glassMat.emissive.set(0xffc870); glassMat.emissiveIntensity = 1.6 * k;
+  LAMP_MAT.emissiveIntensity = 0.12 + 2.5 * k;
+  PLATE_GLOW.k = 0.9 * k; for (const m of PLATE_MATS) m.emissiveIntensity = PLATE_GLOW.k;
+  if (!lightPools) {
+    const tex = canvasTex(128, 128, (c, W) => { const g = c.createRadialGradient(W / 2, W / 2, 0, W / 2, W / 2, W / 2);
+      g.addColorStop(0, 'rgba(255,214,140,0.9)'); g.addColorStop(0.5, 'rgba(255,190,110,0.3)'); g.addColorStop(1, 'rgba(255,180,100,0)'); c.fillStyle = g; c.fillRect(0, 0, W, W); });
+    const mat = new THREE.MeshBasicMaterial({ map: tex, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, fog: false, toneMapped: false });
+    lightPools = new THREE.InstancedMesh(new THREE.PlaneGeometry(14, 14).rotateX(-Math.PI / 2), mat, LAMP_POINTS.length);
+    const m = new THREE.Matrix4(); LAMP_POINTS.forEach(([x, z], i) => { m.makeTranslation(x, 0.12, z); lightPools.setMatrixAt(i, m); });
+    lightPools.renderOrder = 2; scene.add(lightPools);
+  }
+  lightPools.visible = k > 0.01; lightPools.material.opacity = k;
+}
+
+/** String of coloured bulbs around a house roofline (Christmas vibes). */
+export function christmasLights(w = 9, d = 8, y = 4.7) {
+  const g = new THREE.Group(); const cols = [0xff3b3b, 0x3bff6a, 0xffd23a, 0x3ab0ff, 0xff7ad0];
+  const geo = new THREE.SphereGeometry(0.18, 8, 6); const mats = cols.map((c) => new THREE.MeshStandardMaterial({ color: c, emissive: c, emissiveIntensity: 2 }));
+  let i = 0;
+  for (let x = -w / 2; x <= w / 2; x += 0.7) for (const z of [-d / 2, d / 2]) { const b = new THREE.Mesh(geo, mats[i++ % 5]); b.position.set(x, y + Math.sin(x * 2) * 0.12, z); g.add(b); }
+  for (let z = -d / 2; z <= d / 2; z += 0.7) for (const x of [-w / 2, w / 2]) { const b = new THREE.Mesh(geo, mats[i++ % 5]); b.position.set(x, y, z); g.add(b); }
+  const tree = new THREE.Mesh(new THREE.ConeGeometry(1.2, 3.2, 10), new THREE.MeshStandardMaterial({ color: 0x1f6b3a, flatShading: true })); tree.position.set(w / 2 + 2, 1.6, d / 2 + 1.5); tree.castShadow = true; g.add(tree);
+  const star = new THREE.Mesh(new THREE.OctahedronGeometry(0.35), new THREE.MeshStandardMaterial({ color: 0xffd23a, emissive: 0xffd23a, emissiveIntensity: 2 })); star.position.set(w / 2 + 2, 3.4, d / 2 + 1.5); g.add(star);
+  return g;
+}
+
+/** Water park, about 36 x 36: wave pool, lazy river, slide tower with three slides, umbrellas, manager sign. */
+export function makeWaterPark(manager = '') {
+  const g = new THREE.Group(), body = new THREE.Group(); g.add(body);
+  const water = new THREE.MeshStandardMaterial({ color: 0x2fc6e8, emissive: 0x0a90c0, emissiveIntensity: 0.25, roughness: 0.1, metalness: 0.1 });
+  const tile = std(0xf2efe8, { roughness: 0.8 });
+  box(36, 0.6, 36, tile, 0, 0.3, 0, body);
+  box(18, 0.2, 14, water, -7, 0.62, 6, body); // wave pool
+  const river = new THREE.Mesh(new THREE.TorusGeometry(13, 1.5, 6, 40), water); river.rotation.x = -Math.PI / 2; river.scale.set(1, 1, 0.08); river.position.y = 0.62; body.add(river);
+  box(4, 14, 4, std(0x3a6ee8), 9, 7, -9, body); box(5.5, 0.6, 5.5, std(0xffd23a), 9, 14.2, -9, body);
+  for (let k = 0; k < 7; k++) box(1.6, 0.3, 1.2, std(0xf2efe8), 11.6, 1 + k * 2, -9 + (k % 2 ? 1 : -1), body);
+  const slideCols = [0xff6a13, 0xffd23a, 0x2fb07a];
+  [[[9, 14, -9], [0, 11, -2], [-6, 6, 4], [-10, 1.2, 8]], [[9, 14, -9], [14, 9, -2], [12, 4, 8], [5, 1.2, 12]], [[9, 14, -9], [3, 12, -14], [-6, 7, -12], [-12, 1.2, -6]]].forEach((pts, i) => {
+    const curve = new THREE.CatmullRomCurve3(pts.map((p) => new THREE.Vector3(...p)));
+    const tube = new THREE.Mesh(new THREE.TubeGeometry(curve, 48, 0.9, 10, false), std(slideCols[i], { roughness: 0.3 })); tube.castShadow = true; body.add(tube);
+  });
+  for (const [x, z, c] of [[-14, -12, 0xff4f6a], [-8, -14, 0x3ab0ff], [14, 12, 0xffd23a], [-15, 14, 0x2fb07a]]) {
+    box(0.15, 3, 0.15, std(0xdddddd), x, 2, z, body);
+    const um = new THREE.Mesh(new THREE.ConeGeometry(2.2, 1.0, 10), std(c, { flatShading: true })); um.position.set(x, 3.8, z); body.add(um);
+  }
+  const glow = new THREE.PointLight(0x40d8ff, 60, 40, 2); glow.position.set(-7, 3, 6); g.add(glow);
+  const tex = canvasTex(1024, 256, (c, W, H) => { c.fillStyle = '#2fc6e8'; c.fillRect(0, 0, W, H); c.fillStyle = '#fff'; c.textAlign = 'center'; c.textBaseline = 'middle';
+    c.font = '900 120px "Inter Display", Inter, sans-serif'; c.fillText('WATER PARK', W / 2, H / 2 + 6); });
+  const sgn = new THREE.Mesh(new THREE.BoxGeometry(20, 5, 0.5), [frameMat, frameMat, frameMat, frameMat, new THREE.MeshStandardMaterial({ map: tex, emissive: 0xffffff, emissiveMap: tex, emissiveIntensity: 0.6 }), frameMat]);
+  sgn.position.set(-4, 7.5, 18.4); g.add(sgn);
+  for (const x of [-12, 4]) box(0.5, 5, 0.5, std(0xb0b6bd, { metalness: 0.5 }), x, 2.5, 18.2, g);
+  let mgr = null;
+  if (manager) { mgr = nameplate('MANAGER: ' + manager, 7, 1.1, { bg: '#ff6a13', fg: '#ffffff' }); mgr.position.set(-4, 4.4, 18.75); g.add(mgr); }
+  g.userData = { kind: 'waterpark', body, sign: sgn, manager: mgr };
+  return g;
+}
+
+/** Castle (Queen R): walls, four towers with cones, keep, gate, flags, torches. Faces +z. */
+export function makeCastle(owner) {
+  const g = new THREE.Group();
+  const stone = std(0xbdb6a8, { roughness: 0.95 }), roofM = std(0x7a3fbf, { flatShading: true }), flagM = std(0xff6a13);
+  for (const [x, z] of [[-14, -14], [14, -14], [-14, 14], [14, 14]]) {
+    const t = new THREE.Mesh(new THREE.CylinderGeometry(3, 3.3, 14, 14), stone); t.position.set(x, 7, z); t.castShadow = true; g.add(t);
+    const c = new THREE.Mesh(new THREE.ConeGeometry(3.8, 6, 14), roofM); c.position.set(x, 17, z); c.castShadow = true; g.add(c);
+    box(0.15, 3, 0.15, std(0x444444), x, 21.5, z, g); const f = box(2.2, 1.2, 0.1, flagM, x + 1.1, 22.3, z, g);
+  }
+  for (const [x, z, w, d] of [[0, -14, 28, 2], [0, 14, 28, 2], [-14, 0, 2, 28], [14, 0, 2, 28]]) box(w, 9, d, stone, x, 4.5, z, g);
+  for (let x = -12; x <= 12; x += 3) box(1.4, 1.4, 2.2, stone, x, 9.7, 14, g);
+  box(12, 18, 12, stone, 0, 9, -2, g); const keepRoof = new THREE.Mesh(new THREE.ConeGeometry(9, 8, 4), roofM); keepRoof.rotation.y = Math.PI / 4; keepRoof.position.set(0, 22, -2); keepRoof.castShadow = true; g.add(keepRoof);
+  box(6, 7, 0.4, doorMat, 0, 3.5, 15.1, g);
+  for (const x of [-4.5, 4.5]) { const tor = new THREE.Mesh(new THREE.SphereGeometry(0.4, 8, 6), new THREE.MeshStandardMaterial({ color: 0xffa040, emissive: 0xff8a20, emissiveIntensity: 3 })); tor.position.set(x, 6, 15.4); g.add(tor); }
+  const lamp = new THREE.PointLight(0xffa860, 50, 40, 2); lamp.position.set(0, 7, 20); g.add(lamp);
+  const plate = nameplate('QUEEN ' + owner, 7, 1.3, { bg: '#7a3fbf', fg: '#ffe9a0' }); plate.position.set(0, 8.6, 15.4); g.add(plate);
+  g.userData = { kind: 'castle', front: v3(0, 8, 15) };
+  return g;
+}
+
+export function makeCheeseHouse(name) {
+  const g = new THREE.Group();
+  const sh = new THREE.Shape(); sh.moveTo(-6, 0); sh.lineTo(6, 0); sh.lineTo(-6, 7); sh.closePath();
+  const geo = new THREE.ExtrudeGeometry(sh, { depth: 8, bevelEnabled: false }); geo.translate(0, 0, -4);
+  const m = new THREE.Mesh(geo, std(0xffcf3a, { roughness: 0.6 })); m.castShadow = m.receiveShadow = true; g.add(m);
+  const hole = std(0xd9a81a, { roughness: 0.8 });
+  for (const [x, y, r] of [[-3.5, 4.2, 0.9], [0.5, 1.6, 0.7], [-1.5, 2.2, 0.5], [2.6, 0.9, 0.45]]) { const h = new THREE.Mesh(new THREE.CircleGeometry(r, 18), hole); h.position.set(x, y, 4.02); g.add(h); }
+  box(1.3, 2.2, 0.2, doorMat, -4.2, 1.1, 4.05, g);
+  plateOn(g, name, -2.4, 3.0, 4.08, 2.8);
+  g.userData = { kind: 'cheese', name, front: v3(-2, 2.5, 4) };
+  return g;
+}
+
+export function makeKebabShop(boss) {
+  const g = new THREE.Group();
+  box(12, 6, 9, std(0xf4efe6, { roughness: 0.9 }), 0, 3, 0, g);
+  box(12.4, 0.6, 9.4, std(0xc0392b), 0, 6.3, 0, g);
+  box(8, 3, 0.2, glassMat, 0, 2.6, 4.55, g);
+  const aw = box(12, 0.3, 3, std(0xc0392b), 0, 4.6, 5.8, g); aw.rotation.x = 0.3;
+  const spit = new THREE.Mesh(new THREE.CylinderGeometry(0.6, 0.9, 2.4, 10), std(0x9a5a2a, { roughness: 0.9 })); spit.position.set(-2.4, 2.3, 4.1); g.add(spit);
+  const tex = canvasTex(1024, 220, (c, W, H) => { c.fillStyle = '#c0392b'; c.fillRect(0, 0, W, H); c.fillStyle = '#ffe9a0'; c.textAlign = 'center'; c.textBaseline = 'middle';
+    c.font = '900 130px "Inter Display", Inter, sans-serif'; c.fillText('KEBAB', W / 2, H / 2 + 6); });
+  const sgn = new THREE.Mesh(new THREE.BoxGeometry(10, 2.1, 0.4), [frameMat, frameMat, frameMat, frameMat, new THREE.MeshStandardMaterial({ map: tex, emissive: 0xffffff, emissiveMap: tex, emissiveIntensity: 0.6 }), frameMat]);
+  sgn.position.set(0, 7.8, 4.2); g.add(sgn);
+  const p = nameplate('BOSS: ' + boss, 4.8, 0.85, { bg: '#ffe9a0', fg: '#7a1d14' }); p.position.set(2.8, 4.1, 4.62); g.add(p);
+  g.userData = { kind: 'kebab', front: v3(0, 3.5, 4.6) };
+  return g;
+}
+
+export function makeTacoHouse(name) {
+  // Side view of a taco: a U-shaped shell (bottom half of a ring), extruded front to back, with filling on top.
+  const g = new THREE.Group(), R = 5.2, r = 4.5, D = 7;
+  const ring = new THREE.Shape(); ring.absarc(0, 0, R, Math.PI, 2 * Math.PI, false); ring.lineTo(r, 0); ring.absarc(0, 0, r, 2 * Math.PI, Math.PI, true); ring.closePath();
+  const shellGeo = new THREE.ExtrudeGeometry(ring, { depth: D, bevelEnabled: true, bevelSize: 0.25, bevelThickness: 0.25, curveSegments: 24 }); shellGeo.translate(0, R, -D / 2);
+  const shell = new THREE.Mesh(shellGeo, std(0xe9b44c, { roughness: 0.75 })); shell.castShadow = shell.receiveShadow = true; g.add(shell);
+  const fillS = new THREE.Shape(); fillS.absarc(0, 0, r, Math.PI, 2 * Math.PI, false); fillS.closePath();
+  const fillGeo = new THREE.ExtrudeGeometry(fillS, { depth: D - 0.6, bevelEnabled: false, curveSegments: 20 }); fillGeo.translate(0, R + 0.3, -(D - 0.6) / 2);
+  g.add(new THREE.Mesh(fillGeo, std(0x8a4a2a, { roughness: 0.9 })));
+  for (let k = 0; k < 9; k++) { const l = new THREE.Mesh(new THREE.SphereGeometry(0.9, 8, 6), std(0x5fbf3f, { flatShading: true })); l.position.set(-3.6 + k * 0.9, R + 0.4 + Math.sin(k) * 0.2, (k % 3 - 1) * 2); l.scale.set(1, 0.55, 1); g.add(l); }
+  for (const [x, z] of [[-2, 1.5], [0.6, -1.2], [2.6, 1.0], [-0.8, -2.4]]) { const tm = new THREE.Mesh(new THREE.CylinderGeometry(0.7, 0.7, 0.3, 14), std(0xd0342c)); tm.position.set(x, R + 0.9, z); g.add(tm); }
+  for (const [x, z] of [[-1, 0], [1.6, 2], [-2.8, -1.4]]) { const ch = box(1.6, 0.25, 0.3, std(0xffd23a), x, R + 1.1, z, g); ch.rotation.y = x; }
+  box(1.3, 2.2, 0.2, doorMat, 0, 1.6, D / 2 + 0.3, g);
+  plateOn(g, name, 0, 3.6, D / 2 + 0.35, 2.6);
+  g.userData = { kind: 'taco', name, front: v3(0, 3, D / 2) };
+  return g;
+}
+
+export function makeRainbowNeonHouse(name) {
+  const g = new THREE.Group(); const W = 8, H = 6, D = 7, cols = [0xff3b3b, 0xff9a2e, 0xffe23a, 0x3bd96a, 0x3ab0ff, 0x9a5aff];
+  cols.forEach((c, i) => box(W, H / 6, D, new THREE.MeshStandardMaterial({ color: c, emissive: c, emissiveIntensity: 0.7, roughness: 0.4 }), 0, H / 12 + i * H / 6, 0, g));
+  const r = new THREE.Mesh(roofGeo(W + 1, D + 1, 2.6), new THREE.MeshStandardMaterial({ color: 0xffffff, emissive: 0xffffff, emissiveIntensity: 0.4, flatShading: true })); r.position.y = H; g.add(r);
+  box(1.4, 2.4, 0.2, doorMat, 0, 1.2, D / 2 + 0.05, g);
+  plateOn(g, name, 0, 4.4, D / 2 + 0.1, 3.0);
+  const glow = new THREE.PointLight(0xff7ad0, 40, 26, 2); glow.position.set(0, 3, D / 2 + 4); g.add(glow);
+  g.userData = { kind: 'rainbow', name, front: v3(0, 3.5, D / 2) };
+  return g;
+}
+
+export function makeCrystalTree(name) {
+  const g = new THREE.Group();
+  const trunk = new THREE.Mesh(new THREE.CylinderGeometry(0.6, 0.9, 6, 8), std(0xe8c6d6, { roughness: 0.3 })); trunk.position.y = 3; trunk.castShadow = true; g.add(trunk);
+  const cm = new THREE.MeshStandardMaterial({ color: 0xff9ad5, emissive: 0xff5ab8, emissiveIntensity: 0.6, roughness: 0.1, metalness: 0.2, flatShading: true });
+  for (const [x, y, z, s] of [[0, 8, 0, 3.2], [-2.4, 6.4, 1, 2], [2.3, 6.8, -0.8, 2.2], [0.8, 10.3, 0.6, 1.8], [-1.2, 9.6, -1.4, 1.6]]) {
+    const c = new THREE.Mesh(new THREE.OctahedronGeometry(s, 0), cm); c.position.set(x, y, z); c.rotation.set(x, y, z); c.castShadow = true; g.add(c);
+  }
+  const glow = new THREE.PointLight(0xff7ad0, 30, 22, 2); glow.position.set(0, 7, 3); g.add(glow);
+  plateOn(g, name, 0, 1.6, 0.95, 2.4);
+  g.userData = { kind: 'crystal', name, front: v3(0, 5, 1) };
+  return g;
 }

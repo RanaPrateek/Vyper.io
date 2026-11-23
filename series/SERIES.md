@@ -44,7 +44,7 @@ Views / likes / shares (optional)
 ## City state
 | | |
 |---|---|
-| Day | 3 |
+| Day | 4 |
 | Population (followers) | **260** (Sat 21 Nov). The 100-citizen electricity milestone has been reached, so Episode 4 is the night episode with the lights coming on |
 | Built | **Giant mall** (Ep 2), 15 citizens' houses (Ep 2): see `city-post/city/state.json`, the source of truth for the world |
 | Houses (citizens) | 194 (15 from Ep 2, 179 from Ep 3, including 30 villas on Billionaires' Hill) |
@@ -79,7 +79,8 @@ Views / likes / shares (optional)
 |---|---|---|---|---|---|---|
 | 1 | Posted Thu 19 Nov 2026 (~20:15) | Population: 1 | Hospital / Stadium / Giant mall | (pending) | — | Pilot: rules introduced. End card shows the old handle `@population.you`; left as is |
 | 2 | **Posted Thu 19 Nov 2026 evening** (the draft, which said 25 citizens) | We built it | Skate park / Fire station / Cinema, plus name the pigeon | After 10 h: **Cinema 59%** (290 votes, 7-day poll) | Giant mall, 15 houses, the pigeon | **5,641 views · 367 likes · 203 comments** in 10 h, roughly 35× Episode 1. All requests are in `series/ep02/COMMENTS.md` |
-| 3 | Sat 21 Nov 2026, 19:00 | A whole new neighbourhood | Water park / Castle / Town centre | (pending) | 149 houses (6 specials: potato, rubber duck, shoe, ostrich, nugget, pigeon statue), Billionaires' Hill (30 villas), cinema, Tamara's neon purple extension; the pigeon is named Kevin | Final render uses the real count of 260 followers |
+| 3 | Posted Sat 21 Nov 2026 | A whole new neighbourhood | Water park / Castle / Town centre | (pending) | 149 houses (6 specials: potato, rubber duck, shoe, ostrich, nugget, pigeon statue), Billionaires' Hill (30 villas), cinema, Tamara's neon purple extension; the pigeon is named Kevin | Final render uses the real count of 260 followers |
+| 4 | Mon 23 Nov 2026, 19:00 | Lights on | Zoo / Ice rink / Train station | (pending) | Night lighting, water park (Ellis manages it), Queen R's castle (top comment, 17 likes), cheese house (Arran), kebab shop (chris), tiny house (Alex), taco (Skyla), crystal tree (chlo), rainbow neon house (Penny), Christmas lights (Emijinx), 46 new citizens | Ep 3 stats: 1,565 views · 160 likes · 105 comments (down from Ep 2). Poll: water park 80%. Placeholder of 300 followers |
 
 ## Feedback to apply from Episode 2 (account holder, 19 Nov 2026)
 Episode 1 stays as posted. Don't re-render it. Apply all of these to new episodes:
