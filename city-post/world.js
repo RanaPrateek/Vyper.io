@@ -771,3 +771,75 @@ export function makeCrystalTree(name) {
   g.userData = { kind: 'crystal', name, front: v3(0, 5, 1) };
   return g;
 }
+
+// ================================================================ crowds
+/** Little people walking along the sidewalks. n people; density is higher near (cx, cz).
+ *  Returns { group, update(t, visibleFn?) }. visibleFn(i, x, z) -> 0..1 scale (e.g. to pop in with the build). */
+export function makeCrowd(n = 2000, { seed = 11, cx = 0, cz = 250, spread = 260, zMin = -200, size = 1.8 } = {}) {
+  const SIZE = size;
+  let s = seed; const rnd = () => { s = (s * 16807) % 2147483647; return (s - 1) / 2147483646; };
+  const body = new THREE.CapsuleGeometry(0.42, 0.9, 3, 8).translate(0, 1.0, 0);
+  const head = new THREE.SphereGeometry(0.36, 10, 8).translate(0, 2.05, 0);
+  const bodies = new THREE.InstancedMesh(body, new THREE.MeshStandardMaterial({ roughness: 0.8 }), n);
+  const heads = new THREE.InstancedMesh(head, new THREE.MeshStandardMaterial({ roughness: 0.7 }), n);
+  bodies.castShadow = true;
+  const SHIRTS = [0xe8463a, 0x3a7bd5, 0xffd23a, 0x2fb07a, 0xff7ad0, 0x8a5ae8, 0xff9a2e, 0x2fc6e8, 0xf4f4f4, 0x2b2b2e];
+  const SKIN = [0xf2d2b6, 0xe0ac86, 0xc68a60, 0x8d5a3b, 0x5c3a24];
+  const col = new THREE.Color();
+  const P = [];
+  for (let i = 0; i < n; i++) {
+    // pick a sidewalk lane near the centre (gaussian-ish), along x or z
+    const g = () => (rnd() + rnd() + rnd() - 1.5) / 1.5;
+    const alongX = rnd() < 0.5;
+    const lane = Math.round(((alongX ? cz : cx) + g() * spread) / 50) * 50 + (rnd() < 0.5 ? -5.7 : 5.7);
+    let u0 = (alongX ? cx : cz) + g() * spread;
+    if (!alongX) u0 = Math.max(zMin, u0);
+    const laneC = alongX ? Math.max(zMin, Math.min(395, lane)) : Math.max(-395, Math.min(395, lane));
+    P.push({ alongX, lane: laneC, u0, v: (0.9 + rnd() * 0.9) * (rnd() < 0.5 ? -1 : 1), ph: rnd() * 6.28 });
+    bodies.setColorAt(i, col.set(SHIRTS[Math.floor(rnd() * SHIRTS.length)]));
+    heads.setColorAt(i, col.set(SKIN[Math.floor(rnd() * SKIN.length)]));
+  }
+  bodies.instanceColor.needsUpdate = heads.instanceColor.needsUpdate = true;
+  const group = new THREE.Group(); group.add(bodies, heads);
+  const m = new THREE.Matrix4(), q = new THREE.Quaternion(), sc = new THREE.Vector3(), pos = new THREE.Vector3(), up = new THREE.Vector3(0, 1, 0);
+  const wrap = (u) => ((u + 400) % 800 + 800) % 800 - 400;
+  function update(t, visibleFn) {
+    P.forEach((p, i) => {
+      const u = wrap(p.u0 + p.v * t);
+      const x = p.alongX ? u : p.lane, z = p.alongX ? p.lane : u;
+      const k = visibleFn ? visibleFn(i, x, z) : 1;
+      pos.set(x, Math.abs(Math.sin(t * 7 + p.ph)) * 0.12, z);
+      q.setFromAxisAngle(up, p.alongX ? (p.v > 0 ? Math.PI / 2 : -Math.PI / 2) : (p.v > 0 ? 0 : Math.PI));
+      sc.setScalar(Math.max(k, 0.0001) * SIZE);
+      m.compose(pos, q, sc); bodies.setMatrixAt(i, m); heads.setMatrixAt(i, m);
+    });
+    bodies.instanceMatrix.needsUpdate = heads.instanceMatrix.needsUpdate = true;
+  }
+  update(0);
+  return { group, update };
+}
+
+/** People standing still (e.g. a little crowd admiring a house). spots: [[x, z, facingAngle], ...] */
+export function makeOnlookers(spots, { seed = 21, size = 1.8 } = {}) {
+  let s = seed; const rnd = () => { s = (s * 16807) % 2147483647; return (s - 1) / 2147483646; };
+  const n = spots.length;
+  const bodies = new THREE.InstancedMesh(new THREE.CapsuleGeometry(0.42, 0.9, 3, 8).translate(0, 1.0, 0), new THREE.MeshStandardMaterial({ roughness: 0.8 }), n);
+  const heads = new THREE.InstancedMesh(new THREE.SphereGeometry(0.36, 10, 8).translate(0, 2.05, 0), new THREE.MeshStandardMaterial({ roughness: 0.7 }), n);
+  bodies.castShadow = true;
+  const SHIRTS = [0xe8463a, 0x3a7bd5, 0xffd23a, 0x2fb07a, 0xff7ad0, 0x8a5ae8, 0xff9a2e, 0x2fc6e8, 0xf4f4f4], SKIN = [0xf2d2b6, 0xe0ac86, 0xc68a60, 0x8d5a3b, 0x5c3a24];
+  const col = new THREE.Color(), m = new THREE.Matrix4(), q = new THREE.Quaternion(), up = new THREE.Vector3(0, 1, 0);
+  spots.forEach(([x, z, a], i) => {
+    bodies.setColorAt(i, col.set(SHIRTS[Math.floor(rnd() * SHIRTS.length)])); heads.setColorAt(i, col.set(SKIN[Math.floor(rnd() * SKIN.length)]));
+    q.setFromAxisAngle(up, a); m.compose(new THREE.Vector3(x, 0, z), q, new THREE.Vector3(size, size * (0.85 + rnd() * 0.3), size));
+    bodies.setMatrixAt(i, m); heads.setMatrixAt(i, m);
+  });
+  const g = new THREE.Group(); g.add(bodies, heads); return g;
+}
+/** Spots in an arc in front (+z) of a point, all facing it. */
+export function arcSpots(x, z, { n = 7, r0 = 9, r1 = 13, spreadAng = 1.3, seed = 3 } = {}) {
+  let s = seed; const rnd = () => { s = (s * 16807) % 2147483647; return (s - 1) / 2147483646; };
+  const out = [];
+  for (let i = 0; i < n; i++) { const a = -spreadAng / 2 + spreadAng * (i + rnd() * 0.6) / n, r = r0 + rnd() * (r1 - r0);
+    const px = x + Math.sin(a) * r, pz = z + Math.cos(a) * r; out.push([px, pz, Math.atan2(x - px, z - pz)]); }
+  return out;
+}

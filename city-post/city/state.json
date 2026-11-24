@@ -2112,6 +2112,61 @@
    "since_episode": 4,
    "roof": 2071208,
    "wall": 4186344
+  },
+  {
+   "name": "Steph",
+   "house": "house",
+   "x": -87,
+   "z": 136,
+   "since_episode": 5,
+   "comment": "Can I live in a giant duck? 🦆",
+   "roof": 12865658
+  },
+  {
+   "name": "💿",
+   "house": "house",
+   "x": -75,
+   "z": 136,
+   "since_episode": 5,
+   "comment": "Can i have a bar",
+   "roof": 13788475
+  },
+  {
+   "name": "King_Kenny",
+   "house": "house",
+   "x": -63,
+   "z": 136,
+   "since_episode": 5,
+   "comment": "Can I have a gingerbread house",
+   "roof": 5219178
+  },
+  {
+   "name": "tam(taylor's version)",
+   "house": "house",
+   "x": -87,
+   "z": 124,
+   "since_episode": 5,
+   "comment": "can i have a cottage house",
+   "roof": 14725690
+  },
+  {
+   "name": "Willy dog",
+   "house": "house",
+   "x": -75,
+   "z": 124,
+   "since_episode": 5,
+   "comment": "where's my home",
+   "roof": 13788475
+  },
+  {
+   "name": "Amelia📖",
+   "house": "house",
+   "x": -63,
+   "z": 124,
+   "since_episode": 5,
+   "comment": "Can I please have a light pink house",
+   "roof": 15899328,
+   "wall": 16766695
   }
  ]
 }

@@ -1,4 +1,4 @@
-# Citizens: who already has a house (239)
+# Citizens: who already has a house (245)
 
 Generated from `city-post/city/state.json` by `python3 city-post/tools/citizens.py list`. Don't edit by hand.
 
@@ -259,6 +259,17 @@ It says HAS A HOUSE, MAYBE (a similar name exists, so check the profile picture)
 | 238 | Louis | House | -175,275 |  |
 | 239 | ellie | House | -175,275 |  |
 
+## Built in Episode 5 (6)
+
+| # | Name | House | Plot | Their comment |
+|---|---|---|---|---|
+| 240 | Steph | House | -75,125 | Can I live in a giant duck? 🦆 |
+| 241 | 💿 | House | -75,125 | Can i have a bar |
+| 242 | King_Kenny | House | -75,125 | Can I have a gingerbread house |
+| 243 | tam(taylor's version) | House | -75,125 | can i have a cottage house |
+| 244 | Willy dog | House | -75,125 | where's my home |
+| 245 | Amelia📖 | House | -75,125 | Can I please have a light pink house |
+
 ## Possible duplicates to check
 
 These may be the same person twice, or different people with similar names. Check the profile pictures.
@@ -271,7 +282,7 @@ These may be the same person twice, or different people with similar names. Chec
 - Same name: Mia🤍, Mia
 - Same name: sadie, Sadie🦄
 - Same name: Rosie, 🤍Rosie
-- Same name: Amelia🎄, ~amelia~
+- Same name: Amelia🎄, ~amelia~, Amelia📖
 - Same name: Miami, Miami 👀
 - Similar: Jess🦢 / Jess (Julia's version)
 - Similar: Jess🦢 / jess's spammmm
@@ -281,6 +292,7 @@ These may be the same person twice, or different people with similar names. Chec
 - Similar: erinn🤍 / erin
 - Similar: Lilyy / Lily
 - Similar: Bella / bellahar🐰
+- Similar: will / Willy dog
 - Similar: megan / megan_m74
 - Similar: katie🦦 / katiemccarron
 - Similar: Georgia💗 / Georgia_grace123
@@ -289,5 +301,6 @@ These may be the same person twice, or different people with similar names. Chec
 - Similar: Emily-mai / EMILY
 - Similar: Amelia🎄 / ameliaspams🤍
 - Similar: ~amelia~ / ameliaspams🤍
+- Similar: ameliaspams🤍 / Amelia📖
 - Similar: Alex / alexisxspam
 - Similar: Ellie:3 / ellie

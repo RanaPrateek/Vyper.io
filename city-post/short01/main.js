@@ -6,7 +6,7 @@ import {
   LOOKS, applyLook, sign, setSign, makeHouse, makeCarHouse, makeMansion, makeMall, makePigeon,
   makeHouseField, makeVilla, makeDistrict, makeCinema, makeNeonExtension, makePotatoHouse, makeDuckHouse,
   makeShoeHouse, makeOstrichHouse, makeNuggetHouse, makePigeonStatue, floatingTag, setCityLights, christmasLights,
-  makeWaterPark, makeCastle, makeCheeseHouse, makeKebabShop, makeTacoHouse, makeRainbowNeonHouse, makeCrystalTree,
+  makeWaterPark, makeCastle, makeCheeseHouse, makeKebabShop, makeTacoHouse, makeRainbowNeonHouse, makeCrystalTree, makeCrowd, makeOnlookers, arcSpots,
 } from '../world.js';
 
 const load = (f) => fetch(f).then((r) => r.json());
@@ -22,7 +22,7 @@ const MAKERS = { potato: makePotatoHouse, duck: makeDuckHouse, shoe: makeShoeHou
 const ENTR = v3(0, 0, 400);
 const pops = [];            // { obj | fieldIndex, d (distance from entrance), base }
 const fieldEntries = [];
-for (const c of STATE.citizens) {
+for (const c of STATE.citizens.filter((c) => c.since_episode <= 4)) {
   const d = Math.hypot(c.x - ENTR.x, c.z - ENTR.z);
   if (c.house === 'house' && c.since_episode >= 3 && !c.tiny) { pops.push({ f: fieldEntries.length, d }); fieldEntries.push({ name: c.name, x: c.x, z: c.z, roof: c.roof, wall: c.wall }); continue; }
   let o;
@@ -48,6 +48,11 @@ const park = makeWaterPark('Ellis'); add(park, B.waterpark.x, B.waterpark.z, par
 const kebab = makeKebabShop(B.kebab.boss); add(kebab, B.kebab.x, B.kebab.z);
 const hill = makeDistrict(B.billionaires_hill.x, B.billionaires_hill.z, B.billionaires_hill.w, B.billionaires_hill.d, B.billionaires_hill.h, "BILLIONAIRES' HILL"); scene.add(hill);
 const pigeon = makePigeon(); pigeon.position.set(2.2, 10.0, 0.05); pigeon.rotation.y = 0.35; sign.add(pigeon);
+const crowd = makeCrowd(4500, { cz: 250, spread: 220 }); scene.add(crowd.group);
+const ONLOOK = [];
+for (const [nm, r0, r1, sp] of [['Miley', 7, 9, 2.6], ['Kai', 7.5, 9.5, 2.6], ['Lilyy', 6, 7.5, 2.2], ['~Skyla~', 6.5, 8.5, 2.6]]) { const o = objOf(nm).position; ONLOOK.push(...arcSpots(o.x, o.z, { n: 8, r0, r1, spreadAng: sp, seed: ONLOOK.length + 7 }).filter(([x, z]) => Math.abs(x - o.x) > 3.5)); }
+{ const c = byName['R♡']; ONLOOK.push(...arcSpots(c.x, c.z, { n: 18, r0: 22, r1: 30, spreadAng: 1.6, seed: 99 })); }
+const onlookers = makeOnlookers(ONLOOK); scene.add(onlookers);
 const kevinTag = floatingTag('KEVIN', { height: 0.5 }); kevinTag.position.set(2.2, 12.3, 0.05); kevinTag.scale.set(1.6, 0.5, 1); sign.add(kevinTag);
 
 // ---------------------------------------------------------------- timing
@@ -71,7 +76,7 @@ const SHOTS = [
     orbit: { c: P(0, 0, 220), r: [300, 360], a: [0.15, 0.75], h: [70, 230], y: 0 }, span: 420 },
   { t0: BEAT.weird.start - 0.08, t1: T.duck - 0.08, look: 'day', pill: 'COMMENT 1', title: 'A POTATO', ...near(objOf('Miley'), [6, 5, 22], [4, 4.4, 17], 3.5), span: 40 },
   { t0: T.duck - 0.08, t1: T.shoe - 0.08, look: 'day', pill: 'COMMENT 2', title: 'A RUBBER DUCK', ...near(objOf('Kai'), [7, 6.5, 24], [5, 6, 19], 5), span: 40 },
-  { t0: T.shoe - 0.08, t1: T.taco - 0.08, look: 'day', pill: 'COMMENT 3', title: 'A GIANT SHOE', ...near(objOf('Lilyy'), [2, 5.5, 46], [2, 5, 40], 4), span: 50 },
+  { t0: T.shoe - 0.08, t1: T.taco - 0.08, look: 'day', pill: 'COMMENT 3', title: 'A GIANT SHOE', ...near(objOf('Lilyy'), [2, 10, 44], [2, 9, 38], 3.5), span: 50 },
   { t0: T.taco - 0.08, t1: T.castle - 0.08, look: 'day', pill: 'COMMENT 4', title: 'A TACO', ...near(objOf('~Skyla~'), [-6, 7, 24], [-4, 6, 19], 4), span: 40 },
   { t0: T.castle - 0.08, t1: BEAT.lights.start - 0.08, look: 'golden', pill: 'TOP COMMENT', title: 'A CASTLE FOR THE QUEEN', ...near(castleO, [48, 34, 100], [34, 27, 80], 10.5), span: 80 },
   { t0: BEAT.lights.start - 0.08, t1: BEAT.cta.start - 0.08, look: (t) => (t < T.lights ? 'dusk' : 'night'), pill: 'DAY 5', title: (t) => (t < T.lights - 0.05 ? '240 HOUSES LATER' : 'LIGHTS ON'),
@@ -137,6 +142,8 @@ export function setTime(t) {
   const xs = popScale(t, popAt(300)); xmas.visible = xs > 0.001; xmas.scale.setScalar(Math.max(xs, 0.001));
   setSign(Math.max(1, Math.round(260 * built / pops.length)));
   setCityLights(lightsK(t));
+  crowd.update(t, (i, x, z) => (t < FLASH ? 1 : popScale(t, popAt(Math.hypot(x - ENTR.x, z - ENTR.z)) + 0.2, 0.3)));
+  onlookers.visible = t < FLASH || t > BUILD1;
   pigeon.userData.animate(t); kevinTag.position.y = 12.3 + Math.sin(t * 2.2) * 0.08;
 
   // ---- camera
