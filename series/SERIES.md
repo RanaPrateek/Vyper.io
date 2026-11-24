@@ -128,7 +128,8 @@ Tease the next milestone with a progress bar in every episode.
 2. **The hook makes sense to a stranger** (never open on "yesterday, N citizens").
 3. **30–45 s.** At most 3–4 named moments; everyone else goes in a fast montage or on the name wall.
 4. Every so often, post a **stand-alone short** aimed at new viewers (timelapse, Day 1 vs Day N).
-5. Check each video's **traffic source (For You %)** to tell a hook problem from a distribution problem.
+5. **Crowd size: about 1,000–1,200 walking people** (account holder's preference; 4,500 was too many).
+6. Check each video's **traffic source (For You %)** to tell a hook problem from a distribution problem.
 
 ## Feedback from Episode 3 (account holder, 21 Nov)
 - Tamara's extension stuck out over the road: fixed (moved to the other side). Check every add-on's footprint against roads.

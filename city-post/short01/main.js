@@ -48,7 +48,7 @@ const park = makeWaterPark('Ellis'); add(park, B.waterpark.x, B.waterpark.z, par
 const kebab = makeKebabShop(B.kebab.boss); add(kebab, B.kebab.x, B.kebab.z);
 const hill = makeDistrict(B.billionaires_hill.x, B.billionaires_hill.z, B.billionaires_hill.w, B.billionaires_hill.d, B.billionaires_hill.h, "BILLIONAIRES' HILL"); scene.add(hill);
 const pigeon = makePigeon(); pigeon.position.set(2.2, 10.0, 0.05); pigeon.rotation.y = 0.35; sign.add(pigeon);
-const crowd = makeCrowd(4500, { cz: 250, spread: 220 }); scene.add(crowd.group);
+const crowd = makeCrowd(1100, { cz: 250, spread: 220 }); scene.add(crowd.group);
 const ONLOOK = [];
 for (const [nm, r0, r1, sp] of [['Miley', 7, 9, 2.6], ['Kai', 7.5, 9.5, 2.6], ['Lilyy', 6, 7.5, 2.2], ['~Skyla~', 6.5, 8.5, 2.6]]) { const o = objOf(nm).position; ONLOOK.push(...arcSpots(o.x, o.z, { n: 8, r0, r1, spreadAng: sp, seed: ONLOOK.length + 7 }).filter(([x, z]) => Math.abs(x - o.x) > 3.5)); }
 { const c = byName['R♡']; ONLOOK.push(...arcSpots(c.x, c.z, { n: 18, r0: 22, r1: 30, spreadAng: 1.6, seed: 99 })); }
