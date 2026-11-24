@@ -80,6 +80,7 @@ Views / likes / shares (optional)
 | 1 | Posted Thu 19 Nov 2026 (~20:15) | Population: 1 | Hospital / Stadium / Giant mall | (pending) | — | Pilot: rules introduced. End card shows the old handle `@population.you`; left as is |
 | 2 | **Posted Thu 19 Nov 2026 evening** (the draft, which said 25 citizens) | We built it | Skate park / Fire station / Cinema, plus name the pigeon | After 10 h: **Cinema 59%** (290 votes, 7-day poll) | Giant mall, 15 houses, the pigeon | **5,641 views · 367 likes · 203 comments** in 10 h, roughly 35× Episode 1. All requests are in `series/ep02/COMMENTS.md` |
 | 3 | Posted Sat 21 Nov 2026 | A whole new neighbourhood | Water park / Castle / Town centre | (pending) | 149 houses (6 specials: potato, rubber duck, shoe, ostrich, nugget, pigeon statue), Billionaires' Hill (30 villas), cinema, Tamara's neon purple extension; the pigeon is named Kevin | Final render uses the real count of 260 followers |
+| S1 | Tue 24 Nov 2026, 19:00 | TikTok built this city (18 s short) | — | — | — | Recovery post for new viewers |
 | 4 | Posted Mon 23 Nov 2026 | Lights on | Zoo / Ice rink / Train station | (pending) | Night lighting, water park (Ellis manages it), Queen R's castle (top comment, 17 likes), cheese house (Arran), kebab shop (chris), tiny house (Alex), taco (Skyla), crystal tree (chlo), rainbow neon house (Penny), Christmas lights (Emijinx), 46 new citizens | Ep 3 stats: 1,565 views · 160 likes · 105 comments (down from Ep 2). Poll: water park 80%. **Result: 173 views in 22 h** (stalled). See `series/ep04/COMMENTS.md` for the diagnosis. Poll: ice rink 78% |
 
 ## Feedback to apply from Episode 2 (account holder, 19 Nov 2026)
@@ -121,6 +122,13 @@ Tease the next milestone with a progress bar in every episode.
 - **Founders' Wall** at the city entrance with every early citizen's name, and **end on a citizen list** ("pause to find your name").
 - **Look:** more colour (varied roof colours) and tiny citizens in the streets. Smaller titles, inside the safe area.
 - **Narration:** conversational and funny, generated as continuous takes. Episodes about 50–60 s.
+
+## Reach rules (after Ep 4 stalled at 173 views, 24 Nov)
+1. **Frame 1 is bright, colourful and moving.** No dark or static openings.
+2. **The hook makes sense to a stranger** (never open on "yesterday, N citizens").
+3. **30–45 s.** At most 3–4 named moments; everyone else goes in a fast montage or on the name wall.
+4. Every so often, post a **stand-alone short** aimed at new viewers (timelapse, Day 1 vs Day N).
+5. Check each video's **traffic source (For You %)** to tell a hook problem from a distribution problem.
 
 ## Feedback from Episode 3 (account holder, 21 Nov)
 - Tamara's extension stuck out over the road: fixed (moved to the other side). Check every add-on's footprint against roads.

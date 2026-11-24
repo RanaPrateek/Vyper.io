@@ -1,0 +1,11 @@
+{
+  "voice": "af_heart",
+  "speed": 1.12,
+  "beats": [
+    { "id": "hook",   "pause": 0.15, "say": "Five days ago, this city was empty. Then TikTok started commenting." },
+    { "id": "rule",   "pause": 0.15, "say": "Every comment became a house." },
+    { "id": "weird",  "pause": 0.2,  "say": "A potato. A rubber duck. A giant shoe. A taco. A castle for the queen." },
+    { "id": "lights", "pause": 0.2,  "say": "Two hundred and forty houses later, the lights came on.", "show": "240 houses later, the lights came on." },
+    { "id": "cta",    "pause": 0.1,  "say": "Comment, and you're next." }
+  ]
+}
