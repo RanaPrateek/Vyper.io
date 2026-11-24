@@ -1,3 +1,5 @@
 __pycache__/
 city-post/ep*/out/*.wav
 city-post/ep*/out/beats.json
+city-post/*/out/*.wav
+city-post/*/out/beats.json
